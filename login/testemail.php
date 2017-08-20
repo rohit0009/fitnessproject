@@ -43,7 +43,7 @@ if(!$mail->send())
 } 
 else 
 {
-    echo "Please Check Mail for more details. ;) ;\ ;\ ";
+    echo "Please Check Mail for OTP Details";
 }
     
 ?>		
