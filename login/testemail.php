@@ -31,7 +31,7 @@ $mail->addAddress($email, $name);
 
 $mail->isHTML(true);
 
-$random = rand(1000,9999);
+$random = rand(10000,99999);
 
 $mail->Subject = "OTP Details";
 $mail->Body = "<div style='border: 1px solid #ADADAD;padding:10px;'><h2>Thanks For registration on our Website.<br>Active your account by entering the OTP <span style='color: #3b79dd;border-bottom: 1px solid #3b79dd;'>".$random."</span></h2></div>";
