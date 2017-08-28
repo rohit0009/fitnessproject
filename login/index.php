@@ -104,7 +104,11 @@
 							$flag = 2;
 
 						if($flag == 1)
-							header("Location: home.php");
+						{
+							session_start();
+							$_SESSION["cust_id"] = $cust_id;
+							header("Location: ../");
+						}
 						else if($flag == 0)
 						{
 							echo '<div id="alert" class="alert alert-dismissible alert-danger"><button type="button" id="warn" class="close" data-dismiss="alert">&times;</button>Invalid Password.</div>';

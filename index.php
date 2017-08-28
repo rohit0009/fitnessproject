@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.css">
 
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 	
 	<style type="text/css">
@@ -65,8 +65,12 @@
 	          <div class="container">
 	            <div class="carousel-caption">
 	              
-	              
-	              <p><a class="btn btn-info btn-lg" href="SignUp" role="button">Sign up today</a></p>
+	              <?php
+	              if(!isset($_SESSION["cust_id"]))
+				  {
+	              	echo '<p><a class="btn btn-info btn-lg" href="SignUp" role="button">Sign up today</a></p>';
+	              }
+	              ?>
 	            </div>
 	          </div>
 	        </div>
@@ -74,9 +78,12 @@
 	          <img class="second-slide" src="img/fitness club.jpg" alt="Second slide">
 	          <div class="container">
 	            <div class="carousel-caption">
-	              
-	              
-	              <p><a class="btn btn-lg btn-info" href="SignUp" role="button">Sign up today</a></p>
+	              <?php
+	              if(!isset($_SESSION["cust_id"]))
+				  {
+	              	echo '<p><a class="btn btn-info btn-lg" href="SignUp" role="button">Sign up today</a></p>';
+	              }
+	              ?>
 	            </div>
 	          </div>
 	        </div>
@@ -115,10 +122,16 @@
 	<?php include 'footer.php'; ?>
 	
 	
-    <script src="bootstrap/js/jquery.js"></script>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    
+    <script>
+		$(document).ready(function(){
+			$("#logout").click(function(){
+				<?php  if(isset($_SESSION["cust_id"])){ session_unset(); session_destroy(); }?>
+			});
+		});
+	</script>
 
 </body>
 </html>

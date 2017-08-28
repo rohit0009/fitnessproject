@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" )
 }
 
 ?>
-
+<?php session_start(); echo $_SESSION["cust_id"]; ?>
 <h2>PHP Form Validation Example</h2>
 <div id="alert"></div>
 <form method="POST" onsubmit="return validate()" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
