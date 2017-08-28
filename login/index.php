@@ -84,6 +84,11 @@
 						echo '<div id="alert" class="alert alert-dismissible alert-danger"><button type="button" id="warn" class="close" data-dismiss="alert">&times;</button>Invalid Username.</div>';
 						echo '<script>$(function(){ $("#warn").click(function(){ $("#alert").fadeOut(); }); });</script>';
 					}
+					else if(mysqli_num_rows($result) == 0)
+					{
+						echo '<div id="alert" class="alert alert-dismissible alert-danger"><button type="button" id="warn" class="close" data-dismiss="alert">&times;</button>Username not found.</div>';
+						echo '<script>$(function(){ $("#warn").click(function(){ $("#alert").fadeOut(); }); });</script>';
+					}
 					else
 					{
 						$cust_id = $dtb->getParam($result,"cust_id");
