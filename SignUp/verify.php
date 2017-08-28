@@ -10,6 +10,7 @@
 		if($otp == $a.$b.$c.$d.$e.$f)
 		{
 			$result = $dtb->processQuery("UPDATE `member` SET `activate` = '1' WHERE `member`.`cust_id` = ".$_COOKIE["cust_id"].";");
+			unset("cust_id","",time() - 999999, "/",$_SERVER["SERVER_NAME"]);
 			echo "1";
 		}
 		else
