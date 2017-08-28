@@ -88,7 +88,7 @@
 	          </div>
 	        </div>
 	        <div class="item">
-	          <img class="third-slide" src="img/badminton.jpg" alt="Third slide">
+	          <img class="third-slide" src="img/fitnessclub.jpg" alt="Third slide">
 	          <div class="container">
 	            <div class="carousel-caption">
 	              
@@ -113,7 +113,7 @@
 		
 			<div class="col-lg-12">
 				<div class="jumbotron">
-					<p style="font-size: 20px;">If you are wondering about the "Best fitness center near me", then look further. "NRP fitness club" is not just a fitness studio which has grown into an empire that offers a wide range of health solutions including Gym,swimming,sports,zumba and other training courses. Whether your goal is a weightloss or bodybuilding or preparing for perticular sport or marathon, our certified and experienced trainers and nutritionists will methodically help you to reach those goals. So hurry up and Register soon.. :)</p>
+					<p style="font-size: 18px;text-indent: 50px;">If you are wondering about the "Best fitness center near me", then look further. "NRP fitness club" is not just a fitness studio which has grown into an empire that offers a wide range of health solutions including Gym,swimming,sports,zumba and other training courses. Whether your goal is a weightloss or bodybuilding or preparing for perticular sport or marathon, our certified and experienced trainers and nutritionists will methodically help you to reach those goals. So hurry up and Register soon.. :)</p>
 				</div>
 			</div>
 		</div>
