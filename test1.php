@@ -1,7 +1,7 @@
 <?php
-	session_start();
-
-	$_SESSION["cust_id"] = 1001;
+	//setcookie("cust_id","101",time()+86400,"/");
+	//setcookie("cust_id","",time()-999999,"/");
+	print_r($_COOKIE);
 
 
 ?>
