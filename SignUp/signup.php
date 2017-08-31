@@ -7,6 +7,9 @@
 	$result = $dtb->processQuery("select cust_id from member where email = '".$_REQUEST['email']."';");
 	if(mysqli_num_rows($result) == 1)
 		$flag = 1;
+	$result = $dtb->processQuery("select cust_id from member where username = '".$_REQUEST['inputUsername']."';");
+	if(mysqli_num_rows($result) == 1)
+		$flag = 2;
 	$dtb->close();
 
 	if($flag == 0)
@@ -60,8 +63,10 @@
 		setcookie("cust_id",$dtb->getParam($result,"cust_id"),time()+86400,"/");
 		$dtb->close();
 	}
-	else
-		header("Location: emailexist.php");
+	else if($flag == 1)
+		header("Location: emailexist.php?err=m");
+	else if($flag == 2)
+		header("Location: emailexist.php?err=u");
 
 
 	/*foreach ($_REQUEST as $key => $value) {

@@ -28,7 +28,9 @@
 			<a href="../index.php" style="text-decoration: none;color: white;">NRP FITNESS CLUB</a>
 		</div><br><br>
 		<div class="well well-lg text-center">
-			<h5>Email Id is already linked.Please <a href="../Login" class="btn brn-link">Log In</a></h5>
+			<h5><?php if($_REQUEST['err'] == 'm') echo 'Email Id is already linked. Please <a href="../Login" class="btn brn-link">Log In</a>';
+				else if($_REQUEST['err'] == 'u')  echo 'Username is already linked. Please <a href="../Login" class="btn brn-link">Log In</a>'; ?>
+			</h5>
 		</div>
 	</div>
 	<br><br><br><br><br><br><br><br><br><br><br><br>
