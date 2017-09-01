@@ -80,7 +80,7 @@
 					$dtb = new DTB();
 					
 					$result = $dtb->processQuery("select cust_id from member where username = '".$_POST['inputEmail']."';");
-					if(mysqli_num_rows($result) != 0)
+					if($result->num_rows != 0)
 					{
 						$cust_id = $dtb->getParam($result,"cust_id");
 						

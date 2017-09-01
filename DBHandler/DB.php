@@ -5,21 +5,21 @@
 
 		function __construct()
 		{
-			$this->connection = mysqli_connect('localhost','root','','fic');
+			$this->connection = new mysqli('localhost','root','','fic');
 			if(! $this->connection)
 			{
-				die("Failed to connect to database " . 	mysqli_connect_error());
+				die("Failed to connect to database " . 	$this->connection->mysqli_error());
 			}
 		}
 
 		function close()
 		{
-			mysqli_close($this->connection);
+			$this->connection->close();
 		}
 		
 		function display($obj)
 		{
-			while ($row = mysqli_fetch_assoc($obj)) 
+			while ($row = $obj->fetch_assoc()) 
 			{
 				# code...
 				echo $row['cust_id'].'</br>'.$row['f_name'];
@@ -28,9 +28,9 @@
 
 		function getParam($obj,$param)
 		{
-			if(mysqli_num_rows($obj) == 1)
+			if($obj->num_rows == 1)
 			{
-				while ($row = mysqli_fetch_assoc($obj)) {
+				while ($row = $obj->fetch_assoc()) {
 					# code...
 					return $row[$param];
 				}
@@ -39,7 +39,7 @@
 		
 		function processQuery($query)
 		{
-			$result = mysqli_query($this->connection,$query);	
+			$result = $this->connection->query($query);	
 			return $result;
 		}
 
