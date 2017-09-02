@@ -88,7 +88,7 @@
 						//mysqli_data_seek($result,0);
 						$flag = 0;
 
-						if( $dtb->getParam($result,"password") == $_POST['inputPassword'] )
+						if( $dtb->getParam($result,"password") == md5($_POST['inputPassword']) )
 							$flag = 1;
 
 						if($flag == 1)

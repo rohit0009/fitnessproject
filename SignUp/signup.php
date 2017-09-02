@@ -57,7 +57,7 @@
 
 
 		$dtb = new DTB();
-		$result = $dtb->processQuery("INSERT INTO `member` (`f_name`, `l_name`, `gender`, `address`, `pincode`, `contact_no`, `email`, `username`, `password`, `otp`, `activate`) VALUES ('".$_REQUEST['inputFirstName']."', '".$_REQUEST['inputLastName']."', '".$_REQUEST['optionsRadios']."', '".$_REQUEST['adr']."', '".$_REQUEST['pin']."', '".$_REQUEST['phno']."', '".$_REQUEST['email']."', '".$_REQUEST['inputUsername']."', '".$_REQUEST['inputPassword']."', '".$random."', '0')");
+		$result = $dtb->processQuery("INSERT INTO `member` (`f_name`, `l_name`, `gender`, `address`, `pincode`, `contact_no`, `email`, `username`, `password`, `otp`, `activate`) VALUES ('".$_REQUEST['inputFirstName']."', '".$_REQUEST['inputLastName']."', '".$_REQUEST['optionsRadios']."', '".$_REQUEST['adr']."', '".$_REQUEST['pin']."', '".$_REQUEST['phno']."', '".$_REQUEST['email']."', '".$_REQUEST['inputUsername']."', '".md5($_REQUEST['inputPassword'])."', '".$random."', '0')");
 		
 		$result = $dtb->processQuery("select cust_id from member where email='".$_REQUEST['email']."' order by cust_id desc limit 1;");
 		setcookie("cust_id",$dtb->getParam($result,"cust_id"),time()+86400,"/");
