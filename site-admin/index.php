@@ -70,11 +70,70 @@
 
 		<br>
 		<div class="jumbotron" style="margin-left: 50px;margin-right: 50px;">
+
+		<?php
+
+			if($_SERVER['REQUEST_METHOD'] == 'POST')
+			{
+				if($_POST['inputEmail']!="" && $_POST['inputPassword']!="")
+				{
+					require '../DBHandler/DB.php';
+					$dtb = new DTB();
+					
+					$result = $dtb->processQuery("select id from admin where username = '".$_POST['inputEmail']."';");
+					if($result->num_rows != 0)
+					{
+						$id = $dtb->getParam($result,"id");
+						
+						$result = $dtb->processQuery("select password from admin where id = ".$id.";");
+						//mysqli_data_seek($result,0);
+						$flag = 0;
+
+						if( $dtb->getParam($result,"password") == $_POST['inputPassword'] )
+							$flag = 1;
+
+						/*if($flag == 1)
+						{
+							echo "string";
+							$result = $dtb->processQuery("select activate from admin where id =".$id);
+							$activate = $dtb->getParam($result,"activate");
+							if($activate == 0)
+								$flag = 2;
+						}*/
+						if($flag == 1)
+						{
+							session_start();
+							$_SESSION["id"] = $id;
+							header("Location: home.php");
+						}
+						else if($flag == 0)
+						{
+							echo '<div id="alert" class="alert alert-dismissible alert-danger"><button type="button" id="warn" class="close" data-dismiss="alert">&times;</button>Invalid Password.</div>';
+							echo '<script>$(function(){ $("#warn").click(function(){ $("#alert").fadeOut(); }); });</script>';
+						}
+						/*if($flag == 2)
+						{
+							setcookie("id",$id,time() + 86400,"/");
+							header("Location: ../SignUp/verify_activate.php");
+						}*/
+
+					}
+					else
+					{
+						echo '<div id="alert" class="alert alert-dismissible alert-danger"><button type="button" id="warn" class="close" data-dismiss="alert">&times;</button>Username not found.</div>';
+						echo '<script>$(function(){ $("#warn").click(function(){ $("#alert").fadeOut(); }); });</script>';
+					}
+
+					$dtb->close();
+				}
+			}
+		?>
+
 		<div id="alert"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-offset-3 col-md-6">
-					<form class="form-horizontal" action="home.php" onsubmit="return validate()" method='POST'>
+					<form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" onsubmit="return validate()" method='POST'>
 					  <fieldset>
 					  <legend>ADMIN LOGIN</legend>
 					    <div class="form-group">
