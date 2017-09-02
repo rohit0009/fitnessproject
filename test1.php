@@ -1,8 +1,9 @@
 <?php
-	$conn = mysqli_connect('localhost','root','','fic');
-	if($conn == TRUE)
-		echo "success";
-	else echo "failed";
-
+	session_start();
+	$_SESSION['as'] = 12;
+	print_r($_SESSION);
+	session_unset();
+	session_destroy();
+	print_r($_SESSION);
 
 ?>
