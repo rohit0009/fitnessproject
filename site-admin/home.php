@@ -84,7 +84,6 @@
 							      <td>'.$row['email'].'</td>
 							      <td>'.$row['username'].'</td>
 							    </tr>
-							    
 							  </tbody>
 							</table>';
 						}
