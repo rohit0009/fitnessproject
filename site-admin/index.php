@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
 	<link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
 
@@ -102,7 +101,7 @@
 						}*/
 						if($flag == 1)
 						{
-							session_start();
+							//session_start();
 							$_SESSION["id"] = $id;
 							header("Location: home.php");
 						}
