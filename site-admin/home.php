@@ -60,33 +60,38 @@
 
 					if ($result->num_rows>0)
 					{
+						echo '<table class="table table-striped table-hover ">
+								  <thead>
+								    <tr>
+										<th>Customer ID</th>
+										<th>First name</th>
+										<th>Last name</th>
+										<th>Address</th>
+										<th>Contact Number</th>
+										<th>Email</th>
+										<th>Username</th>
+										<th>Account Activate?</th>
+									</tr>
+								  </thead>
+								  <tbody>';
 						while ($row = $result->fetch_assoc())
 						{
-							echo '<table class="table table-striped table-hover ">
-							  <thead>
-							    <tr>
-									<th>Customer ID</th>
-									<th>First name</th>
-									<th>Last name</th>
-									<th>Address</th>
-									<th>Contact Number</th>
-									<th>Email</th>
-									<th>Username</th>
-								</tr>
-							  </thead>
-							  <tbody>
-							    <tr>
-							      <td>'.$row['cust_id'].'</td>
-							      <td>'.$row['f_name'].'</td>
-							      <td>'.$row['l_name'].'</td>
-							      <td>'.$row['address'].'</td>
-							      <td>'.$row['contact_no'].'</td>
-							      <td>'.$row['email'].'</td>
-							      <td>'.$row['username'].'</td>
-							    </tr>
-							  </tbody>
-							</table>';
+								  echo '<tr>
+								      <td>'.$row['cust_id'].'</td>
+								      <td>'.$row['f_name'].'</td>
+								      <td>'.$row['l_name'].'</td>
+								      <td>'.$row['address'].'</td>
+								      <td>'.$row['contact_no'].'</td>
+								      <td>'.$row['email'].'</td>
+								      <td>'.$row['username'].'</td>';
+								      if($row["activate"] == 1)
+								      	echo '<td>Activated</td>';
+								      else
+								      	echo '<td>Not Activated</td>
+								    </tr>';
 						}
+						echo '</tbody>
+							</table>';
 					}
 					else
 						echo "Database is empty";
