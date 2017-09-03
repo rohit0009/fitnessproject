@@ -62,28 +62,31 @@
 					{
 						while ($row = $result->fetch_assoc())
 						{
-							echo "<table>
-									<tr>
-										<th>ID</th>
-										<th>First name</th>
-										<th>Last name</th>
-										<th>Gender</th>
-										<th>Address</th>
-										<th>Contact Number</th>
-										<th>Email</th>
-										<th>Username</th>
-									</tr>
-									<tr>
-										<td>" .$row[cust_id] ."</td>
-										<td>" .$row[f_name] ."</td>
-										<td>" .$row[l_name] ."</td>
-										<td>" .$row[gender] ."</td>
-										<td>" .$row[address] ."</td>
-										<td>" .$row[contact_no] ."</td>
-										<td>" .$row[email] ."</td>
-										<td>" .$row[username] ."</td>
-									</tr>
-								</table>";			//Or use function display($obj)
+							echo '<table class="table table-striped table-hover ">
+							  <thead>
+							    <tr>
+									<th>Customer ID</th>
+									<th>First name</th>
+									<th>Last name</th>
+									<th>Address</th>
+									<th>Contact Number</th>
+									<th>Email</th>
+									<th>Username</th>
+								</tr>
+							  </thead>
+							  <tbody>
+							    <tr>
+							      <td>'.$row['cust_id'].'</td>
+							      <td>'.$row['f_name'].'</td>
+							      <td>'.$row['l_name'].'</td>
+							      <td>'.$row['address'].'</td>
+							      <td>'.$row['contact_no'].'</td>
+							      <td>'.$row['email'].'</td>
+							      <td>'.$row['username'].'</td>
+							    </tr>
+							    
+							  </tbody>
+							</table>';
 						}
 					}
 					else
