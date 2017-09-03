@@ -139,13 +139,13 @@
 					    <div class="form-group">
 					      <label for="inputEmail" class="col-lg-2 control-label">Username</label>
 					      <div class="col-lg-10">
-					        <input type="text" class="form-control" id="inputEmail" placeholder="Username">
+					        <input type="text" class="form-control" id="inputEmail" name="inputEmail" placeholder="Username">
 					      </div>
 					    </div>
 					    <div class="form-group">
 					      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
 					      <div class="col-lg-10">
-					        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+					        <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password">
 					      </div>
 					    </div>
 						    
