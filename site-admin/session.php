@@ -9,11 +9,11 @@
 		if($result->num_rows == 0)
 		{
 			$dtb->close();
-			header("Location: ../site-admin");
+			header("Location: index.php");
 		}
 		$dtb->close();
 	}
 	else
-		header("Location: ../site-admin");
+		header("Location: index.php");
 
 ?>

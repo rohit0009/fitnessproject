@@ -42,7 +42,7 @@
 		<br>
 		
 		
-		<ul class="nav nav-tabs" style="background-color: #111;" id="innertab">
+		<ul class="nav nav-tabs" id="innertab">
 		  <li class="dropdown active">
 		  		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 		  			Course <span class="caret"></span>
@@ -80,9 +80,9 @@
 		</ul>
 		<?php if($_SERVER['REQUEST_METHOD'] == 'POST') 
 		{ 
+			$dtb = new DTB();
 			if(isset($_REQUEST['deleteMember']))
 			{
-				$dtb = new DTB();
 				$dtb->processQuery(" DELETE FROM `member` WHERE `member`.`cust_id` =".$_REQUEST['fetchcust']);
 				echo '<br><div class="alert alert-dismissible alert-success">
 					  <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -90,10 +90,13 @@
 				echo "<script>
 						$(document).ready(function(){ 
 							$('#Courses').removeClass('active in'); 
-							$('#deleteM').addClass('active in'); 
+							$('#deleteM').addClass('active in');
+							$('#innertab > li:nth-child(1)').removeClass('active');
+							$('#innertab > li:nth-child(3)').addClass('active');
 						});
 					</script>";
 			}
+			$dtb->close();
 		} 
 		?>
 		<div id="myTabContent" class="tab-content">
@@ -133,7 +136,7 @@
 									       <label class="col-lg-2 control-label" >Member Id</label>
 									       <div class="col-lg-3">
 									       		<input type="text" name="fetchcust" id="fetchcust" hidden>
-									       		<input type="text" class="form-control" name="cust_id" id="cust_id" ></input>
+									       		<input type="text" class="form-control" name="cust_id" id="cust_id" disabled></input>
 									       </div>
 									    </div>
 									    <div class="form-group">
@@ -222,7 +225,7 @@
 							</table>';
 					}
 					else
-						echo "<p>List is empty</p>";
+						echo "<p class='lead text-center'>List is empty</p>";
 
 					$dtb->close();
 		    	?>

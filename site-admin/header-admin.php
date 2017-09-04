@@ -19,7 +19,7 @@
 				<nav class="navbar navbar-default" style="">
 				  <div class="container-fluid">
 				    <div class="navbar-header">
-				      <a class="navbar-brand" href="#" style="padding-left: 30px;color: #4e79bf;">NRP FITNESS CLUB<br></a>
+				      <a class="navbar-brand" href="home.php" style="padding-left: 30px;color: #4e79bf;">NRP FITNESS CLUB<br></a>
 				    </div>
 
 				    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
