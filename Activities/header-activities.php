@@ -20,7 +20,7 @@
 				        <li><a href="..">About Us <span class="sr-only">(current)</span></a></li>
 				        <li class="active"><a href="#">Activities</a></li>
 
-				        <li><a href="../Login/index.php">Login</a> </li>
+				        <li><a href="../login/index.php">Login</a> </li>
 				      </ul>
 				      
 				    </div>

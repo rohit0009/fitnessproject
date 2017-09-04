@@ -1,3 +1,4 @@
+<?php require '../DBHandler/DB.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 	<style type="text/css">
 		body{
@@ -18,8 +19,22 @@
 		  padding: 50px 0;
 		}
 	</style>
+	<script>
+	$(document).ready(function(){
+		$("#select").on("change",function(){
+			var data = $(':selected').val().split('^&^');
+			$("#cust_id").attr({value: data[0]});
+			$("#fetchcust").attr({value: data[0]});
+			$("#email").attr({value: data[1]});
+			$("#username").attr({value: data[2]});
+		});
+
+	});
+	</script>
+
 </head>
 <body>
+
 	<br>
 	<div class="container-fluid" style="margin-left: 50px;margin-right: 50px;">
 		<?php require('header-admin.php'); ?>
@@ -27,7 +42,7 @@
 		<br>
 		
 		
-		<ul class="nav nav-tabs" style="background-color: #111;">
+		<ul class="nav nav-tabs" style="background-color: #111;" id="innertab">
 		  <li class="dropdown active">
 		  		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 		  			Course <span class="caret"></span>
@@ -63,7 +78,24 @@
 		    </ul>
 		  </li>				  
 		</ul>
-			
+		<?php if($_SERVER['REQUEST_METHOD'] == 'POST') 
+		{ 
+			if(isset($_REQUEST['deleteMember']))
+			{
+				$dtb = new DTB();
+				$dtb->processQuery(" DELETE FROM `member` WHERE `member`.`cust_id` =".$_REQUEST['fetchcust']);
+				echo '<br><div class="alert alert-dismissible alert-success">
+					  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					  <strong>Member Deleted!</div>';
+				echo "<script>
+						$(document).ready(function(){ 
+							$('#Courses').removeClass('active in'); 
+							$('#deleteM').addClass('active in'); 
+						});
+					</script>";
+			}
+		} 
+		?>
 		<div id="myTabContent" class="tab-content">
 		  <div class="tab-pane fade active in" id="Courses">
 		    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
@@ -73,18 +105,63 @@
 		  </div>
 		  <div class="tab-pane fade" id="deleteM"><br>
 		  		<div class="panel panel-danger">
-				  <div class="panel-heading">
-				    <h3 class="panel-title">Delete Member</h3>
-				  </div>
-				  <div class="panel-body">
-				    Panel content
-				  </div>
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Delete Member</h3>
+					  </div>
+					  <div class="panel-body">
+					    	<div class="container">
+					    		<form class="form-horizontal" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+	  								<fieldset>
+							    		<div class="form-group">
+									      <label for="select" class="col-lg-2 control-label">Select Name</label>
+									      <div class="col-lg-3">
+									        <select class="form-control" id="select" name="select">
+									        	<?php
+										    		
+													$dtb = new DTB();
+
+													$result = $dtb->processQuery("select cust_id,email,username,f_name,l_name from member;");
+													echo "<option class='disabled'></option>";	
+													while ($row = $result->fetch_assoc())
+													{
+														echo '<option value='.$row["cust_id"]."^&^".$row["email"]."^&^".$row["username"].'>'.$row["f_name"]." ".$row["l_name"].'</option>';
+													}
+													$dtb->close();
+												?>
+									        </select>
+									       </div>
+									       <label class="col-lg-2 control-label" >Member Id</label>
+									       <div class="col-lg-3">
+									       		<input type="text" name="fetchcust" id="fetchcust" hidden>
+									       		<input type="text" class="form-control" name="cust_id" id="cust_id" ></input>
+									       </div>
+									    </div>
+									    <div class="form-group">
+									    	<label for="select" class="col-lg-2 control-label">Email</label>
+								      		<div class="col-lg-3">
+								      			<input type="text" class="form-control" name="email" id="email" disabled></input>
+								      		</div>
+								      		<label class="col-lg-2 control-label" >Username</label>
+									       <div class="col-lg-3">
+									       		<input type="text" class="form-control" name="username" id="username" disabled></input>
+									       </div>
+									    </div>
+									    <div class="form-group">
+									      <div class="col-lg-5 col-lg-offset-1">
+									        <button type="submit" class="btn btn-danger" name="deleteMember"><span class="glyphicon glyphicon-trash"></span> Delete Member</button>
+									      </div>
+									    </div>
+								    </fieldset>
+							     </form>
+
+					    	</div>
+					  </div>
 				</div>
 		  </div>
 		  <div class="tab-pane fade" id="Members">
 		    <p>
 		    	<?php
-		    		require '../DBHandler/DB.php';
+		    		
 					$dtb = new DTB();
 
 					$result = $dtb->processQuery("select * from member;");
@@ -144,6 +221,8 @@
 						echo '</tbody>
 							</table>';
 					}
+					else
+						echo "<p>List is empty</p>";
 
 					$dtb->close();
 		    	?>
