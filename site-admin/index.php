@@ -64,7 +64,17 @@
 <body>
 	<br>
 	<div class="container">
-		<?php require('header-admin.php'); ?>
+		<?php echo '<div class="container">
+				<nav class="navbar navbar-default" style="">
+				  <div class="container-fluid">
+				    <div class="navbar-header">
+				      <a class="navbar-brand" href="#" style="padding-left: 30px;">NRP FITNESS CLUB<br></a>
+				    </div>
+
+				  </div>
+				</nav>
+			</div>';
+		 ?>
 
 
 		<br>
@@ -101,6 +111,7 @@
 						}*/
 						if($flag == 1)
 						{
+							session_start();
 							$_SESSION["id"] = $id;
 							header("Location: home.php");
 						}

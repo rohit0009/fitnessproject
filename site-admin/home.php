@@ -1,4 +1,5 @@
-<?php require '../DBHandler/DB.php'; ?>
+
+<?php include 'session.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +38,7 @@
 
 	<br>
 	<div class="container-fluid" style="margin-left: 50px;margin-right: 50px;">
-		<?php require('header-admin.php'); ?>
+		<?php require('header-admin-home.php'); ?>
 		
 		<br>
 		
@@ -83,18 +84,36 @@
 			$dtb = new DTB();
 			if(isset($_REQUEST['deleteMember']))
 			{
-				$dtb->processQuery(" DELETE FROM `member` WHERE `member`.`cust_id` =".$_REQUEST['fetchcust']);
-				echo '<br><div class="alert alert-dismissible alert-success">
-					  <button type="button" class="close" data-dismiss="alert">&times;</button>
-					  <strong>Member Deleted!</div>';
-				echo "<script>
-						$(document).ready(function(){ 
-							$('#Courses').removeClass('active in'); 
-							$('#deleteM').addClass('active in');
-							$('#innertab > li:nth-child(1)').removeClass('active');
-							$('#innertab > li:nth-child(3)').addClass('active');
-						});
-					</script>";
+				if($_REQUEST['fetchcust']!="")
+				{
+					$dtb->processQuery(" DELETE FROM `member` WHERE `member`.`cust_id` =".$_REQUEST['fetchcust']);
+					echo '<br><div class="alert alert-dismissible alert-success">
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Member Deleted!</div>';
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#deleteM').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(3)').addClass('active');
+							});
+						</script>";
+				}
+				else
+				{
+					echo '<br><div class="alert alert-dismissible alert-danger">
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Select a Member</div>';
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#deleteM').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(3)').addClass('active');
+							});
+						</script>";
+				}
+
 			}
 			$dtb->close();
 		} 
@@ -162,74 +181,78 @@
 				</div>
 		  </div>
 		  <div class="tab-pane fade" id="Members">
-		    <p>
-		    	<?php
-		    		
-					$dtb = new DTB();
+			  <div class="container-fluid">
+			    <div class="row">
+			    	<div class="col-lg-12">
+			    	<?php
+			    		
+						$dtb = new DTB();
 
-					$result = $dtb->processQuery("select * from member;");
+						$result = $dtb->processQuery("select * from member;");
 
-					if ($result->num_rows>0)
-					{
-						echo "<h5 class='bold text-center'>Member List</h5><br>";
-						echo '<table class="table table-striped table-hover ">
-								  <thead>
-								    <tr>
-										<th>Customer ID</th>
-										<th>First name</th>
-										<th>Last name</th>
-										<th>Address</th>
-										<th>Contact Number</th>
-										<th>Email</th>
-										<th>Username</th>
-										<th>Account Activated?</th>
-									</tr>
-								  </thead>
-								  <tbody>';
-						while ($row = $result->fetch_assoc())
+						if ($result->num_rows>0)
 						{
-							if($row["activate"] == 1)
+							echo "<h5 class='bold text-center'>Member List</h5><br>";
+							echo '<table class="table table-striped table-hover ">
+									  <thead>
+									    <tr>
+											<th>Customer ID</th>
+											<th>First name</th>
+											<th>Last name</th>
+											<th>Address</th>
+											<th>Contact Number</th>
+											<th>Email</th>
+											<th>Username</th>
+											<th>Account Activated?</th>
+										</tr>
+									  </thead>
+									  <tbody>';
+							while ($row = $result->fetch_assoc())
 							{
-							  echo '<tr>
-							      <td>'.$row['cust_id'].'</td>
-							      <td>'.$row['f_name'].'</td>
-							      <td>'.$row['l_name'].'</td>
-							      <td>'.$row['address'].'</td>
-							      <td>'.$row['contact_no'].'</td>
-							      <td>'.$row['email'].'</td>
-							      <td>'.$row['username'].'</td>';
-							      if($row["activate"] == 1)
-							      	echo '<td>Activated</td>';
-							      else
-							      	echo '<td>Not Activated</td>
-							    </tr>';
+								if($row["activate"] == 1)
+								{
+								  echo '<tr>
+								      <td>'.$row['cust_id'].'</td>
+								      <td>'.$row['f_name'].'</td>
+								      <td>'.$row['l_name'].'</td>
+								      <td>'.$row['address'].'</td>
+								      <td>'.$row['contact_no'].'</td>
+								      <td>'.$row['email'].'</td>
+								      <td>'.$row['username'].'</td>';
+								      if($row["activate"] == 1)
+								      	echo '<td>Activated</td>';
+								      else
+								      	echo '<td>Not Activated</td>
+								    </tr>';
+								}
+								else
+								{
+									echo '<tr class="danger">
+								      <td>'.$row['cust_id'].'</td>
+								      <td>'.$row['f_name'].'</td>
+								      <td>'.$row['l_name'].'</td>
+								      <td>'.$row['address'].'</td>
+								      <td>'.$row['contact_no'].'</td>
+								      <td>'.$row['email'].'</td>
+								      <td>'.$row['username'].'</td>';
+								      if($row["activate"] == 1)
+								      	echo '<td>Activated</td>';
+								      else
+								      	echo '<td>Not Activated</td>
+								    </tr>';	
+								}
 							}
-							else
-							{
-								echo '<tr class="danger">
-							      <td>'.$row['cust_id'].'</td>
-							      <td>'.$row['f_name'].'</td>
-							      <td>'.$row['l_name'].'</td>
-							      <td>'.$row['address'].'</td>
-							      <td>'.$row['contact_no'].'</td>
-							      <td>'.$row['email'].'</td>
-							      <td>'.$row['username'].'</td>';
-							      if($row["activate"] == 1)
-							      	echo '<td>Activated</td>';
-							      else
-							      	echo '<td>Not Activated</td>
-							    </tr>';	
-							}
+							echo '</tbody>
+								</table>';
 						}
-						echo '</tbody>
-							</table>';
-					}
-					else
-						echo "<p class='lead text-center'>List is empty</p>";
+						else
+							echo "<p class='lead text-center'>List is empty</p>";
 
-					$dtb->close();
-		    	?>
-		    </p>
+						$dtb->close();
+			    	?>
+			    	</div>
+			    </div>
+			  </div>
 		  </div>
 
 		</div>
