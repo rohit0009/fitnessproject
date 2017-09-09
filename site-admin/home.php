@@ -76,7 +76,7 @@
 		      Member <span class="caret"></span>
 		    </a>
 		    <ul class="dropdown-menu">
-		      <li><a href="#Members" data-toggle="tab">Member List</a></li>
+		      <li><a href="#Members" data-toggle="tab">Member List <span class="badge"><?php $dtb =new DTB(); $result = $dtb->processQuery("select count(cust_id) from member;"); echo $dtb->getParam($result,"count(cust_id)"); $dtb->close();?></span></a></li>
 		      <li class="divider"></li>
 		      <li><a href="#Members1" data-toggle="tab">Update Member Details</a></li>
 		      <li class="divider"></li>
