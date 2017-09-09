@@ -23,6 +23,11 @@
 	<script>
 	$(document).ready(function(){
 		$("#select").on("change",function(){
+			if($(':selected').val() == "")
+			{
+				$("#email").attr({value: ""});
+				$("#username").attr({value: ""});
+			}
 			var data = $(':selected').val().split('^&^');
 			$("#cust_id").attr({value: data[0]});
 			$("#fetchcust").attr({value: data[0]});
@@ -126,7 +131,7 @@
 		    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
 		  </div>
 		  <div class="tab-pane fade" id="deleteM"><br>
-		  		<div class="panel panel-danger">
+		  		<div class="panel panel-warning">
 					  <div class="panel-heading">
 					    <h3 class="panel-title">Delete Member</h3>
 					  </div>
@@ -154,7 +159,7 @@
 									       </div>
 									       <label class="col-lg-2 control-label" >Member Id</label>
 									       <div class="col-lg-3">
-									       		<input type="text" name="fetchcust" id="fetchcust" hidden>
+									       		<input type="text" name="fetchcust" id="fetchcust" hidden></input>
 									       		<input type="text" class="form-control" name="cust_id" id="cust_id" disabled></input>
 									       </div>
 									    </div>
@@ -175,7 +180,6 @@
 									    </div>
 								    </fieldset>
 							     </form>
-
 					    	</div>
 					  </div>
 				</div>
@@ -183,73 +187,77 @@
 		  <div class="tab-pane fade" id="Members">
 			  <div class="container-fluid">
 			    <div class="row">
-			    	<div class="col-lg-12">
-			    	<?php
-			    		
-						$dtb = new DTB();
+			    	<div class="col-lg-12"><br>
+			    	<div class="panel panel-primary">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Member List</h3>
+					  </div>
+				    	<?php
+				    		
+							$dtb = new DTB();
 
-						$result = $dtb->processQuery("select * from member;");
+							$result = $dtb->processQuery("select * from member;");
 
-						if ($result->num_rows>0)
-						{
-							echo "<h5 class='bold text-center'>Member List</h5><br>";
-							echo '<table class="table table-striped table-hover ">
-									  <thead>
-									    <tr>
-											<th>Customer ID</th>
-											<th>First name</th>
-											<th>Last name</th>
-											<th>Address</th>
-											<th>Contact Number</th>
-											<th>Email</th>
-											<th>Username</th>
-											<th>Account Activated?</th>
-										</tr>
-									  </thead>
-									  <tbody>';
-							while ($row = $result->fetch_assoc())
+							if ($result->num_rows>0)
 							{
-								if($row["activate"] == 1)
+								echo '<table class="table table-striped table-hover ">
+										  <thead>
+										    <tr>
+												<th>Customer ID</th>
+												<th>First name</th>
+												<th>Last name</th>
+												<th>Address</th>
+												<th>Contact Number</th>
+												<th>Email</th>
+												<th>Username</th>
+												<th>Account Activated?</th>
+											</tr>
+										  </thead>
+										  <tbody>';
+								while ($row = $result->fetch_assoc())
 								{
-								  echo '<tr>
-								      <td>'.$row['cust_id'].'</td>
-								      <td>'.$row['f_name'].'</td>
-								      <td>'.$row['l_name'].'</td>
-								      <td>'.$row['address'].'</td>
-								      <td>'.$row['contact_no'].'</td>
-								      <td>'.$row['email'].'</td>
-								      <td>'.$row['username'].'</td>';
-								      if($row["activate"] == 1)
-								      	echo '<td>Activated</td>';
-								      else
-								      	echo '<td>Not Activated</td>
-								    </tr>';
+									if($row["activate"] == 1)
+									{
+									  echo '<tr>
+									      <td>'.$row['cust_id'].'</td>
+									      <td>'.$row['f_name'].'</td>
+									      <td>'.$row['l_name'].'</td>
+									      <td>'.$row['address'].'</td>
+									      <td>'.$row['contact_no'].'</td>
+									      <td>'.$row['email'].'</td>
+									      <td>'.$row['username'].'</td>';
+									      if($row["activate"] == 1)
+									      	echo '<td>Activated</td>';
+									      else
+									      	echo '<td>Not Activated</td>
+									    </tr>';
+									}
+									else
+									{
+										echo '<tr class="danger">
+									      <td>'.$row['cust_id'].'</td>
+									      <td>'.$row['f_name'].'</td>
+									      <td>'.$row['l_name'].'</td>
+									      <td>'.$row['address'].'</td>
+									      <td>'.$row['contact_no'].'</td>
+									      <td>'.$row['email'].'</td>
+									      <td>'.$row['username'].'</td>';
+									      if($row["activate"] == 1)
+									      	echo '<td>Activated</td>';
+									      else
+									      	echo '<td>Not Activated</td>
+									    </tr>';	
+									}
 								}
-								else
-								{
-									echo '<tr class="danger">
-								      <td>'.$row['cust_id'].'</td>
-								      <td>'.$row['f_name'].'</td>
-								      <td>'.$row['l_name'].'</td>
-								      <td>'.$row['address'].'</td>
-								      <td>'.$row['contact_no'].'</td>
-								      <td>'.$row['email'].'</td>
-								      <td>'.$row['username'].'</td>';
-								      if($row["activate"] == 1)
-								      	echo '<td>Activated</td>';
-								      else
-								      	echo '<td>Not Activated</td>
-								    </tr>';	
-								}
+								echo '</tbody>
+									</table>';
 							}
-							echo '</tbody>
-								</table>';
-						}
-						else
-							echo "<p class='lead text-center'>List is empty</p>";
+							else
+								echo "<p class='lead text-center'>List is empty</p>";
 
-						$dtb->close();
-			    	?>
+							$dtb->close();
+				    	?>
+				    	</div>
 			    	</div>
 			    </div>
 			  </div>

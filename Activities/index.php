@@ -72,7 +72,7 @@
 		<div class="container">
 			<div class="row"> 
 		      <div class="col-lg-5 ml-auto order-lg-1">
-		        <hr>
+		        <hr style="width: 200px;float: left;">
 		        <div class="clearfix"></div>
 		        <h2>Swimming
 		        <p class="lead">A special thanks to
@@ -90,7 +90,7 @@
 		<div class="container">
 			<div class="row">
 		      <div class="col-lg-6 mr-auto order-lg-2">
-	            <hr class="section-heading-spacer">
+	            <hr style="width: 200px;float: left;">
 	            <div class="clearfix"></div>
 	            <h2>Table Tennis</h2>
 	            <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by
@@ -108,7 +108,7 @@
 		<div class="container">
 			<div class="row"> 
 		      <div class="col-lg-5 ml-auto order-lg-1">
-		        <hr>
+		        <hr style="width: 200px;float: left;">
 		        <div class="clearfix"></div>
 		        <h2>Squash
 		        <p class="lead">A special thanks to
@@ -116,7 +116,7 @@
 		          for providing the photographs that you see in this template. Visit their website to become a member.</p>
 		      </div>
 		      <div class="col-lg-7 mr-auto order-lg-2">
-		        <img class="img-fluid" src="../img/squash.jpg" alt="">
+		        <img class="img-thumbnail" src="../img/squash.jpg" alt="">
 		      </div>
 			</div>
 		</div>
@@ -126,7 +126,7 @@
 		<div class="container">
 			<div class="row">
 		      <div class="col-lg-6 mr-auto order-lg-2">
-	            <hr class="section-heading-spacer">
+	            <hr style="width: 200px;float: left;">
 	            <div class="clearfix"></div>
 	            <h2>Zumba</h2>
 	            <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by
