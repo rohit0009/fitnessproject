@@ -23,10 +23,12 @@
 		}
 		.content-section-a {
 		  padding: 50px 0;
+		  margin: auto;
 		  background-color: #111;
 		}
 		.content-section-b {
 		  padding: 50px 0;
+		  margin: auto;
 		  background-color: #222;
 		}
 		hr
