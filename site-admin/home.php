@@ -51,6 +51,7 @@
 				$("#updateMtable tr:eq(1) td:eq(2)").text("");
 				$("#updateMtable tr:eq(1) td:eq(3)").text("");
 				$("#updateMtable tr:eq(1) td:eq(4)").text("");
+				$("#updateMtable tr:eq(1) td:eq(5)").text("");
 			}
 			else
 			{
