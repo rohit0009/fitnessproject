@@ -418,6 +418,7 @@
 												<th>First name</th>
 												<th>Last name</th>
 												<th>Address</th>
+												<th>Pincode</th>
 												<th>Contact Number</th>
 												<th>Email</th>
 												<th>OTP</th>
@@ -435,6 +436,7 @@
 									      <td>'.$row['f_name'].'</td>
 									      <td>'.$row['l_name'].'</td>
 									      <td>'.$row['address'].'</td>
+									      <td>'.$row['pincode'].'</td>
 									      <td>'.$row['contact_no'].'</td>
 									      <td>'.$row['email'].'</td>
 									      <td>'.$row['otp'].'</td>
