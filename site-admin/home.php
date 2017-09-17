@@ -261,7 +261,7 @@
 								<div class="form-group">
 
 							    	<label for="select" class="col-lg-2 control-label">Select Name</label>
-						      		<div class="col-lg-2">
+						      		<div class="col-lg-3">
 								        <select class="form-control" id="selectUpdateM" name="selectUpdateM">
 								        	<?php
 												$dtb = new DTB();
@@ -454,6 +454,7 @@
 									      <td>'.$row['f_name'].'</td>
 									      <td>'.$row['l_name'].'</td>
 									      <td>'.$row['address'].'</td>
+									      <td>'.$row['pincode'].'</td>
 									      <td>'.$row['contact_no'].'</td>
 									      <td>'.$row['email'].'</td>
 									      <td>'.$row['otp'].'</td>
