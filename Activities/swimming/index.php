@@ -24,28 +24,34 @@
 	<br>
 	<?php require 'header-activities.php'; ?>
 	<?php
-		$batch = $dtb->processQuery("select batch_id,batch_name,batch_time from batch where course_id in (select course_id from course where course_name='Swimming');");
-		$trainer = $dtb->processQuery("select trainer_id,trainer_name,course_id from trainer where course_id in (select course_id from course where course_name='Swimming');");
+		$result = $dtb->processQuery("select course_id from course where course_name ='Swimming'");
+		$course_id = $dtb->getParam($result,'course_id');
+		$batch = $dtb->processQuery("select batch_id,batch_name,batch_time from batch where course_id = ".$course_id.";");
+		
 		echo'<div class="container">
-			<table class="table table-striped">
+			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th>Batch/Trainer</th>';
-						while($row = $batch->fetch_assoc())
-						{
-							echo '<th>'.$row['batch_name'].' ( '.$row['batch_time'].' )</th>';
-						}
-					mysqli_data_seek($batch,0);
-					echo'	</tr>
+						<th>Batch</th>
+						<th>Trainer</th>
+						<th>Seats</th>
+					</tr>
 					</thead>
 					<tbody>';
-						while($row = $trainer->fetch_assoc())
+						
+						while($batchrow = $batch->fetch_assoc())
 						{
-							$temp = $dtb->processQuery("select count(batch_id) from batch where course_id =".$row['course_id'].";");
-							$temp1 = $dtb->processQuery("select seat_id,no_of_seat from seat where course_id =".$row['course_id']." and trainer_id= ".$row['trainer_id'].";");
+							echo '<tr>';
+							echo '<td>'.$batchrow['batch_name'].' &nbsp&nbsp(&nbsp'.$batchrow['batch_time'].'&nbsp)</td>';
+
+							$trainer = $dtb->processQuery("select trainer.trainer_id,trainer_name,no_of_seats from trainer,seat where seat.course_id = ".$course_id." and seat.course_id = trainer.course_id and trainer.trainer_id = seat.trainer_id and seat.batch_id = ".$batchrow['batch_id'].";");
+
+							$trainerrow = $trainer->fetch_assoc();
 							
-							/*$diff = $dtb->getParam($temp,'count(seat_id)')-$dtb->getParam($temp1,'count(seat_id)');
-							echo $diff;*/
+							echo '<td>'.$trainerrow['trainer_name'].'</td>';
+							echo '<td>'.$trainerrow['no_of_seats'].'</td>';	
+							
+							echo '</tr>';
 						}
 					echo '</tbody>
 				</table>
