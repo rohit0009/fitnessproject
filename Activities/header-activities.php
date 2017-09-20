@@ -52,7 +52,7 @@
 				    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 				      <ul class="nav navbar-nav">
 				        <li><a href="..">About Us <span class="sr-only">(current)</span></a></li>
-				        <li class="active"><a href="Activities">Activities</a></li>
+				        <li class="active"><a href="#">Activities</a></li>
 				        <li><a href="#">'.$fname.' '.$lname.' Profile</a> </li>
 				        <li><a href="../logout.php">Logout  <span class="glyphicon glyphicon-log-out"></span></a></li>
 				      </ul>
@@ -61,6 +61,6 @@
 				  </div>
 				</nav>
 			</div>';
-		$dtb->close();	
+			
 	}
 ?>

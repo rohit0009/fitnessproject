@@ -76,10 +76,15 @@
 		      <div class="col-lg-5 ml-auto order-lg-1">
 		        <hr style="width: 200px;float: left;">
 		        <div class="clearfix"></div>
-		        <h2>Swimming
+		        <h2>Swimming</h2>
 		        <p class="lead">A special thanks to
 		          <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>
 		          for providing the photographs that you see in this template. Visit their website to become a member.</p>
+		        <?php
+		        	if(isset($_SESSION['cust_id']))
+		        		echo '<p class="lead">For Enrollment click <a href="./swimming" class="btn btn-link">here</a></p>';
+
+		        ?>
 		      </div>
 		      <div class="col-lg-7 mr-auto order-lg-2">
 		        <img class="img-thumbnail" src="../img/swimming.jpg" alt="">
@@ -148,7 +153,7 @@
 		</div>
 	</section>
 
-	<?php include '../footer.php'; ?>
+	<?php $dtb->close(); include '../footer.php'; ?>
 	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
