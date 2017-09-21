@@ -83,7 +83,6 @@
 		        <?php
 		        	if(isset($_SESSION['cust_id']))
 		        		echo '<p class="lead">For Enrollment click <a href="./swimming" class="btn btn-link">here</a></p>';
-
 		        ?>
 		      </div>
 		      <div class="col-lg-7 mr-auto order-lg-2">
@@ -102,6 +101,10 @@
 	            <h2>Table Tennis</h2>
 	            <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by
 	              <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
+	              <?php
+		        	if(isset($_SESSION['cust_id']))
+		        		echo '<p class="lead">For Enrollment click <a href="./tabletennis" class="btn btn-link">here</a></p>';
+		        ?>
 	          </div>
 	          <div class="col-lg-6 order-lg-1">
 	            <img class="img-thumbnail" src="../img/tab_etennis.jpg" alt="">
@@ -118,15 +121,15 @@
 		        <hr style="width: 200px;float: left;">
 		        <div class="clearfix"></div>
 		        <h2>Squash
-		        <?php
-		        if(!isset($_SESSION['cust_id']))
-		        	echo '<p class="lead">A special thanks to
+		        
+		        <p class="lead">A special thanks to
 		          	<a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>
 		          	for providing the photographs that you see in this template. Visit their website to become a member.
-		        	</p>';
-		       	else
-		       		echo '<p class="lead"> Logged in</p>';
-		       	?>
+		        	</p>
+		       	<?php
+		        	if(isset($_SESSION['cust_id']))
+		        		echo '<p class="lead">For Enrollment click <a href="./squash" class="btn btn-link">here</a></p>';
+		        ?>
 		      </div>
 		      <div class="col-lg-7 mr-auto order-lg-2">
 		        <img class="img-thumbnail" src="../img/squash.jpg" alt="">
@@ -144,6 +147,10 @@
 	            <h2>Zumba</h2>
 	            <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by
 	              <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
+	              <?php
+		        	if(isset($_SESSION['cust_id']))
+		        		echo '<p class="lead">For Enrollment click <a href="./zumba" class="btn btn-link">here</a></p>';
+		        ?>
 	          </div>
 	          <div class="col-lg-6 order-lg-1">
 	            <img class="img-thumbnail" src="../img/zumba.jpg" alt="">
