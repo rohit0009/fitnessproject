@@ -30,53 +30,58 @@
 		
 		echo'<div class="container">
 				<div class="row">
-					<div class="col-lg-2 page-header" style="border-bottom: 1px grey solid;">
-						<div><h3>Swimming Enrollment</h3></div>
+					<div class="col-lg-3 page-header" style="border-bottom: 1px grey solid;">
+						<div><h4>Swimming Enrollment</h4></div>
 					</div>
-					<div class="col-lg-8 col-lg-offset-2 mr-auto">
+					<div class="col-lg-6 col-lg-offset-3 mr-auto">
 				       <img class="img-thumbnail" src="../../img/swimming.jpg" alt="">
 				    </div>
 				</div>
 			</div>
 			<div class="container-fluid">
 				<div class="row"></br></br>
-					<div class="col-lg-7">
-						<div class="panel panel-primary">
-						<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-						</div>
-					</div>
-					<div class="col-lg-5 col-md-10 ">
-						<div class="panel panel-primary">
-							<table class="table table-striped">
-								<caption class="text-center">Seat Details for Swimming</caption>
-								<thead>
-									<tr>
-										<th class="text-center">Batch</th>
-										<th class="text-center">Trainer</th>
-										<th class="text-center">Seats Available</th>
-									</tr>
-									</thead>
-									<tbody>';
-										
-										while($batchrow = $batch->fetch_assoc())
-										{
-											$trainer = $dtb->processQuery("select trainer.trainer_id,trainer_name,no_of_seats from trainer,seat where seat.course_id = ".$course_id." and seat.course_id = trainer.course_id and trainer.trainer_id = seat.trainer_id and seat.batch_id = ".$batchrow['batch_id'].";");
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="col-lg-8">
+								<div class="panel panel-primary">
+								<div class="panel-heading text-center"><h4>Enrolment Form</h4></div>
+								<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-10 ">
+								<div class="panel panel-primary">
+									<table class="table table-striped">
+										<caption class="text-center">Seat Details for Swimming</caption>
+										<thead>
+											<tr>
+												<th class="text-center">Batch</th>
+												<th class="text-center">Trainer</th>
+												<th class="text-center">Seats Available</th>
+											</tr>
+											</thead>
+											<tbody>';
+												
+												while($batchrow = $batch->fetch_assoc())
+												{
+													$trainer = $dtb->processQuery("select trainer.trainer_id,trainer_name,no_of_seats from trainer,seat where seat.course_id = ".$course_id." and seat.course_id = trainer.course_id and trainer.trainer_id = seat.trainer_id and seat.batch_id = ".$batchrow['batch_id'].";");
 
-											$trainerrow = $trainer->fetch_assoc();
-											if($trainerrow['trainer_name']!='' && $trainerrow['no_of_seats']!="")
-											{
-												echo '<tr>';
-												echo '<td class="text-center">'.$batchrow['batch_name'].' &nbsp&nbsp(&nbsp'.$batchrow['batch_time'].'&nbsp)</td>';
-												echo '<td class="text-center">'.$trainerrow['trainer_name'].'</td>';
-												if($trainerrow['no_of_seats'] == 0)
-													echo '<td class="text-center">Batch Full</td>';
-												else
-													echo '<td class="text-center">'.$trainerrow['no_of_seats'].'</td>';	
-												echo '</tr>';
-											}
-										}
-									echo '</tbody>
-							</table>
+													$trainerrow = $trainer->fetch_assoc();
+													if($trainerrow['trainer_name']!='' && $trainerrow['no_of_seats']!="")
+													{
+														echo '<tr>';
+														echo '<td class="text-center">'.$batchrow['batch_name'].' &nbsp&nbsp(&nbsp'.$batchrow['batch_time'].'&nbsp)</td>';
+														echo '<td class="text-center">'.$trainerrow['trainer_name'].'</td>';
+														if($trainerrow['no_of_seats'] == 0)
+															echo '<td class="text-center">Batch Full</td>';
+														else
+															echo '<td class="text-center">'.$trainerrow['no_of_seats'].'</td>';	
+														echo '</tr>';
+													}
+												}
+											echo '</tbody>
+									</table>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
