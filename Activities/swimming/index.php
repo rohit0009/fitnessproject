@@ -31,16 +31,21 @@
 		echo'<div class="container">
 				<div class="row">
 					<div class="col-lg-2 page-header" style="border-bottom: 1px grey solid;">
-						<div class="pl-2"><h3>Swimming</h3></div>
+						<div><h3>Swimming Enrollment</h3></div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12 col-lg-offset-1 mr-auto">
+					<div class="col-lg-8 col-lg-offset-2 mr-auto">
 				       <img class="img-thumbnail" src="../../img/swimming.jpg" alt="">
 				    </div>
 				</div>
-				<div class="row"></br>
-					<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			</div>
+			<div class="container-fluid">
+				<div class="row"></br></br>
+					<div class="col-lg-7">
+						<div class="panel panel-primary">
+						<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+						</div>
+					</div>
+					<div class="col-lg-5 col-md-10 ">
 						<div class="panel panel-primary">
 							<table class="table table-striped">
 								<caption class="text-center">Seat Details for Swimming</caption>
