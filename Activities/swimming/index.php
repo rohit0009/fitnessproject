@@ -31,33 +31,34 @@
 		echo'<div class="container">
 				<div class="row">
 					<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-						<div class="panel panel-info">
-							<div class="panel-heading">
-								Batch-Trainer Details
-							</div>
-							<table class="table table-striped table-hover">
+						<div class="panel panel-primary">
+							<table class="table table-striped">
+								<caption class="text-center">Seat Details</caption>
 								<thead>
 									<tr>
-										<th>Batch</th>
-										<th>Trainer</th>
-										<th>Seats</th>
+										<th class="text-center">Batch</th>
+										<th class="text-center">Trainer</th>
+										<th class="text-center">Seats Available</th>
 									</tr>
 									</thead>
 									<tbody>';
 										
 										while($batchrow = $batch->fetch_assoc())
 										{
-											echo '<tr>';
-											echo '<td>'.$batchrow['batch_name'].' &nbsp&nbsp(&nbsp'.$batchrow['batch_time'].'&nbsp)</td>';
-
 											$trainer = $dtb->processQuery("select trainer.trainer_id,trainer_name,no_of_seats from trainer,seat where seat.course_id = ".$course_id." and seat.course_id = trainer.course_id and trainer.trainer_id = seat.trainer_id and seat.batch_id = ".$batchrow['batch_id'].";");
 
 											$trainerrow = $trainer->fetch_assoc();
-											
-											echo '<td>'.$trainerrow['trainer_name'].'</td>';
-											echo '<td>'.$trainerrow['no_of_seats'].'</td>';	
-											
-											echo '</tr>';
+											if($trainerrow['trainer_name']!='' && $trainerrow['no_of_seats']!="")
+											{
+												echo '<tr>';
+												echo '<td class="text-center">'.$batchrow['batch_name'].' &nbsp&nbsp(&nbsp'.$batchrow['batch_time'].'&nbsp)</td>';
+												echo '<td class="text-center">'.$trainerrow['trainer_name'].'</td>';
+												if($trainerrow['no_of_seats'] == 0)
+													echo '<td class="text-center">Batch Full</td>';
+												else
+													echo '<td class="text-center">'.$trainerrow['no_of_seats'].'</td>';	
+												echo '</tr>';
+											}
 										}
 									echo '</tbody>
 							</table>
