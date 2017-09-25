@@ -53,7 +53,7 @@
 				      <ul class="nav navbar-nav">
 				        <li class="active"><a href="#">About Us <span class="sr-only">(current)</span></a></li>
 				        <li><a href="Activities">Activities</a></li>
-				        <li><a href="#">'.$fname.' '.$lname.' Profile</a> </li>
+				        <li><a href="Profile">'.$fname.' '.$lname.' Profile</a> </li>
 				        <li><a id="logout" href="logout.php">Logout  <span class="glyphicon glyphicon-log-out"></span></a></li>
 				      </ul>
 				      
