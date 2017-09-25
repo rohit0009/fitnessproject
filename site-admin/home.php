@@ -89,7 +89,7 @@
 		  		<ul class="dropdown-menu">
 			      <li><a href="#Courses" data-toggle="tab">Course List</a></li>
 			      <li class="divider"></li>
-			      <li><a href="#dropdown2" data-toggle="tab">Delete Course</a></li>
+			      <li><a href="#dropdown2" data-toggle="tab">Update Course</a></li>
 			    </ul>
 		  </li>
 		  <li class="dropdown">
@@ -245,10 +245,116 @@
 		?>
 		<div id="myTabContent" class="tab-content">
 		  <div class="tab-pane fade active in" id="Courses">
-		    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+		  	<div class="container-fluid">
+			    <div class="row">
+			    	<div class="col-lg-12"><br>
+			    	<div class="panel panel-primary">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Trainer List</h3>
+					  </div>
+				    	<?php
+				    		
+							$dtb = new DTB();
+
+							$result = $dtb->processQuery("select * from course;");
+
+							if ($result->num_rows>0)
+							{
+								echo '<table class="table table-striped ">
+										  <thead>
+										    <tr>
+												<th class="text-center">Course ID</th>
+												<th class="text-center">Course name</th>
+												<th class="text-center">Monthly Fees</th>
+												<th class="text-center">Qtr Fees</th>
+												<th class="text-center">Half Yearly Fees</th>
+												<th class="text-center">Yearly</th>
+											</tr>
+										  </thead>
+										  <tbody>';
+								while ($row = $result->fetch_assoc())
+								{
+									$monthly = $row['monthly'];
+									$qtr = ($monthly*3)-(($monthly*3)*$row['quarterly_d']);
+									$hlf = ($monthly*6)-(($monthly*6)*$row['sixmonth_d']);
+									$yl = ($monthly*12)-(($monthly*12)*$row['yearly_d']);
+										echo '<tr>
+									      <td class="text-center">'.$row['course_id'].'</td>
+									      <td class="text-center">'.$row['course_name'].'</td>
+									      <td class="text-center">'.$monthly.'</td>
+									      <td class="text-center">'.$qtr.'</td>
+									      <td class="text-center">'.$hlf.'</td>
+									      <td class="text-center">'.$yl.'</td>
+									      </tr>';	
+								}
+								echo '</tbody>
+									</table>';
+							}
+							else
+								echo "<p class='lead text-center'>List is empty</p>";
+
+							$dtb->close();
+				    	?>
+				    	</div>
+			    	</div>
+			    </div>
+			  </div>
 		  </div>
 		  <div class="tab-pane fade" id="Trainers">
-		    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+		    <div class="container-fluid">
+			    <div class="row">
+			    	<div class="col-lg-12"><br>
+			    	<div class="panel panel-primary">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Trainer List</h3>
+					  </div>
+				    	<?php
+				    		
+							$dtb = new DTB();
+
+							$result = $dtb->processQuery("select * from trainer;");
+
+							if ($result->num_rows>0)
+							{
+								echo '<table class="table table-striped ">
+										  <thead>
+										    <tr>
+												<th class="text-center">Trainer ID</th>
+												<th class="text-center">Trainer name</th>
+												<th class="text-center">Contact No</th>
+												<th class="text-center">Salary</th>
+												<th class="text-center">Address</th>
+												<th class="text-center">Email</th>
+												<th class="text-center">Course Speciality</th>
+											</tr>
+										  </thead>
+										  <tbody>';
+								while ($row = $result->fetch_assoc())
+								{
+									$result1 = $dtb->processQuery("select course_name from course where course_id=".$row['course_id']);
+									$course = $result1->fetch_assoc();
+										echo '<tr>
+									      <td class="text-center">'.$row['trainer_id'].'</td>
+									      <td class="text-center">'.$row['trainer_name'].'</td>
+									      <td class="text-center">'.$row['contact_no'].'</td>
+									      <td class="text-center">'.$row['salary'].'</td>
+									      <td class="text-center">'.$row['address'].'</td>
+									      <td class="text-center">'.$row['email'].'</td>
+									      <td class="text-center">'.$course['course_name'].'</td>
+									      </tr>';	
+								}
+								echo '</tbody>
+									</table>';
+							}
+							else
+								echo "<p class='lead text-center'>List is empty</p>";
+
+							$dtb->close();
+				    	?>
+				    	</div>
+			    	</div>
+			    </div>
+			  </div>
 		  </div>
 		  <div class="tab-pane fade" id="updateM"><br>
 		  		<div class="panel panel-primary">
@@ -338,6 +444,7 @@
 										</table>
 									</div>
 								</div>
+							</fieldset>
 						</form>
 					</div>
 				</div>

@@ -1,9 +1,8 @@
 <?php
-	session_start();
-	$_SESSION['as'] = 12;
-	print_r($_SESSION);
-	session_unset();
-	session_destroy();
-	print_r($_SESSION);
-
+	date_default_timezone_set("Asia/Kolkata");
+	$effectiveDate = date('Y-m-d H:i:s');
+	echo $effectiveDate;
+	$effectiveDate = date('Y-m-d 00:00:00', strtotime("+3 months", strtotime($effectiveDate)));
+	echo "<br>";
+	echo $effectiveDate;
 ?>

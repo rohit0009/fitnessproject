@@ -14,7 +14,7 @@
 		    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
 		        <li><a href="../index.php">About Us<span class="sr-only">(current)</span></a></li>
-		        <li><a href="#">Activities</a></li>
+		        <li><a href="../Activities">Activities</a></li>
 		        <li class="active"><a>Login</a></li>
 		      </ul>
 		    </div>
