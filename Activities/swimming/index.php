@@ -1,4 +1,4 @@
-<?php include('session.php'); ?>
+<?php include('session.php'); ob_start();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -160,7 +160,7 @@
 						      				<div class="col-lg-4">
 						      					<select class="form-control" id="select">';
 									          
-												$result1 = $dtb->processQuery("select batch.batch_id,batch_name,batch_time,no_of_seats,trainer.trainer_id,trainer_name,course.course_id,course_name from course,seat,trainer,batch where batch.batch_id=seat.batch_id and trainer.trainer_id=seat.trainer_id and course.course_id=seat.course_id and course_name='swimming';");
+												$result1 = $dtb->processQuery("select batch.batch_id,batch_name,batch_time,no_of_seats,course.course_id,trainer.trainer_id,trainer_name from batch,seat,trainer,course where batch.batch_id = seat.batch_id and trainer.trainer_id = seat.trainer_id and course.course_id = seat.course_id and course_name = 'Swimming' ORDER BY batch_name asc");
 													echo "<option class='disabled'></option>";	
 													while ($row = $result1->fetch_assoc())
 													{
