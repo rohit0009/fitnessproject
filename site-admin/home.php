@@ -252,7 +252,7 @@
 			    	<div class="col-lg-12"><br>
 			    	<div class="panel panel-primary">
 					  <div class="panel-heading">
-					    <h3 class="panel-title">Trainer List</h3>
+					    <h3 class="panel-title">Course List</h3>
 					  </div>
 				    	<?php
 				    		
