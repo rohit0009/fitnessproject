@@ -40,6 +40,38 @@
 				$("#username").attr({value: data[2]});
 			}
 		});
+
+		$("#selectUpdateT").on("change",function(){
+			if($(this).find(":selected").val() == "")
+			{
+				$("#updateCourseT").attr({value: ""});
+				$("#fetchtrainerupdateT").attr({value: ""});
+				$("#batch_updateT").attr({value: ""});
+				//$("#").attr({value: ""});
+				$("#updateTtable tr:eq(1) td:eq(0)").text("");
+				$("#updateTtable tr:eq(1) td:eq(1)").text("");
+				$("#updateTtable tr:eq(1) td:eq(2)").text("");
+				$("#updateTtable tr:eq(1) td:eq(3)").text("");
+				$("#updateTtable tr:eq(1) td:eq(4)").text("");
+				$("#updateTtable tr:eq(1) td:eq(5)").text("");
+				$("#updateTtable tr:eq(1) td:eq(6)").text("");
+			}
+			else
+			{
+				var data = $(this).find(":selected").val().split('^&^');
+				$("#updateCourseT").attr({value: data[6]});
+				$("#fetchtrainerupdateT").attr({value: data[0]});
+				$("#batch_updateT").attr({value: data[1]});
+				$("#updateTtable tr:eq(1) td:eq(0)").text(data[0]);
+				$("#updateTtable tr:eq(1) td:eq(1)").text(data[1]);
+				$("#updateTtable tr:eq(1) td:eq(2)").text(data[3]);
+				$("#updateTtable tr:eq(1) td:eq(3)").text(data[2]);
+				$("#updateTtable tr:eq(1) td:eq(4)").text(data[4])
+				$("#updateTtable tr:eq(1) td:eq(5)").text(data[5]);
+				$("#updateTtable tr:eq(1) td:eq(6)").text(data[6]);
+			}
+		});
+
 		$("#selectUpdateM").on("change",function(){
 
 			if($(this).find(":selected").val() == "")
@@ -101,7 +133,7 @@
 		  		<ul class="dropdown-menu">
 			      <li><a href="#Trainers" data-toggle="tab">Trainer List</a></li>
 			      <li class="divider"></li>
-			      <li><a href="#dropdown3" data-toggle="tab">Update Trainer Details</a></li>
+			      <li><a href="#trainerupdate" data-toggle="tab">Update Trainer Details</a></li>
 			      <li class="divider"></li>
 			      <li><a href="#drop" data-toggle="tab">Delete Trainer</a></li>
 			    </ul>
@@ -245,7 +277,107 @@
 			$dtb->close();
 		} 
 		?>
+		
+		
 		<div id="myTabContent" class="tab-content">
+			<div class="tab-pane fade" id="trainerupdate">
+				<div class="panel panel-primary">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Update Trainer Details</h3>
+					  </div>
+					<div class="panel-body">
+						<form class="form-horizontal" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+							<fieldset>
+								<div class="form-group">
+
+							    	<label for="select" class="col-lg-2 control-label">Select Name</label>
+						      		<div class="col-lg-3">
+								        <select class="form-control" id="selectUpdateT" name="selectUpdateT">
+								        	<?php
+														$dtb = new DTB();
+														$result = $dtb->processQuery("select trainer_id,trainer_name,salary,contact_no,address,email,course_id from trainer;");
+														echo "<option class='disabled' value=''></option>";
+														while ($row = $result->fetch_assoc())
+														{
+															$courseT= $dtb->processQuery("select course_name from course where course_id=".$row['course_id']);
+															$course_name = $dtb->getParam($courseT,"course_name");
+															echo '<option value="'.$row["trainer_id"]."^&^".$row["trainer_name"]."^&^".$row['salary']."^&^".$row['contact_no']."^&^".$row['address']."^&^".$row['email']."^&^".$course_name.'">'.$row["trainer_name"].'</option>';
+														}
+														$dtb->close();
+													?>
+								        </select>
+					       			</div>
+						      		<label class="col-lg-2 control-label" >Course</label>
+							       <div class="col-lg-3">
+							       		<input type="text" class="form-control" name="updateCourseT" id="updateCourseT" disabled></input>
+							       </div>
+							    </div>
+							    <div class="form-group">
+							    	<label class="col-lg-2 control-label">Batch</label>
+							        <div class="col-lg-3">
+							       		<input type="text" class="form-control" name="batch_updateT" id="batch_updateT" disabled></input>
+							        </div>
+							        <input type="text" name="fetchtrainerupdateT" id="fetchtrainerupdateT" hidden></input><br><br>
+							    </div>
+							    <hr style="border-top: 1px grey solid;width: 95%; margin-left: 30px;">
+							</fieldset>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Select attribute to modify</label>
+								<div class="col-lg-3">
+						       		<select class="form-control" name="attributeT" id="attributeT">
+						       		<option value=""></option>
+						       		<option value="contact_no">Contact Number</option>
+						       		<option value="salary">Salary</option>
+						       		</select>
+						        </div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">New Value</label>
+						        
+						        <div class="col-lg-3">
+						        	<input type="text" class="form-control" name="newdetailsT" id="newdetailsT"></input>
+						        </div>
+							</div>
+							<div class="form-group">
+						      <div class="col-lg-5 col-lg-offset-3">
+						        <button type="submit" class="btn btn-warning" id="updateTrainerSubmit" name="updateTrainerSubmit">Update Member Details</button>
+						      </div>
+						    </div>
+							<hr style="border-top: 1px grey solid;width: 95%; margin-left: 30px;">
+							<div class="form-group">
+								<div class="container-fluid">
+										<table class="table table-striped" id="updateTtable">
+											<thead>
+											    <tr>
+													<th>Trainer ID</th>
+													<th>Trainer name</th>
+													<th>Contact Number</th>
+													<th>Salary</th>
+													<th>Address</th>
+													<th>Email</th>
+													<th>Course Name</th>
+												</tr>
+											  </thead>
+											  <tbody>
+											  	<tr>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  	</tr>
+											  </tbody>
+										</table>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+		  </div>
+
 		  <div class="tab-pane fade active in" id="Courses">
 		  	<div class="container-fluid">
 			    <div class="row">

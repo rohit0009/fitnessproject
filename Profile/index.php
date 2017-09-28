@@ -161,7 +161,7 @@
 							if($panel_count == 2)
 							{
 								$panel_count = 0;
-								echo "</div>";
+								echo "</div><br>";
 							}
 						}
 					if($num_of_enrollments%2 != 0)
