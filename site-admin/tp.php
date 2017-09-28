@@ -21,15 +21,15 @@
 		}
 	</style>
 	<script>
-	$(document).ready(function(){
-		$("#select").on("change",function(){
+	$(document).ready(function()
+	{
+		$("#select").on("change",function()
+		{
 
 			if($(this).find(":selected").val() == "")
 			{
 				$("#email").attr({value: ""});
 				$("#username").attr({value: ""});
-				$("#fetchcust").attr({value: ""});
-				$("#cust_id").attr({value: ""});
 			}
 			else
 			{
@@ -40,7 +40,8 @@
 				$("#username").attr({value: data[2]});
 			}
 		});
-		$("#selectUpdateM").on("change",function(){
+		$("#selectUpdateM").on("change",function()
+		{
 
 			if($(this).find(":selected").val() == "")
 			{
@@ -131,7 +132,8 @@
 						  <button type="button" class="close" data-dismiss="alert">&times;</button>
 						  <strong>Member Deleted!</div>';
 					echo "<script>
-							$(document).ready(function(){ 
+							$(document).ready(function()
+							{ 
 								$('#Courses').removeClass('active in'); 
 								$('#deleteM').addClass('active in');
 								$('#innertab > li:nth-child(1)').removeClass('active');
@@ -145,7 +147,8 @@
 						  <button type="button" class="close" data-dismiss="alert">&times;</button>
 						  <strong>Select a Member</div>';
 					echo "<script>
-							$(document).ready(function(){ 
+							$(document).ready(function()
+							{ 
 								$('#Courses').removeClass('active in'); 
 								$('#deleteM').addClass('active in');
 								$('#innertab > li:nth-child(1)').removeClass('active');
@@ -162,7 +165,8 @@
 						  <button type="button" class="close" data-dismiss="alert">&times;</button>
 						  <strong>Enter all details.</div>';
 					echo "<script>
-							$(document).ready(function(){ 
+							$(document).ready(function()
+							{ 
 								$('#Courses').removeClass('active in'); 
 								$('#updateM').addClass('active in');
 								$('#innertab > li:nth-child(1)').removeClass('active');
@@ -252,7 +256,7 @@
 			    	<div class="col-lg-12"><br>
 			    	<div class="panel panel-primary">
 					  <div class="panel-heading">
-					    <h3 class="panel-title">Course List</h3>
+					    <h3 class="panel-title">Trainer List</h3>
 					  </div>
 				    	<?php
 				    		
@@ -353,11 +357,17 @@
 
 							$dtb->close();
 				    	?>
+
+
+
 				    	</div>
 			    	</div>
 			    </div>
 			  </div>
 		  </div>
+
+		  
+
 		  <div class="tab-pane fade" id="updateM"><br>
 		  		<div class="panel panel-primary">
 					  <div class="panel-heading">
