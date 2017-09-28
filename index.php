@@ -61,7 +61,7 @@
 	      </ol>
 	      <div class="carousel-inner" role="listbox">
 	        <div class="item active center">
-	          <img class="first-slide" src="img/badminton.jpg" alt="First slide">
+	          <img class="first-slide" src="img/fitness club.jpg" alt="First slide">
 	          <div class="container">
 	            <div class="carousel-caption">
 	              
@@ -75,7 +75,7 @@
 	          </div>
 	        </div>
 	        <div class="item">
-	          <img class="second-slide" src="img/fitness club.jpg" alt="Second slide">
+	          <img class="second-slide" src="img/swimming.jpg" alt="Second slide">
 	          <div class="container">
 	            <div class="carousel-caption">
 	              <?php

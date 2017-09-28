@@ -23,6 +23,7 @@
 	<br>
 	<?php require 'header-profile.php'; ?>
 	<?php
+		date_default_timezone_set("Asia/Kolkata");
 		$result = $dtb->processQuery("select * from membership where cust_id = ".$_SESSION['cust_id']);
 		if($result->num_rows == 0)
 		{
@@ -30,7 +31,7 @@
 		}
 		else
 		{
-			echo "<div class='container-fluid'><br>";
+			echo "<div class='container-fluid'><br><p class='lead text-center'>Your Enrollments</p>";
 						$num_of_enrollments = $result->num_rows;
 						//$rows_req = ceil($num_of_enrollments/2);
 						$panel_count = 0;
@@ -39,13 +40,21 @@
 						{
 							if($panel_count == 0)
 							{
+								$interval =  date_diff(date_create(date('Y/m/d H:i:s')),date_create($row['expiry_date']." 00:00:00"));
+								if($interval->format('%R') == "-")
+								{
+									$dtb->processQuery("delete from membership where membership_id=".$row['membership_id']);
+									header("Location: index.php");
+								}
 								echo "<div class='row'>";
 								echo '<div class="col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1">
-												<div class="panel panel-default">
+												<div class="panel panel-primary">
 												  <div class="panel-heading text-center">';
 								$course = $dtb->processQuery("select course_name from course where course_id = ".$row['course_id']);
 								$course_name = $dtb->getParam($course,"course_name");
-								echo "<h5>".$course_name."</h5>";
+								
+								echo "<h5>".$course_name."<span class='pull-right'>".$interval->format('%a days')." left</span></h5>";
+								$update = $dtb->processQuery("update membership set duration = ".$interval->format('%a')." where membership_id=".$row['membership_id']);
 								echo  '</div>
 											  <div class="panel-body">
 												  <form class="form-horizontal" method="POST">
@@ -91,12 +100,20 @@
 							}
 							else if($panel_count == 1)
 							{
+								$interval =  date_diff(date_create(date('Y/m/d H:i:s')),date_create($row['expiry_date']." 00:00:00"));
+								if($interval->format('%R') == "-")
+								{
+									$dtb->processQuery("delete from membership where membership_id=".$row['membership_id']);
+									header("Location: index.php");
+								}
 								echo '<div class="col-lg-5 col-md-5 col-sm-5">
-												<div class="panel panel-default">
+												<div class="panel panel-primary">
 												  <div class="panel-heading text-center">';
 								$course = $dtb->processQuery("select course_name from course where course_id = ".$row['course_id']);
 								$course_name = $dtb->getParam($course,"course_name");
-								echo "<h5>".$course_name."</h5>";
+								
+								echo "<h5>".$course_name."<span class='pull-right'>".$interval->format('%a days')." left</span></h5>";
+								$update = $dtb->processQuery("update membership set duration = ".$interval->format('%a')." where membership_id=".$row['membership_id']);
 								echo  '</div>
 											  <div class="panel-body">
 												  <form class="form-horizontal" method="POST">
@@ -149,7 +166,6 @@
 						}
 					if($num_of_enrollments%2 != 0)
 						echo "</div>";
-
 					echo "</div>";
 		}
 
