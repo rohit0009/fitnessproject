@@ -555,18 +555,18 @@
 													<th>Email</th>
 													<th>Course Name</th>
 												</tr>
-											  </thead>
-											  <tbody>
-											  	<tr>
-											  		<td></td>
-											  		<td></td>
-											  		<td></td>
-											  		<td></td>
-											  		<td></td>
-											  		<td></td>
-											  		<td></td>
-											  	</tr>
-											  </tbody>
+										  </thead>
+										  <tbody>
+										  	<tr>
+										  		<td></td>
+										  		<td></td>
+										  		<td></td>
+										  		<td></td>
+										  		<td></td>
+										  		<td></td>
+										  		<td></td>
+										  	</tr>
+										  </tbody>
 										</table>
 									</div>
 								</div>
@@ -925,9 +925,6 @@
 		<br><br>
 
 	<?php require('../footer.php');?>
-
-	
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
 
