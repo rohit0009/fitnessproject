@@ -1,0 +1,1274 @@
+
+<?php include 'session.php'; ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
+	<link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+	<style type="text/css">
+		body{
+			
+		}
+		footer {
+		  padding: 50px 0;
+		}
+	</style>
+	<script>
+	$(document).ready(function(){
+		$("#selectdeleteT").on("change",function(){
+			if($(this).find(":selected").val() == "")
+			{
+				$("#trainer_id").attr({value: ""});
+				$("#emailT").attr({value: ""});
+				$("#fetchtra").attr({value: ""});
+				
+			}
+			else
+			{
+				var data = $(this).find(":selected").val().split('^&^');
+				$("#trainer_id").attr({value: data[0]});
+				$("#emailT").attr({value: data[2]});
+				$("#fetchtra").attr({value: data[0]});
+			}
+		});
+
+		$("#select").on("change",function(){
+			if($(this).find(":selected").val() == "")
+			{
+				$("#email").attr({value: ""});
+				$("#username").attr({value: ""});
+				$("#fetchcust").attr({value: ""});
+				$("#cust_id").attr({value: ""});
+			}
+			else
+			{
+				var data = $(this).find(":selected").val().split('^&^');
+				$("#cust_id").attr({value: data[0]});
+				$("#fetchcust").attr({value: data[0]});
+				$("#email").attr({value: data[1]});
+				$("#username").attr({value: data[2]});
+			}
+		});
+
+		$("#selectUpdateT").on("change",function(){
+			if($(this).find(":selected").val() == "")
+			{
+				$("#updateCourseT").attr({value: ""});
+				$("#fetchtrainerupdateT").attr({value: ""});
+				$("#batch_updateT").text("");
+				//$("#").attr({value: ""});
+				$("#updateTtable tr:eq(1) td:eq(0)").text("");
+				$("#updateTtable tr:eq(1) td:eq(1)").text("");
+				$("#updateTtable tr:eq(1) td:eq(2)").text("");
+				$("#updateTtable tr:eq(1) td:eq(3)").text("");
+				$("#updateTtable tr:eq(1) td:eq(4)").text("");
+				$("#updateTtable tr:eq(1) td:eq(5)").text("");
+				$("#updateTtable tr:eq(1) td:eq(6)").text("");
+			}
+			else
+			{
+				var data = $(this).find(":selected").val().split('^&^');
+				$("#updateCourseT").attr({value: data[6]});
+				$("#fetchtrainerupdateT").attr({value: data[0]});
+				$("#batch_updateT").html(data[7]);
+				$("#updateTtable tr:eq(1) td:eq(0)").text(data[0]);
+				$("#updateTtable tr:eq(1) td:eq(1)").text(data[1]);
+				$("#updateTtable tr:eq(1) td:eq(2)").text(data[3]);
+				$("#updateTtable tr:eq(1) td:eq(3)").text(data[2]);
+				$("#updateTtable tr:eq(1) td:eq(4)").text(data[4])
+				$("#updateTtable tr:eq(1) td:eq(5)").text(data[5]);
+				$("#updateTtable tr:eq(1) td:eq(6)").text(data[6]);
+			}
+		});
+
+		$("#selectUpdateC").on("change",function(){
+			if($(this).find(":selected").val() == "")
+			{
+				$("#updateCourse").attr({value: ""});
+				
+				$("#monthlyFee").text("");
+				//$("#").attr({value: ""});
+				$("#updateCtable tr:eq(1) td:eq(0)").text("");
+				$("#updateCtable tr:eq(1) td:eq(1)").text("");
+				$("#updateCtable tr:eq(1) td:eq(2)").text("");
+				$("#updateCtable tr:eq(1) td:eq(3)").text("");
+				$("#updateCtable tr:eq(1) td:eq(4)").text("");
+				$("#updateCtable tr:eq(1) td:eq(5)").text("");
+				$("#updateCtable tr:eq(1) td:eq(6)").text("");
+			}
+			else
+			{
+				var data = $(this).find(":selected").val().split('^&^');
+				$("#updateCourse").attr({value: data[6]});
+				
+				$("#monthlyFee").html(data[7]);
+				$("#updateCtable tr:eq(1) td:eq(0)").text(data[0]);
+				$("#updateCtable tr:eq(1) td:eq(1)").text(data[1]);
+				$("#updateCtable tr:eq(1) td:eq(2)").text(data[3]);
+				$("#updateCtable tr:eq(1) td:eq(3)").text(data[2]);
+				$("#updateCtable tr:eq(1) td:eq(4)").text(data[4])
+				$("#updateCtable tr:eq(1) td:eq(5)").text(data[5]);
+				$("#updateCtable tr:eq(1) td:eq(6)").text(data[6]);
+			}
+		});
+
+		$("#selectUpdateM").on("change",function(){
+
+			if($(this).find(":selected").val() == "")
+			{
+				$("#email").attr({value: ""});
+				$("#username").attr({value: ""});
+				$("#cust_id_updateM").attr({value: ""});
+				$("#updateEmailM").attr({value: ""});
+				$("#updateMtable tr:eq(1) td:eq(0)").text("");
+				$("#updateMtable tr:eq(1) td:eq(1)").text("");
+				$("#updateMtable tr:eq(1) td:eq(2)").text("");
+				$("#updateMtable tr:eq(1) td:eq(3)").text("");
+				$("#updateMtable tr:eq(1) td:eq(4)").text("");
+				$("#updateMtable tr:eq(1) td:eq(5)").text("");
+			}
+			else
+			{
+				var data = $(this).find(":selected").val().split('^&^');
+				$("#cust_id_updateM").attr({value: data[0]});
+				$("#fetchcustupdateM").attr({value: data[0]});
+				$("#updateEmailM").attr({value: data[1]});
+				$("#updateMtable tr:eq(1) td:eq(0)").text(data[0]);
+				$("#updateMtable tr:eq(1) td:eq(1)").text(data[3]);
+				$("#updateMtable tr:eq(1) td:eq(2)").text(data[4]);
+				$("#updateMtable tr:eq(1) td:eq(3)").text(data[5]);
+				$("#updateMtable tr:eq(1) td:eq(4)").text(data[6])
+				$("#updateMtable tr:eq(1) td:eq(5)").text(data[2]);
+			}
+		});
+
+	});
+	</script>
+
+</head>
+<body>
+
+	<br>
+	<div class="container-fluid" style="margin-left: 50px;margin-right: 50px;">
+		<?php require('header-admin-home.php'); ?>
+		
+		<br>
+		
+		
+		<ul class="nav nav-tabs" id="innertab">
+		  <li class="dropdown active">
+		  		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		  			Course <span class="caret"></span>
+		  		</a>
+		  		<ul class="dropdown-menu">
+			      <li><a href="#Courses" data-toggle="tab">Course List</a></li>
+			      <li class="divider"></li>
+			      <li><a href="#courseupdate" data-toggle="tab">Update Course</a></li>
+			    </ul>
+		  </li>
+		  <li class="dropdown">
+		  		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		  			Trainer <span class="caret"></span>
+		  		</a>
+		  		<ul class="dropdown-menu">
+			      <li><a href="#Trainers" data-toggle="tab">Trainer List</a></li>
+			      <li class="divider"></li>
+			      <li><a href="#" data-toggle="tab">Add Trainer</a></li>
+			      <li class="divider"></li>
+			      <li><a href="#trainerupdate" data-toggle="tab">Update Trainer Details</a></li>
+			      <li class="divider"></li>
+			      <li><a href="#trainerdelete" data-toggle="tab">Delete Trainer</a></li>
+			    </ul>
+		  </li>
+		  <li class="dropdown">
+		    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		      Member <span class="caret"></span>
+		    </a>
+		    <ul class="dropdown-menu">
+		      <li><a href="#Members" data-toggle="tab">Member List <span class="badge"><?php $dtb =new DTB(); $result = $dtb->processQuery("select count(cust_id) from member;"); echo $dtb->getParam($result,"count(cust_id)"); $dtb->close();?></span></a></li>
+		      <li class="divider"></li>
+		      <li><a href="#updateM" data-toggle="tab">Update Member Details</a></li>
+		      <li class="divider"></li>
+		      <li><a href="#deleteM" data-toggle="tab">Delete Member</a></li>
+		    </ul>
+		  </li>				  
+		</ul>
+
+		<?php if($_SERVER['REQUEST_METHOD'] == 'POST') 
+		{ 
+			$dtb = new DTB();
+
+			if(isset($_REQUEST['deleteTrainer']))
+			{
+				if($_REQUEST['fetchtra']!="")
+				{
+					$dtb->processQuery(" DELETE FROM `trainer` WHERE `trainer`.`trainer_id` =".$_REQUEST['fetchtra']);
+					echo '<br><div class="alert alert-dismissible alert-success">
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Trainer Deleted!</div>';
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#trainerdelete').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(2)').addClass('active');
+							});
+						</script>";
+				}
+				else
+				{
+					echo '<br><div class="alert alert-dismissible alert-danger">
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Select a Trainer</div>';
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#trainerdelete').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(2)').addClass('active');
+							});
+						</script>";
+				}
+			}
+			if(isset($_REQUEST['updateTrainerSubmit']))
+			{
+				if($_REQUEST['fetchtrainerupdateT']=="" || $_REQUEST['attributeT']=="" || $_REQUEST['newdetailsT']=="")
+				{
+					echo '<br><div class="alert alert-dismissible alert-danger">
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Enter all details.</div>';
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#trainerupdate').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(2)').addClass('active');
+							});
+						</script>";
+				}
+				else
+				{
+					$arr = explode("^&^", $_REQUEST['selectUpdateT']);
+					$flag = 1;
+					if($flag)
+					{
+						if($_REQUEST['attributeT'] == "contact_no")
+						{
+							if(!is_numeric($_REQUEST['newdetailsT']))
+							{
+								echo '<br><div class="alert alert-dismissible alert-warning">
+						 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						 	  	<strong>Enter Numbers only.</strong></div>';
+						 	  	$flag = 0;
+						 	}
+						 	  else
+						 	  {
+						 	  		if(strlen($_REQUEST['newdetailsT']) != 10)
+						 	  		{
+						 	  			echo '<br><div class="alert alert-dismissible alert-warning">
+									 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+									 	  	<strong>Enter 10 numbers only.</strong></div>';
+									 	$flag = 0;  	
+						 	  		}
+						 	  }
+						}
+						if($_REQUEST['attributeT'] == "salary")
+						{
+							if(!is_numeric($_REQUEST['newdetailsT']))
+							{
+								echo '<br><div class="alert alert-dismissible alert-warning">
+						 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						 	  	<strong>Enter Numbers only.</strong></div>';
+						 	  	$flag = 0;
+						 	}
+						 	  else
+						 	  {
+						 	  		if($_REQUEST['newdetailsT'] < 0)
+						 	  		{
+						 	  			echo '<br><div class="alert alert-dismissible alert-warning">
+									 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+									 	  	<strong>Enter positive salary only.</strong></div>';
+									 	$flag = 0;
+						 	  		}
+						 	  }
+						}
+					}
+
+					if($flag)
+					{
+						$result = $dtb->processQuery('update trainer set '.$_REQUEST['attributeT'].'='.$_REQUEST['newdetailsT'].' where trainer_id='.$arr[0]);
+						if($result === TRUE)
+							echo '<br><div class="alert alert-dismissible alert-success">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  	<strong>Updated Trainer Details.</div>';
+						else
+							echo '<br><div class="alert alert-dismissible alert-danger">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  	<strong>Failed.</div>';
+				    }
+					
+					//print_r($arr);
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#trainerupdate').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(2)').addClass('active');
+							});
+						</script>";
+				}
+			}
+			
+			if(isset($_REQUEST['deleteMember']))
+			{
+				if($_REQUEST['fetchcust']!="")
+				{
+					$dtb->processQuery(" DELETE FROM `member` WHERE `member`.`cust_id` =".$_REQUEST['fetchcust']);
+					echo '<br><div class="alert alert-dismissible alert-success">
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Member Deleted!</div>';
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#deleteM').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(3)').addClass('active');
+							});
+						</script>";
+				}
+				else
+				{
+					echo '<br><div class="alert alert-dismissible alert-danger">
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Select a Member</div>';
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#deleteM').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(3)').addClass('active');
+							});
+						</script>";
+				}
+			}
+			if(isset($_REQUEST['updateMember']))
+			{
+				if($_REQUEST['attribute']=="" || $_REQUEST['selectUpdateM']=="" || $_REQUEST['newdetails']=="")
+				{
+					echo '<br><div class="alert alert-dismissible alert-danger">
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Enter all details.</div>';
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#updateM').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(3)').addClass('active');
+							});
+						</script>";
+				}
+				else
+				{
+					$arr = explode("^&^", $_REQUEST['selectUpdateM']);
+					$flag = 1;
+					if($flag)
+					{
+						if($_REQUEST['attribute'] == "contact_no")
+						{
+							if(!is_numeric($_REQUEST['newdetails']))
+							{
+								echo '<br><div class="alert alert-dismissible alert-warning">
+						 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						 	  	<strong>Enter Numbers only.</strong></div>';
+						 	  	$flag = 0;
+						 	}
+						 	  else
+						 	  {
+						 	  		if(strlen($_REQUEST['newdetails']) != 10)
+						 	  		{
+						 	  			echo '<br><div class="alert alert-dismissible alert-warning">
+									 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+									 	  	<strong>Enter 10 numbers only.</strong></div>';
+									 	$flag = 0;  	
+						 	  		}
+						 	  }
+						}
+						if($_REQUEST['attribute'] == "pincode")
+						{
+							if(!is_numeric($_REQUEST['newdetails']))
+							{
+								echo '<br><div class="alert alert-dismissible alert-warning">
+						 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						 	  	<strong>Enter Numbers only.</strong></div>';
+						 	  	$flag = 0;
+						 	}
+						 	  else
+						 	  {
+						 	  		if(strlen($_REQUEST['newdetails']) != 6)
+						 	  		{
+						 	  			echo '<br><div class="alert alert-dismissible alert-warning">
+									 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+									 	  	<strong>Enter 6 numbers only.</strong></div>';
+									 	$flag = 0;
+						 	  		}
+						 	  }
+						}
+					}
+
+					if($flag)
+					{
+						$result = $dtb->processQuery('update member set '.$_REQUEST['attribute'].'='.$_REQUEST['newdetails'].' where cust_id='.$arr[0]);
+						if($result === TRUE)
+							echo '<br><div class="alert alert-dismissible alert-success">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  	<strong>Updated Member Details.</div>';
+						else
+							echo '<br><div class="alert alert-dismissible alert-warnng">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  	<strong>Failed.</div>';
+				    }
+					
+					//print_r($arr);
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#updateM').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(3)').addClass('active');
+							});
+						</script>";	
+				}
+			}
+			$dtb->close();
+		} 
+		?>
+
+
+		<?php if($_SERVER['REQUEST_METHOD'] == 'POST') 
+		{ 
+			$dtb = new DTB();
+
+			if(isset($_REQUEST['updateCourseSubmit']))
+			{
+				if($_REQUEST['attributeC']=="" || $_REQUEST['newdetailsC']=="")
+				{
+					echo '<br><div class="alert alert-dismissible alert-danger">
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Enter all details.</div>';
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#courseupdate').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(2)').addClass('active');
+							});
+						</script>";
+				}
+				else
+				{
+					$arr = explode("^&^", $_REQUEST['selectUpdateC']);
+					$flag = 1;
+					if($flag)
+					{
+						if($_REQUEST['attributeC'] == "monthlyFee")
+						{
+							if(!is_numeric($_REQUEST['newdetailsC']))
+							{
+								echo '<br><div class="alert alert-dismissible alert-warning">
+						 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						 	  	<strong>Enter Numbers only.</strong></div>';
+						 	  	$flag = 0;
+						 	}
+						 	else
+						 	{
+						 	  	if($_REQUEST['newdetailsC'] < 0)
+						 	  	{
+						 	  		echo '<br><div class="alert alert-dismissible alert-warning">
+									 	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+									 	  <strong>Enter positive amount only.</strong></div>';
+									$flag = 0;
+						 	  	}
+						 	}
+						}
+						if($_REQUEST['attributeT'] == "salary")
+						{
+							if(!is_numeric($_REQUEST['newdetailsT']))
+							{
+								echo '<br><div class="alert alert-dismissible alert-warning">
+						 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						 	  	<strong>Enter Numbers only.</strong></div>';
+						 	  	$flag = 0;
+						 	}
+						 	  else
+						 	  {
+						 	  		if($_REQUEST['newdetailsT'] < 0)
+						 	  		{
+						 	  			echo '<br><div class="alert alert-dismissible alert-warning">
+									 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+									 	  	<strong>Enter positive salary only.</strong></div>';
+									 	$flag = 0;
+						 	  		}
+						 	  }
+						}
+					}
+
+					if($flag)
+					{
+						$result = $dtb->processQuery('update course set '.$_REQUEST['attributeC'].'='.$_REQUEST['newdetailsC'].' where course_id='.$arr[0]);
+						if($result === TRUE)
+							echo '<br><div class="alert alert-dismissible alert-success">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  	<strong>Updated Course Details.</div>';
+						else
+							echo '<br><div class="alert alert-dismissible alert-danger">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  	<strong>Failed.</div>';
+				    }
+					
+					//print_r($arr);
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#courseupdate').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(2)').addClass('active');
+							});
+						</script>";
+				}
+			}
+			
+			if(isset($_REQUEST['deleteMember']))
+			{
+				if($_REQUEST['fetchcust']!="")
+				{
+					$dtb->processQuery(" DELETE FROM `member` WHERE `member`.`cust_id` =".$_REQUEST['fetchcust']);
+					echo '<br><div class="alert alert-dismissible alert-success">
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Member Deleted!</div>';
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#deleteM').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(3)').addClass('active');
+							});
+						</script>";
+				}
+				else
+				{
+					echo '<br><div class="alert alert-dismissible alert-danger">
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Select a Member</div>';
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#deleteM').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(3)').addClass('active');
+							});
+						</script>";
+				}
+			}
+			if(isset($_REQUEST['updateMember']))
+			{
+				if($_REQUEST['attribute']=="" || $_REQUEST['selectUpdateM']=="" || $_REQUEST['newdetails']=="")
+				{
+					echo '<br><div class="alert alert-dismissible alert-danger">
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Enter all details.</div>';
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#updateM').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(3)').addClass('active');
+							});
+						</script>";
+				}
+				else
+				{
+					$arr = explode("^&^", $_REQUEST['selectUpdateM']);
+					$flag = 1;
+					if($flag)
+					{
+						if($_REQUEST['attribute'] == "contact_no")
+						{
+							if(!is_numeric($_REQUEST['newdetails']))
+							{
+								echo '<br><div class="alert alert-dismissible alert-warning">
+						 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						 	  	<strong>Enter Numbers only.</strong></div>';
+						 	  	$flag = 0;
+						 	}
+						 	  else
+						 	  {
+						 	  		if(strlen($_REQUEST['newdetails']) != 10)
+						 	  		{
+						 	  			echo '<br><div class="alert alert-dismissible alert-warning">
+									 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+									 	  	<strong>Enter 10 numbers only.</strong></div>';
+									 	$flag = 0;  	
+						 	  		}
+						 	  }
+						}
+						if($_REQUEST['attribute'] == "pincode")
+						{
+							if(!is_numeric($_REQUEST['newdetails']))
+							{
+								echo '<br><div class="alert alert-dismissible alert-warning">
+						 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						 	  	<strong>Enter Numbers only.</strong></div>';
+						 	  	$flag = 0;
+						 	}
+						 	  else
+						 	  {
+						 	  		if(strlen($_REQUEST['newdetails']) != 6)
+						 	  		{
+						 	  			echo '<br><div class="alert alert-dismissible alert-warning">
+									 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+									 	  	<strong>Enter 6 numbers only.</strong></div>';
+									 	$flag = 0;
+						 	  		}
+						 	  }
+						}
+					}
+
+					if($flag)
+					{
+						$result = $dtb->processQuery('update member set '.$_REQUEST['attribute'].'='.$_REQUEST['newdetails'].' where cust_id='.$arr[0]);
+						if($result === TRUE)
+							echo '<br><div class="alert alert-dismissible alert-success">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  	<strong>Updated Member Details.</div>';
+						else
+							echo '<br><div class="alert alert-dismissible alert-warnng">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  	<strong>Failed.</div>';
+				    }
+					
+					//print_r($arr);
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#updateM').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(3)').addClass('active');
+							});
+						</script>";	
+				}
+			}
+			$dtb->close();
+		} 
+		?>
+		
+		
+		<div id="myTabContent" class="tab-content">
+			<div class="tab-pane fade" id="trainerdelete">
+				<div class="panel panel-warning">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Delete Trainer</h3>
+					  </div>
+					  <div class="panel-body">
+					    	<div class="container">
+					    		<form class="form-horizontal" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+	  								<fieldset>
+							    		<div class="form-group">
+									      <label for="select" class="col-lg-2 control-label">Select Name</label>
+									      <div class="col-lg-3">
+									        <select class="form-control" id="selectdeleteT" name="selectdeleteT">
+									        	<?php
+													$dtb = new DTB();
+													$result = $dtb->processQuery("select trainer_id,trainer_name,email from trainer;");
+													echo "<option class='disabled'></option>";	
+													while ($row = $result->fetch_assoc())
+													{
+														echo '<option value="'.$row["trainer_id"]."^&^".$row["trainer_name"]."^&^".$row["email"].'">'.$row["trainer_name"].'</option>';
+													}
+													$dtb->close();
+												?>
+									        </select>
+									       </div>
+									       <label class="col-lg-2 control-label">Trainer Id</label>
+									       <div class="col-lg-3">
+									       		<input type="text" name="fetchtra" id="fetchtra" hidden></input>
+									       		<input type="text" class="form-control" name="trainer_id" id="trainer_id" disabled></input>
+									       </div>
+									    </div>
+									    <div class="form-group">
+									    	<label for="select" class="col-lg-2 control-label">Email</label>
+								      		<div class="col-lg-3">
+								      			<input type="text" class="form-control" name="emailT" id="emailT" disabled></input>
+								      		</div>
+								      		
+									    </div>
+									    <div class="form-group">
+									      <div class="col-lg-5 col-lg-offset-1">
+									        <button type="submit" class="btn btn-danger" name="deleteTrainer"><span class="glyphicon glyphicon-trash"></span> Delete Trainer</button>
+									      </div>
+									    </div>
+								    </fieldset>
+							     </form>
+					    	</div>
+					  </div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="trainerupdate">
+				<div class="panel panel-primary">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Update Trainer Details</h3>
+					  </div>
+					<div class="panel-body">
+						<form class="form-horizontal" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+							<fieldset>
+								<div class="form-group">
+
+							    	<label for="select" class="col-lg-2 control-label">Select Name</label>
+						      		<div class="col-lg-3">
+								        <select class="form-control" id="selectUpdateT" name="selectUpdateT">
+								        	<?php
+														$dtb = new DTB();
+														$result = $dtb->processQuery("select trainer_id,trainer_name,salary,contact_no,address,email,course_id from trainer;");
+														echo "<option class='disabled' value=''></option>";
+														while ($row = $result->fetch_assoc())
+														{
+															$courseT= $dtb->processQuery("select course_name from course where course_id=".$row['course_id']);
+															$batchT = $dtb->processQuery("SELECT batch_name,batch_time from batch where batch_id in (select batch_id from seat where trainer_id =".$row['trainer_id'].");");
+															$batchfetcher = "";
+															while($rowbatch = $batchT->fetch_assoc())
+															{
+																$batchfetcher = $batchfetcher.$rowbatch['batch_name']." ( ".$rowbatch['batch_time']." )";
+																$batchfetcher = $batchfetcher."\n";
+															}
+															$course_name = $dtb->getParam($courseT,"course_name");
+															echo '<option value="'.$row["trainer_id"]."^&^".$row["trainer_name"]."^&^".$row['salary']."^&^".$row['contact_no']."^&^".$row['address']."^&^".$row['email']."^&^".$course_name."^&^".$batchfetcher.'">'.$row["trainer_name"].'</option>';
+														}
+														$dtb->close();
+													?>
+								        </select>
+					       			</div>
+						      		<label class="col-lg-2 control-label" >Course</label>
+							       <div class="col-lg-3">
+							       		<input type="text" class="form-control" name="updateCourseT" id="updateCourseT" disabled></input>
+							       </div>
+							    </div>
+							    <div class="form-group">
+							    	<label class="col-lg-2 control-label">Batch</label>
+							        <div class="col-lg-4">
+							       		<textarea class="form-control" name="batch_updateT" id="batch_updateT" rows="5" disabled=""></textarea>
+							       		<helpblock>Batches that are taught by the selected trainer.</helpblock>
+							        </div>
+							        <input type="text" name="fetchtrainerupdateT" id="fetchtrainerupdateT" hidden></input><br><br>
+							    </div>
+							    <hr style="border-top: 1px grey solid;width: 95%; margin-left: 30px;">
+							</fieldset>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Select attribute to modify</label>
+								<div class="col-lg-3">
+						       		<select class="form-control" name="attributeT" id="attributeT">
+						       		<option value=""></option>
+						       		<option value="contact_no">Contact Number</option>
+						       		<option value="salary">Salary</option>
+						       		</select>
+						        </div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">New Value</label>
+						        
+						        <div class="col-lg-3">
+						        	<input type="text" class="form-control" name="newdetailsT" id="newdetailsT"></input>
+						        </div>
+							</div>
+							<div class="form-group">
+						      <div class="col-lg-5 col-lg-offset-3">
+						        <button type="submit" class="btn btn-warning" id="updateTrainerSubmit" name="updateTrainerSubmit">Update Member Details</button>
+						      </div>
+						    </div>
+							<hr style="border-top: 1px grey solid;width: 95%; margin-left: 30px;">
+							<div class="form-group">
+								<div class="container-fluid">
+										<table class="table table-striped" id="updateTtable">
+											<thead>
+											    <tr>
+													<th>Trainer ID</th>
+													<th>Trainer name</th>
+													<th>Contact Number</th>
+													<th>Salary</th>
+													<th>Address</th>
+													<th>Email</th>
+													<th>Course Name</th>
+												</tr>
+											  </thead>
+											  <tbody>
+											  	<tr>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  	</tr>
+											  </tbody>
+										</table>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+		  </div>
+
+		  <div class="tab-pane fade" id="courseupdate">
+				<div class="panel panel-primary">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Update Course Details</h3>
+					  </div>
+					<div class="panel-body">
+						<form class="form-horizontal" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+							<fieldset>
+								<div class="form-group">
+
+							    	<label for="select" class="col-lg-2 control-label">Select Name</label>
+						      		<div class="col-lg-3">
+								        <select class="form-control" id="selectUpdateC" name="selectUpdateC">
+								        	<?php
+														$dtb = new DTB();
+														$result = $dtb->processQuery("select course_id,course_name,monthly,monthly_d,quarterly_d,sixmonth_d,yearly_d from course;");
+														echo "<option class='disabled' value=''></option>";
+														while ($row = $result->fetch_assoc())
+														{
+															echo '<option value="'.$row["course_id"]."^&^".$row["course_name"]."^&^".$row['monthly']."^&^".$row['monthly_d']."^&^".$row['quarterly_d']."^&^".$row['sixmonth_d'].$row['yearly_d'].'">'.$row["course_name"].'</option>';
+														}
+														$dtb->close();
+													?>
+								        </select>
+					       			</div>
+						      		<label class="col-lg-2 control-label">Course ID</label>
+							       <div class="col-lg-3">
+							       		<input type="text" class="form-control" name="updateCourse" id="updateCourse" disabled></input>
+							       </div>
+							    </div>
+							    
+							    <hr style="border-top: 1px grey solid;width: 95%; margin-left: 30px;">
+							</fieldset>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Select attribute to modify</label>
+								<div class="col-lg-3">
+						       		<select class="form-control" name="attributeC" id="attributeC">
+						       		<option value=""></option>
+						       		<option value="monthlyFee">Monthly Fee</option>
+						       		<option value="salary">Salary</option>
+						       		</select>
+						        </div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">New Value</label>
+						        
+						        <div class="col-lg-3">
+						        	<input type="text" class="form-control" name="newdetailsC" id="newdetailsC"></input>
+						        </div>
+							</div>
+							<div class="form-group">
+						      <div class="col-lg-5 col-lg-offset-3">
+						        <button type="submit" class="btn btn-warning" id="updateCourseSubmit" name="updateCourseSubmit">Update Course Details</button>
+						      </div>
+						    </div>
+							<hr style="border-top: 1px grey solid;width: 95%; margin-left: 30px;">
+							<div class="form-group">
+								<div class="container-fluid">
+										<table class="table table-striped" id="updateCtable">
+											<thead>
+											    <tr>
+													<th>Course ID</th>
+													<th>Course name</th>
+													<th>Monthly Fee</th>
+													<th>Monthly Discount</th>
+													<th>Quarterly Discount</th>
+													<th>Six-Monthly Discount</th>
+													<th>Yearly Discount</th>
+												</tr>
+											  </thead>
+											  <tbody>
+											  	<tr>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  	</tr>
+											  </tbody>
+										</table>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+		  </div>
+
+		  <div class="tab-pane fade active in" id="Courses">
+		  	<div class="container-fluid">
+			    <div class="row">
+			    	<div class="col-lg-12"><br>
+			    	<div class="panel panel-primary">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Course List</h3>
+					  </div>
+				    	<?php
+				    		
+							$dtb = new DTB();
+
+							$result = $dtb->processQuery("select * from course;");
+
+							if ($result->num_rows>0)
+							{
+								echo '<table class="table table-striped ">
+										  <thead>
+										    <tr>
+												<th class="text-center">Course ID</th>
+												<th class="text-center">Course name</th>
+												<th class="text-center">Monthly Fees</th>
+												<th class="text-center">Qtr Fees</th>
+												<th class="text-center">Half Yearly Fees</th>
+												<th class="text-center">Yearly</th>
+											</tr>
+										  </thead>
+										  <tbody>';
+								while ($row = $result->fetch_assoc())
+								{
+									$monthly = $row['monthly'];
+									$qtr = ($monthly*3)-(($monthly*3)*$row['quarterly_d']);
+									$hlf = ($monthly*6)-(($monthly*6)*$row['sixmonth_d']);
+									$yl = ($monthly*12)-(($monthly*12)*$row['yearly_d']);
+										echo '<tr>
+									      <td class="text-center">'.$row['course_id'].'</td>
+									      <td class="text-center">'.$row['course_name'].'</td>
+									      <td class="text-center">'.$monthly.'</td>
+									      <td class="text-center">'.$qtr.'</td>
+									      <td class="text-center">'.$hlf.'</td>
+									      <td class="text-center">'.$yl.'</td>
+									      </tr>';	
+								}
+								echo '</tbody>
+									</table>';
+							}
+							else
+								echo "<p class='lead text-center'>List is empty</p>";
+
+							$dtb->close();
+				    	?>
+				    	</div>
+			    	</div>
+			    </div>
+			  </div>
+		  </div>
+		  <div class="tab-pane fade" id="Trainers">
+		    <div class="container-fluid">
+			    <div class="row">
+			    	<div class="col-lg-12"><br>
+			    	<div class="panel panel-primary">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Trainer List</h3>
+					  </div>
+				    	<?php
+				    		
+							$dtb = new DTB();
+
+							$result = $dtb->processQuery("select * from trainer;");
+
+							if ($result->num_rows>0)
+							{
+								echo '<table class="table table-striped ">
+										  <thead>
+										    <tr>
+												<th class="text-center">Trainer ID</th>
+												<th class="text-center">Trainer name</th>
+												<th class="text-center">Contact No</th>
+												<th class="text-center">Salary</th>
+												<th class="text-center">Address</th>
+												<th class="text-center">Email</th>
+												<th class="text-center">Course Speciality</th>
+											</tr>
+										  </thead>
+										  <tbody>';
+								while ($row = $result->fetch_assoc())
+								{
+									$result1 = $dtb->processQuery("select course_name from course where course_id=".$row['course_id']);
+									$course = $result1->fetch_assoc();
+										echo '<tr>
+									      <td class="text-center">'.$row['trainer_id'].'</td>
+									      <td class="text-center">'.$row['trainer_name'].'</td>
+									      <td class="text-center">'.$row['contact_no'].'</td>
+									      <td class="text-center">'.$row['salary'].'</td>
+									      <td class="text-center">'.$row['address'].'</td>
+									      <td class="text-center">'.$row['email'].'</td>
+									      <td class="text-center">'.$course['course_name'].'</td>
+									      </tr>';	
+								}
+								echo '</tbody>
+									</table>';
+							}
+							else
+								echo "<p class='lead text-center'>List is empty</p>";
+
+							$dtb->close();
+				    	?>
+				    	</div>
+			    	</div>
+			    </div>
+			  </div>
+		  </div>
+		  <div class="tab-pane fade" id="updateM"><br>
+		  		<div class="panel panel-primary">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Update Member Details</h3>
+					  </div>
+					<div class="panel-body">
+						<form class="form-horizontal" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+							<fieldset>
+								<div class="form-group">
+
+							    	<label for="select" class="col-lg-2 control-label">Select Name</label>
+						      		<div class="col-lg-3">
+								        <select class="form-control" id="selectUpdateM" name="selectUpdateM">
+								        	<?php
+												$dtb = new DTB();
+												$result = $dtb->processQuery("select cust_id,email,username,f_name,l_name,pincode,contact_no from member;");
+												echo "<option class='disabled' value=''></option>";	
+												while ($row = $result->fetch_assoc())
+												{
+													echo '<option value='.$row["cust_id"]."^&^".$row["email"]."^&^".$row['username']."^&^".$row['f_name']."^&^".$row['l_name']."^&^".$row['contact_no']."^&^".$row['pincode'].'>'.$row["f_name"]." ".$row["l_name"].'</option>';
+												}
+												$dtb->close();
+											?>
+								        </select>
+					       			</div>
+						      		<label class="col-lg-2 control-label" >Email</label>
+							       <div class="col-lg-3">
+							       		<input type="text" class="form-control" name="updateEmailM" id="updateEmailM" disabled></input>
+							       </div>
+							    </div>
+							    <div class="form-group">
+							    	<label class="col-lg-2 control-label">Customer Id</label>
+							        <div class="col-lg-3">
+							       		<input type="text" class="form-control" name="cust_id_updateM" id="cust_id_updateM" disabled></input>
+							        </div>
+							        <input type="text" name="fetchcustupdateM" id="fetchcustupdateM" hidden></input><br><br>
+							    </div>
+							    <hr style="border-top: 1px grey solid;width: 95%; margin-left: 30px;">
+							</fieldset>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Select attribute to modify</label>
+								<div class="col-lg-3">
+						       		<select class="form-control" name="attribute" id="attribute">
+						       		<option value=""></option>
+						       		<option value="contact_no">Contact Number</option>
+						       		<option value="pincode">Pincode</option>
+						       		</select>
+						        </div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">New Value</label>
+						        
+						        <div class="col-lg-3">
+						        	<input type="text" class="form-control" name="newdetails" id="newdetails"></input>
+						        </div>
+							</div>
+							<div class="form-group">
+						      <div class="col-lg-5 col-lg-offset-3">
+						        <button type="submit" class="btn btn-warning" id="updateMember" name="updateMember">Update Member Details</button>
+						      </div>
+						    </div>
+							<hr style="border-top: 1px grey solid;width: 95%; margin-left: 30px;">
+							<div class="form-group">
+								<div class="container-fluid">
+										<table class="table table-striped" id="updateMtable">
+											<thead>
+											    <tr>
+													<th>Customer ID</th>
+													<th>First name</th>
+													<th>Last name</th>
+													<th>Contact Number</th>
+													<th>Pincode</th>
+													<th>Username</th>
+												</tr>
+											  </thead>
+											  <tbody>
+											  	<tr>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  	</tr>
+											  </tbody>
+										</table>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+
+		  </div>
+		  <div class="tab-pane fade" id="deleteM"><br>
+		  		<div class="panel panel-warning">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Delete Member</h3>
+					  </div>
+					  <div class="panel-body">
+					    	<div class="container">
+					    		<form class="form-horizontal" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+	  								<fieldset>
+							    		<div class="form-group">
+									      <label for="select" class="col-lg-2 control-label">Select Name</label>
+									      <div class="col-lg-3">
+									        <select class="form-control" id="select" name="select">
+									        	<?php
+													$dtb = new DTB();
+													$result = $dtb->processQuery("select cust_id,email,username,f_name,l_name from member;");
+													echo "<option class='disabled'></option>";	
+													while ($row = $result->fetch_assoc())
+													{
+														echo '<option value='.$row["cust_id"]."^&^".$row["email"]."^&^".$row["username"].'>'.$row["f_name"]." ".$row["l_name"].'</option>';
+													}
+													$dtb->close();
+												?>
+									        </select>
+									       </div>
+									       <label class="col-lg-2 control-label">Member Id</label>
+									       <div class="col-lg-3">
+									       		<input type="text" name="fetchcust" id="fetchcust" hidden></input>
+									       		<input type="text" class="form-control" name="cust_id" id="cust_id" disabled></input>
+									       </div>
+									    </div>
+									    <div class="form-group">
+									    	<label for="select" class="col-lg-2 control-label">Email</label>
+								      		<div class="col-lg-3">
+								      			<input type="text" class="form-control" name="email" id="email" disabled></input>
+								      		</div>
+								      		<label class="col-lg-2 control-label" >Username</label>
+									       <div class="col-lg-3">
+									       		<input type="text" class="form-control" name="username" id="username" disabled></input>
+									       </div>
+									    </div>
+									    <div class="form-group">
+									      <div class="col-lg-5 col-lg-offset-1">
+									        <button type="submit" class="btn btn-danger" name="deleteMember"><span class="glyphicon glyphicon-trash"></span> Delete Member</button>
+									      </div>
+									    </div>
+								    </fieldset>
+							     </form>
+					    	</div>
+					  </div>
+				</div>
+		  </div>
+		  <div class="tab-pane fade" id="Members">
+			  <div class="container-fluid">
+			    <div class="row">
+			    	<div class="col-lg-12"><br>
+			    	<div class="panel panel-primary">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Member List</h3>
+					  </div>
+				    	<?php
+				    		
+							$dtb = new DTB();
+
+							$result = $dtb->processQuery("select * from member;");
+
+							if ($result->num_rows>0)
+							{
+								echo '<table class="table table-striped ">
+										  <thead>
+										    <tr>
+												<th>Customer ID</th>
+												<th>First name</th>
+												<th>Last name</th>
+												<th>Address</th>
+												<th>Pincode</th>
+												<th>Contact Number</th>
+												<th>Email</th>
+												<th>OTP</th>
+												<th>Username</th>
+												<th>Account Activated?</th>
+											</tr>
+										  </thead>
+										  <tbody>';
+								while ($row = $result->fetch_assoc())
+								{
+									if($row["activate"] == 1)
+									{
+									  echo '<tr>
+									      <td>'.$row['cust_id'].'</td>
+									      <td>'.$row['f_name'].'</td>
+									      <td>'.$row['l_name'].'</td>
+									      <td>'.$row['address'].'</td>
+									      <td>'.$row['pincode'].'</td>
+									      <td>'.$row['contact_no'].'</td>
+									      <td>'.$row['email'].'</td>
+									      <td>'.$row['otp'].'</td>
+									      <td>'.$row['username'].'</td>';
+									      if($row["activate"] == 1)
+									      	echo '<td>Activated</td>';
+									      else
+									      	echo '<td>Not Activated</td>
+									    </tr>';
+									}
+									else
+									{
+										echo '<tr class="danger">
+									      <td>'.$row['cust_id'].'</td>
+									      <td>'.$row['f_name'].'</td>
+									      <td>'.$row['l_name'].'</td>
+									      <td>'.$row['address'].'</td>
+									      <td>'.$row['pincode'].'</td>
+									      <td>'.$row['contact_no'].'</td>
+									      <td>'.$row['email'].'</td>
+									      <td>'.$row['otp'].'</td>
+									      <td>'.$row['username'].'</td>';
+									      if($row["activate"] == 1)
+									      	echo '<td>Activated</td>';
+									      else
+									      	echo '<td>Not Activated</td>
+									    </tr>';	
+									}
+								}
+								echo '</tbody>
+									</table>';
+							}
+							else
+								echo "<p class='lead text-center'>List is empty</p>";
+
+							$dtb->close();
+				    	?>
+				    	</div>
+			    	</div>
+			    </div>
+			  </div>
+		  </div>
+
+		</div>
+		</div>
+
+		<br><br>
+
+	<?php require('../footer.php');?>
+
+	
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>
