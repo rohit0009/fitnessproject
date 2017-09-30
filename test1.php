@@ -7,6 +7,17 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script>
 		$(document).ready(function(){
+			$("#inputBatch").attr({disabled: ""});
+			$("#inputCourse").on("change",function(){
+				if($("#inputCourse").find(":selected").val() == "")
+				{
+					$("#inputBatch").attr({disabled: ""});
+					
+				}
+				$("#inputBatch > option").remove();
+				$('#inputBatch').append($("<option></option>").attr("value","").text("-----Select Batch-----"));
+			});
+
 			$("#checkBatch").click(function(){
 
 				var str = "";
@@ -15,27 +26,33 @@
 					$("#table").html("");
 				}
 				else{
+					$("#inputBatch").removeAttr("disabled");
 					$mainsplit = $("#inputCourse").find(":selected").val().split('^&^');	
-					alert($mainsplit);
+					//alert($mainsplit);
 					var rowArray = $mainsplit[1].split("%&%");
-					alert(rowArray);
-
-
-
+					//alert(rowArray);
 					var rowcount = new Number($mainsplit[2]);
-					alert(rowcount);
+					//alert(rowcount);
 
 					$("#table").html("");
 					mytable = $('<table class="table table-striped table-hover"><thead><tr><th class="text-center">Batch</th><th class="text-center">Trainer</th></tr></thead><tbody></tbody></table>').attr({ id: "basicTable" });
 					var rows = rowcount;
 					var cols = new Number(2);
-					var tr = [];
 					for (var i = 0; i < rows; i++) {
 						var colArray = rowArray[i].split("$&$");
 						var row = $('<tr></tr>').attr({ class: ["class1", "class2", "class3"].join(' ') }).appendTo(mytable);
+						var tempBatchStore="";
 						for (var j = 0; j < cols; j++) {
+							if(tempBatchStore != "" && j==1)
+							{
+								if(colArray[3] == "-")
+									$('#inputBatch').append($("<option></option>").attr("value",colArray[0]).text(colArray[1]));
+							}
 							if(j == 0)
+							{	
 								$('<td class="text-center"></td>').text(colArray[1]).appendTo(row); 
+								tempBatchStore = colArray[1];
+							}
 							if(j == 1)
 								$('<td class="text-center"></td>').text(colArray[3]).appendTo(row); 
 						}		 
@@ -43,8 +60,15 @@
 					console.log("TTTTT:"+mytable.html());
 					mytable.appendTo("#table");
 					$("#fetchcourseid").attr({value: $mainsplit[0]});
+
 				}
 				
+			});
+			$("#inputBatch").on("change",function(){
+				if($(this).find(":selected").val() == "")
+					$("#fetchbatchid").attr({value: ""});	
+				else
+					$("#fetchbatchid").attr({value: $(this).find(":selected").val()});
 			});
 		});
 	</script>
@@ -81,31 +105,36 @@
 	  		<div class="panel-body">
 	  				<div class="row">
 	  					<div class="col-lg-6">
+	  						<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Failed.</strong></div>
+	  					</div>
+	  				</div>
+	  				<div class="row">
+	  					<div class="col-lg-6 col-md-6">
 			    			<form class="form-horizontal">
 								  <fieldset>
 								  		<legend>Trainer Details</legend>
 								  		<div class="form-group">
 								  			<label for="inputName" class="col-lg-3 control-label">Name</label>
 									      <div class="col-lg-9">
-									      	<input type="text" class="form-control" id="inputName" placeholder="Name">
+									      	<input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name">
 									      </div>
 								  		</div>
 								  		<div class="form-group">
 								  			<label for="inputAddress" class="col-lg-3 control-label">Address</label>
 									      <div class="col-lg-9">
-									      	<input type="text" class="form-control" id="inputAddress" placeholder="Address">
+									      	<input type="text" class="form-control" id="inputAddress" name="inputAddress" placeholder="Address">
 									      </div>
 								  		</div>
 								  		<div class="form-group">
 								  			<label for="inputContact" class="col-lg-3 control-label">Contact Number</label>
 									      <div class="col-lg-9">
-									      	<input type="text" class="form-control" id="inputContact" placeholder="Contact Number">
+									      	<input type="text" class="form-control" id="inputContact" name="inputContact" placeholder="Contact Number">
 									      </div>
 								  		</div>
 								  		<div class="form-group">
 								  			<label for="inputEmail" class="col-lg-3 control-label">Email</label>
 									      <div class="col-lg-9">
-									      	<input type="text" class="form-control" id="inputEmail" placeholder="Email">
+									      	<input type="text" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email">
 									      </div>
 								  		</div>
 								  		<div class="form-group">
@@ -113,7 +142,7 @@
 								  			<div class="col-lg-9">
 									  			<div class="input-group">
 												    <span class="input-group-addon">₹</span>
-												    <input type="text" class="form-control" id="inputSalary" placeholder="Salary">
+												    <input type="text" class="form-control" id="inputSalary" name="inputSalary" placeholder="Salary">
 												  </div>
 												</div>
 								  		</div>
@@ -168,15 +197,20 @@
 								  		<div class="form-group">
 								  			<label class="col-lg-3 control-label">Select Batch</label>
 								  			<div class="col-lg-9">
-												    <select class="form-control" id="inputCourse">
+												    <select class="form-control" id="inputBatch">
 												    	<option value="">-----Select Batch-----</option>
 												    </select>
 												</div>
 								  		</div>
+								  		<div class="form-group">
+									      <div class="col-lg-10 col-lg-offset-3">
+									        <button type="submit" class="btn btn-success">Add Trainer</button>
+									      </div>
+									    </div>
 								  </fieldset>
 								</form>
 							</div>
-							<div class="col-lg-6">
+							<div class="col-lg-6 col-md-6">
 								<div class="panel panel-primary">
 									<div class="panel-body">
 									

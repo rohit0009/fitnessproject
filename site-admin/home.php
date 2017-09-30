@@ -399,7 +399,7 @@
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
 							  	<strong>Updated Member Details.</div>';
 						else
-							echo '<br><div class="alert alert-dismissible alert-warnng">
+							echo '<br><div class="alert alert-dismissible alert-warning">
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
 							  	<strong>Failed.</div>';
 				    }
