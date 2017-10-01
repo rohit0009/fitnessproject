@@ -9,69 +9,11 @@
 	
 	<script>
 		$(document).ready(function(){
-			$("#inputBatch").attr({disabled: ""});
-			$("#inputCourse").on("change",function(){
-				if($("#inputCourse").find(":selected").val() == "")
-				{
-					$("#inputBatch").attr({disabled: ""});
-					
-				}
-				$("#inputBatch > option").remove();
-				$('#inputBatch').append($("<option></option>").attr("value","").text("-----Select Batch-----"));
-			});
+			
+			
 
-			$("#checkBatch").click(function(){
-
-				var str = "";
-				if($("#inputCourse").find(":selected").val() == "")
-				{
-					$("#table").html("");
-				}
-				else{
-					$("#inputBatch").removeAttr("disabled");
-					$mainsplit = $("#inputCourse").find(":selected").val().split('^&^');	
-					//alert($mainsplit);
-					var rowArray = $mainsplit[1].split("%&%");
-					//alert(rowArray);
-					var rowcount = new Number($mainsplit[2]);
-					//alert(rowcount);
-
-					$("#table").html("");
-					mytable = $('<table class="table table-striped table-hover"><thead><tr><th class="text-center">Batch</th><th class="text-center">Trainer</th></tr></thead><tbody></tbody></table>').attr({ id: "basicTable" });
-					var rows = rowcount;
-					var cols = new Number(2);
-					for (var i = 0; i < rows; i++) {
-						var colArray = rowArray[i].split("$&$");
-						var row = $('<tr></tr>').attr({ class: ["class1", "class2", "class3"].join(' ') }).appendTo(mytable);
-						var tempBatchStore="";
-						for (var j = 0; j < cols; j++) {
-							if(tempBatchStore != "" && j==1)
-							{
-								if(colArray[3] == "-")
-									$('#inputBatch').append($("<option></option>").attr("value",colArray[0]).text(colArray[1]));
-							}
-							if(j == 0)
-							{	
-								$('<td class="text-center"></td>').text(colArray[1]).appendTo(row); 
-								tempBatchStore = colArray[1];
-							}
-							if(j == 1)
-								$('<td class="text-center"></td>').text(colArray[3]).appendTo(row); 
-						}		 
-					}
-					console.log("TTTTT:"+mytable.html());
-					mytable.appendTo("#table");
-					$("#fetchcourseid").attr({value: $mainsplit[0]});
-
-				}
-				
-			});
-			$("#inputBatch").on("change",function(){
-				if($(this).find(":selected").val() == "")
-					$("#fetchbatchid").attr({value: ""});	
-				else
-					$("#fetchbatchid").attr({value: $(this).find(":selected").val()});
-			});
+			
+			
 		});
 	</script>
 </head>
