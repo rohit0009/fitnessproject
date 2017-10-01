@@ -127,30 +127,38 @@
 											}
 											else
 											{
-												if(!is_numeric($_POST['inputContact']))
+												if(!ctype_alpha($_POST['inputName']))
 												{
-													$flag = 1;
-													  echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter Numbers only in Contact Number.</strong></div>';
+													echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter alphabets only.</strong></div>';
+											 		$flag = 1;
 												}
 												else
 												{
-													if(strlen($_POST['inputContact']) != 10)
+													if(!is_numeric($_POST['inputContact']))
 													{
 														$flag = 1;
-												  	echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter 10 digit number only.</strong></div>';
+														  echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter Numbers only in Contact Number.</strong></div>';
 													}
 													else
 													{
-														if (!filter_var($_POST['inputEmail'], FILTER_VALIDATE_EMAIL)) {
+														if(strlen($_POST['inputContact']) != 10)
+														{
 															$flag = 1;
-														  echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Invalid Email.</strong></div>';
+													  	echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter 10 digit number only.</strong></div>';
 														}
 														else
 														{
-															if(!is_numeric($_POST['inputSalary']))
-															{
+															if (!filter_var($_POST['inputEmail'], FILTER_VALIDATE_EMAIL)) {
 																$flag = 1;
-															  echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter Numeric Salary only.</strong></div>';
+															  echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Invalid Email.</strong></div>';
+															}
+															else
+															{
+																if(!is_numeric($_POST['inputSalary']))
+																{
+																	$flag = 1;
+																  echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter Numeric Salary only.</strong></div>';
+																}
 															}
 														}
 													}
