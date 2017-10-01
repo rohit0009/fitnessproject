@@ -92,8 +92,7 @@
 			if($(this).find(":selected").val() == "")
 			{
 				$("#updateCourse").attr({value: ""});
-				
-				$("#monthlyFee").text("");
+				$("#fetchcustidC").attr({value: ""});
 				//$("#").attr({value: ""});
 				$("#updateCtable tr:eq(1) td:eq(0)").text("");
 				$("#updateCtable tr:eq(1) td:eq(1)").text("");
@@ -106,13 +105,13 @@
 			else
 			{
 				var data = $(this).find(":selected").val().split('^&^');
-				$("#updateCourse").attr({value: data[6]});
-				
-				$("#monthlyFee").html(data[7]);
+				$("#updateCourse").attr({value: data[0]});
+				$("#fetchcustidC").attr({value: data[0]});
+				//$("#monthlyFee").html(data[7]);
 				$("#updateCtable tr:eq(1) td:eq(0)").text(data[0]);
 				$("#updateCtable tr:eq(1) td:eq(1)").text(data[1]);
-				$("#updateCtable tr:eq(1) td:eq(2)").text(data[3]);
-				$("#updateCtable tr:eq(1) td:eq(3)").text(data[2]);
+				$("#updateCtable tr:eq(1) td:eq(2)").text(data[2]);
+				$("#updateCtable tr:eq(1) td:eq(3)").text(data[3]);
 				$("#updateCtable tr:eq(1) td:eq(4)").text(data[4])
 				$("#updateCtable tr:eq(1) td:eq(5)").text(data[5]);
 				$("#updateCtable tr:eq(1) td:eq(6)").text(data[6]);
@@ -326,38 +325,6 @@
 				}
 			}
 			
-			if(isset($_REQUEST['deleteMember']))
-			{
-				if($_REQUEST['fetchcust']!="")
-				{
-					$dtb->processQuery(" DELETE FROM `member` WHERE `member`.`cust_id` =".$_REQUEST['fetchcust']);
-					echo '<br><div class="alert alert-dismissible alert-success">
-						  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Member Deleted!</div>';
-					echo "<script>
-							$(document).ready(function(){ 
-								$('#Courses').removeClass('active in'); 
-								$('#deleteM').addClass('active in');
-								$('#innertab > li:nth-child(1)').removeClass('active');
-								$('#innertab > li:nth-child(3)').addClass('active');
-							});
-						</script>";
-				}
-				else
-				{
-					echo '<br><div class="alert alert-dismissible alert-danger">
-						  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Select a Member</div>';
-					echo "<script>
-							$(document).ready(function(){ 
-								$('#Courses').removeClass('active in'); 
-								$('#deleteM').addClass('active in');
-								$('#innertab > li:nth-child(1)').removeClass('active');
-								$('#innertab > li:nth-child(3)').addClass('active');
-							});
-						</script>";
-				}
-			}
 			if(isset($_REQUEST['updateMember']))
 			{
 				if($_REQUEST['attribute']=="" || $_REQUEST['selectUpdateM']=="" || $_REQUEST['newdetails']=="")
@@ -446,18 +413,10 @@
 						</script>";	
 				}
 			}
-			$dtb->close();
-		} 
-		?>
-
-
-		<?php if($_SERVER['REQUEST_METHOD'] == 'POST') 
-		{ 
-			$dtb = new DTB();
 
 			if(isset($_REQUEST['updateCourseSubmit']))
 			{
-				if($_REQUEST['attributeC']=="" || $_REQUEST['newdetailsC']=="")
+				if($_REQUEST['attributeC']=="" || $_REQUEST['newdetailsC']=="" || $_REQUEST['fetchcustidC'] == "")
 				{
 					echo '<br><div class="alert alert-dismissible alert-danger">
 						  <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -466,8 +425,6 @@
 							$(document).ready(function(){ 
 								$('#Courses').removeClass('active in'); 
 								$('#courseupdate').addClass('active in');
-								$('#innertab > li:nth-child(1)').removeClass('active');
-								$('#innertab > li:nth-child(2)').addClass('active');
 							});
 						</script>";
 				}
@@ -497,31 +454,10 @@
 						 	  	}
 						 	}
 						}
-						if($_REQUEST['attributeT'] == "salary")
-						{
-							if(!is_numeric($_REQUEST['newdetailsT']))
-							{
-								echo '<br><div class="alert alert-dismissible alert-warning">
-						 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						 	  	<strong>Enter Numbers only.</strong></div>';
-						 	  	$flag = 0;
-						 	}
-						 	  else
-						 	  {
-						 	  		if($_REQUEST['newdetailsT'] < 0)
-						 	  		{
-						 	  			echo '<br><div class="alert alert-dismissible alert-warning">
-									 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
-									 	  	<strong>Enter positive salary only.</strong></div>';
-									 	$flag = 0;
-						 	  		}
-						 	  }
-						}
 					}
-
 					if($flag)
 					{
-						$result = $dtb->processQuery('update course set '.$_REQUEST['attributeC'].'='.$_REQUEST['newdetailsC'].' where course_id='.$arr[0]);
+						$result = $dtb->processQuery('update course set '.$_REQUEST['attributeC'].'="'.$_REQUEST['newdetailsC'].'" where course_id='.$_REQUEST["fetchcustidC"]);
 						if($result === TRUE)
 							echo '<br><div class="alert alert-dismissible alert-success">
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -537,8 +473,6 @@
 							$(document).ready(function(){ 
 								$('#Courses').removeClass('active in'); 
 								$('#courseupdate').addClass('active in');
-								$('#innertab > li:nth-child(1)').removeClass('active');
-								$('#innertab > li:nth-child(2)').addClass('active');
 							});
 						</script>";
 				}
@@ -576,95 +510,7 @@
 						</script>";
 				}
 			}
-			if(isset($_REQUEST['updateMember']))
-			{
-				if($_REQUEST['attribute']=="" || $_REQUEST['selectUpdateM']=="" || $_REQUEST['newdetails']=="")
-				{
-					echo '<br><div class="alert alert-dismissible alert-danger">
-						  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Enter all details.</div>';
-					echo "<script>
-							$(document).ready(function(){ 
-								$('#Courses').removeClass('active in'); 
-								$('#updateM').addClass('active in');
-								$('#innertab > li:nth-child(1)').removeClass('active');
-								$('#innertab > li:nth-child(3)').addClass('active');
-							});
-						</script>";
-				}
-				else
-				{
-					$arr = explode("^&^", $_REQUEST['selectUpdateM']);
-					$flag = 1;
-					if($flag)
-					{
-						if($_REQUEST['attribute'] == "contact_no")
-						{
-							if(!is_numeric($_REQUEST['newdetails']))
-							{
-								echo '<br><div class="alert alert-dismissible alert-warning">
-						 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						 	  	<strong>Enter Numbers only.</strong></div>';
-						 	  	$flag = 0;
-						 	}
-						 	  else
-						 	  {
-						 	  		if(strlen($_REQUEST['newdetails']) != 10)
-						 	  		{
-						 	  			echo '<br><div class="alert alert-dismissible alert-warning">
-									 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
-									 	  	<strong>Enter 10 numbers only.</strong></div>';
-									 	$flag = 0;  	
-						 	  		}
-						 	  }
-						}
-						if($_REQUEST['attribute'] == "pincode")
-						{
-							if(!is_numeric($_REQUEST['newdetails']))
-							{
-								echo '<br><div class="alert alert-dismissible alert-warning">
-						 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						 	  	<strong>Enter Numbers only.</strong></div>';
-						 	  	$flag = 0;
-						 	}
-						 	  else
-						 	  {
-						 	  		if(strlen($_REQUEST['newdetails']) != 6)
-						 	  		{
-						 	  			echo '<br><div class="alert alert-dismissible alert-warning">
-									 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
-									 	  	<strong>Enter 6 numbers only.</strong></div>';
-									 	$flag = 0;
-						 	  		}
-						 	  }
-						}
-					}
-
-					if($flag)
-					{
-						$result = $dtb->processQuery('update member set '.$_REQUEST['attribute'].'='.$_REQUEST['newdetails'].' where cust_id='.$arr[0]);
-						if($result === TRUE)
-							echo '<br><div class="alert alert-dismissible alert-success">
-								  <button type="button" class="close" data-dismiss="alert">&times;</button>
-							  	<strong>Updated Member Details.</div>';
-						else
-							echo '<br><div class="alert alert-dismissible alert-warnng">
-								  <button type="button" class="close" data-dismiss="alert">&times;</button>
-							  	<strong>Failed.</div>';
-				    }
-					
-					//print_r($arr);
-					echo "<script>
-							$(document).ready(function(){ 
-								$('#Courses').removeClass('active in'); 
-								$('#updateM').addClass('active in');
-								$('#innertab > li:nth-child(1)').removeClass('active');
-								$('#innertab > li:nth-child(3)').addClass('active');
-							});
-						</script>";	
-				}
-			}
-			$dtb->close();
+			
 		} 
 		?>
 		
@@ -835,7 +681,7 @@
 							<fieldset>
 								<div class="form-group">
 
-							    	<label for="select" class="col-lg-2 control-label">Select Name</label>
+							    	<label class="col-lg-2 control-label">Select Name</label>
 						      		<div class="col-lg-3">
 								        <select class="form-control" id="selectUpdateC" name="selectUpdateC">
 								        	<?php
@@ -844,7 +690,7 @@
 														echo "<option class='disabled' value=''></option>";
 														while ($row = $result->fetch_assoc())
 														{
-															echo '<option value="'.$row["course_id"]."^&^".$row["course_name"]."^&^".$row['monthly']."^&^".$row['monthly_d']."^&^".$row['quarterly_d']."^&^".$row['sixmonth_d'].$row['yearly_d'].'">'.$row["course_name"].'</option>';
+															echo '<option value="'.$row["course_id"]."^&^".$row["course_name"]."^&^".$row['monthly']."^&^".$row['monthly_d']."^&^".$row['quarterly_d']."^&^".$row['sixmonth_d']."^&^".$row['yearly_d'].'">'.$row["course_name"].'</option>';
 														}
 														$dtb->close();
 													?>
@@ -853,6 +699,7 @@
 						      		<label class="col-lg-2 control-label">Course ID</label>
 							       <div class="col-lg-3">
 							       		<input type="text" class="form-control" name="updateCourse" id="updateCourse" disabled></input>
+							       		<input type="text" name="fetchcustidC" id="fetchcustidC" hidden="">
 							       </div>
 							    </div>
 							    
@@ -862,9 +709,8 @@
 								<label class="col-lg-3 control-label">Select attribute to modify</label>
 								<div class="col-lg-3">
 						       		<select class="form-control" name="attributeC" id="attributeC">
-						       		<option value=""></option>
-						       		<option value="monthlyFee">Monthly Fee</option>
-						       		<option value="salary">Salary</option>
+							       		<option value=""></option>
+							       		<option value="monthly">Monthly Fee</option>
 						       		</select>
 						        </div>
 							</div>

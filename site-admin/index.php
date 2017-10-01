@@ -113,7 +113,7 @@
 						{
 							session_start();
 							$_SESSION["id"] = $id;
-							header("Location: home.php");
+							header("Location: tp.php");
 						}
 						else if($flag == 0)
 						{
