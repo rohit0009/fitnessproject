@@ -4,7 +4,9 @@
 <head>
 	<title>test</title>
 	<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.css">
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
 	<script>
 		$(document).ready(function(){
 			$("#inputBatch").attr({disabled: ""});
@@ -75,10 +77,9 @@
 </head>
 <body>
 	<div class="container"><br>
-	<ul class="nav nav-tabs">
+	<ul class="nav nav-tabs" id="innertab">
 	  <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
 	  <li><a href="#profile" data-toggle="tab">Profile</a></li>
-	  <li class="disabled"><a>Disabled</a></li>
 	  <li class="dropdown">
 	    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 	      Trainer <span class="caret"></span>
@@ -105,36 +106,95 @@
 	  		<div class="panel-body">
 	  				<div class="row">
 	  					<div class="col-lg-6">
-	  						<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Failed.</strong></div>
+	  						<?php
+	  							if($_SERVER['REQUEST_METHOD']=='POST')
+	  							{
+	  								if(isset($_POST['submitaddtrainer']))
+	  								{
+	  									$flag = 0;
+	  									echo "<script>
+															$(document).ready(function(){ 
+																$('#home').removeClass('active in'); 
+																$('#dropdown1').addClass('active in');
+																$('#innertab > li:nth-child(1)').removeClass('active');
+																$('#innertab > li:nth-child(3)').addClass('active');
+															});
+														</script>";
+											if($_POST['inputName']=="" || $_POST['inputAddress']== "" || $_POST['inputContact']=="" || $_POST['inputEmail'] =="" || $_POST['inputSalary']=="" || $_POST['fetchcourseid']=="" || $_POST['fetchbatchid'] =="")
+											{
+												echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter all Details.</strong></div>';
+											 	$flag = 1;
+											}
+											else
+											{
+												if(!is_numeric($_POST['inputContact']))
+												{
+													$flag = 1;
+													  echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter Numbers only in Contact Number.</strong></div>';
+												}
+												else
+												{
+													if(strlen($_POST['inputContact']) != 10)
+													{
+														$flag = 1;
+												  	echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter 10 digit number only.</strong></div>';
+													}
+													else
+													{
+														if (!filter_var($_POST['inputEmail'], FILTER_VALIDATE_EMAIL)) {
+															$flag = 1;
+														  echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Invalid Email.</strong></div>';
+														}
+														else
+														{
+															if(!is_numeric($_POST['inputSalary']))
+															{
+																$flag = 1;
+															  echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter Numeric Salary only.</strong></div>';
+															}
+														}
+													}
+												}
+											}
+											if($flag == 0)
+											{
+
+												echo '<br><div class="alert alert-dismissible alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Trainer Added Successfully.</strong></div>';
+											}
+		  								//print_r($_POST);
+		  							}
+	  							}
+	  						?>
+	  						
 	  					</div>
 	  				</div>
 	  				<div class="row">
 	  					<div class="col-lg-6 col-md-6">
-			    			<form class="form-horizontal">
+			    			<form class="form-horizontal" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
 								  <fieldset>
 								  		<legend>Trainer Details</legend>
 								  		<div class="form-group">
 								  			<label for="inputName" class="col-lg-3 control-label">Name</label>
 									      <div class="col-lg-9">
-									      	<input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name">
+									      	<input type="text" class="form-control" id="inputName" name="inputName" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputName']))echo $_POST['inputName'];}?>" placeholder="Name">
 									      </div>
 								  		</div>
 								  		<div class="form-group">
 								  			<label for="inputAddress" class="col-lg-3 control-label">Address</label>
 									      <div class="col-lg-9">
-									      	<input type="text" class="form-control" id="inputAddress" name="inputAddress" placeholder="Address">
+									      	<input type="text" class="form-control" id="inputAddress" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputAddress']))echo $_POST['inputAddress'];}?>" name="inputAddress" placeholder="Address">
 									      </div>
 								  		</div>
 								  		<div class="form-group">
 								  			<label for="inputContact" class="col-lg-3 control-label">Contact Number</label>
 									      <div class="col-lg-9">
-									      	<input type="text" class="form-control" id="inputContact" name="inputContact" placeholder="Contact Number">
+									      	<input type="text" class="form-control" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputContact']))echo $_POST['inputContact'];}?>" id="inputContact" name="inputContact" placeholder="Contact Number">
 									      </div>
 								  		</div>
 								  		<div class="form-group">
 								  			<label for="inputEmail" class="col-lg-3 control-label">Email</label>
 									      <div class="col-lg-9">
-									      	<input type="text" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email">
+									      	<input type="text" class="form-control" id="inputEmail" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputEmail']))echo $_POST['inputEmail'];}?>" name="inputEmail" placeholder="Email">
 									      </div>
 								  		</div>
 								  		<div class="form-group">
@@ -142,7 +202,7 @@
 								  			<div class="col-lg-9">
 									  			<div class="input-group">
 												    <span class="input-group-addon">₹</span>
-												    <input type="text" class="form-control" id="inputSalary" name="inputSalary" placeholder="Salary">
+												    <input type="text" class="form-control" id="inputSalary" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputSalary']))echo $_POST['inputSalary'];}?>" name="inputSalary" placeholder="Salary">
 												  </div>
 												</div>
 								  		</div>
@@ -150,7 +210,7 @@
 								  			<label class="col-lg-3 control-label">Course</label>
 									      <div class="col-lg-9">
 									      	<div class="input-group">
-									      		<select class="form-control" id="inputCourse">
+									      		<select class="form-control" id="inputCourse" name="inputCourse" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputCourse']))echo $_POST['inputCourse'];}?>">
 									      			<option value="">-----Select Course-----</option>
 										      		<?php
 										      			$dtb = new DTB();
@@ -204,7 +264,7 @@
 								  		</div>
 								  		<div class="form-group">
 									      <div class="col-lg-10 col-lg-offset-3">
-									        <button type="submit" class="btn btn-success">Add Trainer</button>
+									        <button type="submit" class="btn btn-success" id="submitaddtrainer" name="submitaddtrainer">Add Trainer</button>
 									      </div>
 									    </div>
 								  </fieldset>
