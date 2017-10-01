@@ -77,9 +77,7 @@
 		        <hr style="width: 200px;float: left;">
 		        <div class="clearfix"></div>
 		        <h2>Swimming</h2>
-		        <p class="lead">A special thanks to
-		          <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>
-		          for providing the photographs that you see in this template. Visit their website to become a member.</p>
+		        <p class="lead">The swimming complex, is one of our finest treasures for those who love swimming. Three separate pools offer an excellent opportunity for a dip.</p>
 		        <?php
 		        	if(isset($_SESSION['cust_id']))
 		        	{
@@ -108,8 +106,7 @@
 	            <div class="clearfix"></div>
 	            
 	            <h2>Table Tennis</h2>
-	            <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by
-	              <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
+	            <p class="lead">Our Table Tennis Club is open to both competitive and recreational players of all skill levels for our members.</p>
 	              <?php
 		        	if(isset($_SESSION['cust_id']))
 		        	{
@@ -139,9 +136,7 @@
 		        <div class="clearfix"></div>
 		        <h2>Squash
 		        
-		        <p class="lead">A special thanks to
-		          	<a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>
-		          	for providing the photographs that you see in this template. Visit their website to become a member.
+		        <p class="lead">Where power meets speed: a game of squash will have you running, leaping and diving for the ball. Increase your strength and fitness with squash.
 		        	</p>
 		       	<?php
 		        	if(isset($_SESSION['cust_id']))
@@ -170,8 +165,7 @@
 	            <hr style="width: 200px;float: left;">
 	            <div class="clearfix"></div>
 	            <h2>Zumba</h2>
-	            <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by
-	              <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
+	            <p class="lead">Lose yourself in Salsa and Latin beats while you dance away calories to achieve a more toned and sleek you.</p>
 	              <?php
 		        	if(isset($_SESSION['cust_id']))
 		        	{
