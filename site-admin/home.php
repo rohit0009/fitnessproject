@@ -22,6 +22,68 @@
 	</style>
 	<script>
 	$(document).ready(function(){
+		$("#inputBatch").attr({disabled: ""});
+		$("#inputCourse").on("change",function(){
+			if($("#inputCourse").find(":selected").val() == "")
+			{
+				$("#inputBatch").attr({disabled: ""});
+				
+			}
+			$("#inputBatch > option").remove();
+			$('#inputBatch').append($("<option></option>").attr("value","").text("-----Select Batch-----"));
+		});
+		$("#checkBatch").click(function(){
+
+			var str = "";
+			if($("#inputCourse").find(":selected").val() == "")
+			{
+				$("#table").html("");
+			}
+			else{
+				$("#inputBatch").removeAttr("disabled");
+				$mainsplit = $("#inputCourse").find(":selected").val().split('^&^');	
+				//alert($mainsplit);
+				var rowArray = $mainsplit[1].split("%&%");
+				//alert(rowArray);
+				var rowcount = new Number($mainsplit[2]);
+				//alert(rowcount);
+
+				$("#table").html("");
+				mytable = $('<table class="table table-striped table-hover"><thead><tr><th class="text-center">Batch</th><th class="text-center">Trainer</th></tr></thead><tbody></tbody></table>').attr({ id: "basicTable" });
+				var rows = rowcount;
+				var cols = new Number(2);
+				for (var i = 0; i < rows; i++) {
+					var colArray = rowArray[i].split("$&$");
+					var row = $('<tr></tr>').attr({ class: ["class1", "class2", "class3"].join(' ') }).appendTo(mytable);
+					var tempBatchStore="";
+					for (var j = 0; j < cols; j++) {
+						if(tempBatchStore != "" && j==1)
+						{
+							if(colArray[3] == "-")
+								$('#inputBatch').append($("<option></option>").attr("value",colArray[0]).text(colArray[1]));
+						}
+						if(j == 0)
+						{	
+							$('<td class="text-center"></td>').text(colArray[1]).appendTo(row); 
+							tempBatchStore = colArray[1];
+						}
+						if(j == 1)
+							$('<td class="text-center"></td>').text(colArray[3]).appendTo(row); 
+					}		 
+				}
+				console.log("TTTTT:"+mytable.html());
+				mytable.appendTo("#table");
+				$("#fetchcourseid").attr({value: $mainsplit[0]});
+
+			}
+				
+		});
+		$("#inputBatch").on("change",function(){
+			if($(this).find(":selected").val() == "")
+				$("#fetchbatchid").attr({value: ""});	
+			else
+				$("#fetchbatchid").attr({value: $(this).find(":selected").val()});
+		});
 		$("#selectdeleteT").on("change",function(){
 			if($(this).find(":selected").val() == "")
 			{
@@ -88,6 +150,36 @@
 			}
 		});
 
+		$("#selectUpdateC").on("change",function(){
+			if($(this).find(":selected").val() == "")
+			{
+				$("#updateCourse").attr({value: ""});
+				$("#fetchcustidC").attr({value: ""});
+				//$("#").attr({value: ""});
+				$("#updateCtable tr:eq(1) td:eq(0)").text("");
+				$("#updateCtable tr:eq(1) td:eq(1)").text("");
+				$("#updateCtable tr:eq(1) td:eq(2)").text("");
+				$("#updateCtable tr:eq(1) td:eq(3)").text("");
+				$("#updateCtable tr:eq(1) td:eq(4)").text("");
+				$("#updateCtable tr:eq(1) td:eq(5)").text("");
+				$("#updateCtable tr:eq(1) td:eq(6)").text("");
+			}
+			else
+			{
+				var data = $(this).find(":selected").val().split('^&^');
+				$("#updateCourse").attr({value: data[0]});
+				$("#fetchcustidC").attr({value: data[0]});
+				//$("#monthlyFee").html(data[7]);
+				$("#updateCtable tr:eq(1) td:eq(0)").text(data[0]);
+				$("#updateCtable tr:eq(1) td:eq(1)").text(data[1]);
+				$("#updateCtable tr:eq(1) td:eq(2)").text(data[2]);
+				$("#updateCtable tr:eq(1) td:eq(3)").text(data[3]);
+				$("#updateCtable tr:eq(1) td:eq(4)").text(data[4])
+				$("#updateCtable tr:eq(1) td:eq(5)").text(data[5]);
+				$("#updateCtable tr:eq(1) td:eq(6)").text(data[6]);
+			}
+		});
+
 		$("#selectUpdateM").on("change",function(){
 
 			if($(this).find(":selected").val() == "")
@@ -139,7 +231,7 @@
 		  		<ul class="dropdown-menu">
 			      <li><a href="#Courses" data-toggle="tab">Course List</a></li>
 			      <li class="divider"></li>
-			      <li><a href="#dropdown2" data-toggle="tab">Update Course</a></li>
+			      <li><a href="#courseupdate" data-toggle="tab">Update Course</a></li>
 			    </ul>
 		  </li>
 		  <li class="dropdown">
@@ -149,7 +241,7 @@
 		  		<ul class="dropdown-menu">
 			      <li><a href="#Trainers" data-toggle="tab">Trainer List</a></li>
 			      <li class="divider"></li>
-			      <li><a href="#" data-toggle="tab">Add Trainer</a></li>
+			      <li><a href="#addT" data-toggle="tab">Add Trainer</a></li>
 			      <li class="divider"></li>
 			      <li><a href="#trainerupdate" data-toggle="tab">Update Trainer Details</a></li>
 			      <li class="divider"></li>
@@ -295,38 +387,6 @@
 				}
 			}
 			
-			if(isset($_REQUEST['deleteMember']))
-			{
-				if($_REQUEST['fetchcust']!="")
-				{
-					$dtb->processQuery(" DELETE FROM `member` WHERE `member`.`cust_id` =".$_REQUEST['fetchcust']);
-					echo '<br><div class="alert alert-dismissible alert-success">
-						  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Member Deleted!</div>';
-					echo "<script>
-							$(document).ready(function(){ 
-								$('#Courses').removeClass('active in'); 
-								$('#deleteM').addClass('active in');
-								$('#innertab > li:nth-child(1)').removeClass('active');
-								$('#innertab > li:nth-child(3)').addClass('active');
-							});
-						</script>";
-				}
-				else
-				{
-					echo '<br><div class="alert alert-dismissible alert-danger">
-						  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Select a Member</div>';
-					echo "<script>
-							$(document).ready(function(){ 
-								$('#Courses').removeClass('active in'); 
-								$('#deleteM').addClass('active in');
-								$('#innertab > li:nth-child(1)').removeClass('active');
-								$('#innertab > li:nth-child(3)').addClass('active');
-							});
-						</script>";
-				}
-			}
 			if(isset($_REQUEST['updateMember']))
 			{
 				if($_REQUEST['attribute']=="" || $_REQUEST['selectUpdateM']=="" || $_REQUEST['newdetails']=="")
@@ -399,7 +459,7 @@
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
 							  	<strong>Updated Member Details.</div>';
 						else
-							echo '<br><div class="alert alert-dismissible alert-warning">
+							echo '<br><div class="alert alert-dismissible alert-warnng">
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
 							  	<strong>Failed.</div>';
 				    }
@@ -415,12 +475,305 @@
 						</script>";	
 				}
 			}
-			$dtb->close();
+
+			if(isset($_REQUEST['updateCourseSubmit']))
+			{
+				if($_REQUEST['attributeC']=="" || $_REQUEST['newdetailsC']=="" || $_REQUEST['fetchcustidC'] == "")
+				{
+					echo '<br><div class="alert alert-dismissible alert-danger">
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Enter all details.</div>';
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#courseupdate').addClass('active in');
+							});
+						</script>";
+				}
+				else
+				{
+					$arr = explode("^&^", $_REQUEST['selectUpdateC']);
+					$flag = 1;
+					if($flag)
+					{
+						if($_REQUEST['attributeC'] == "monthlyFee")
+						{
+							if(!is_numeric($_REQUEST['newdetailsC']))
+							{
+								echo '<br><div class="alert alert-dismissible alert-warning">
+						 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						 	  	<strong>Enter Numbers only.</strong></div>';
+						 	  	$flag = 0;
+						 	}
+						 	else
+						 	{
+						 	  	if($_REQUEST['newdetailsC'] < 0)
+						 	  	{
+						 	  		echo '<br><div class="alert alert-dismissible alert-warning">
+									 	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+									 	  <strong>Enter positive amount only.</strong></div>';
+									$flag = 0;
+						 	  	}
+						 	}
+						}
+					}
+					if($flag)
+					{
+						$result = $dtb->processQuery('update course set '.$_REQUEST['attributeC'].'="'.$_REQUEST['newdetailsC'].'" where course_id='.$_REQUEST["fetchcustidC"]);
+						if($result === TRUE)
+							echo '<br><div class="alert alert-dismissible alert-success">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  	<strong>Updated Course Details.</div>';
+						else
+							echo '<br><div class="alert alert-dismissible alert-danger">
+								  <button type="button" class="close" data-dismiss="alert">&times;</button>
+							  	<strong>Failed.</div>';
+				    }
+					
+					//print_r($arr);
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#courseupdate').addClass('active in');
+							});
+						</script>";
+				}
+			}
+			
+			if(isset($_REQUEST['deleteMember']))
+			{
+				if($_REQUEST['fetchcust']!="")
+				{
+					$dtb->processQuery(" DELETE FROM `member` WHERE `member`.`cust_id` =".$_REQUEST['fetchcust']);
+					echo '<br><div class="alert alert-dismissible alert-success">
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Member Deleted!</div>';
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#deleteM').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(3)').addClass('active');
+							});
+						</script>";
+				}
+				else
+				{
+					echo '<br><div class="alert alert-dismissible alert-danger">
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						  <strong>Select a Member</div>';
+					echo "<script>
+							$(document).ready(function(){ 
+								$('#Courses').removeClass('active in'); 
+								$('#deleteM').addClass('active in');
+								$('#innertab > li:nth-child(1)').removeClass('active');
+								$('#innertab > li:nth-child(3)').addClass('active');
+							});
+						</script>";
+				}
+			}
+			
 		} 
 		?>
 		
 		
 		<div id="myTabContent" class="tab-content">
+			<div class="tab-pane fade" id="addT">
+			 	<div class="panel panel-primary">
+			  		<div class="panel-heading">
+			  			Add Trainer
+			  		</div>
+			  		<div class="panel-body">
+			  				<div class="row">
+			  					<div class="col-lg-6">
+			  						<?php
+			  							if($_SERVER['REQUEST_METHOD']=='POST')
+			  							{
+			  								if(isset($_POST['submitaddtrainer']))
+			  								{
+			  									$flag = 0;
+			  									echo "<script>
+														$(document).ready(function(){ 
+															$('#Courses').removeClass('active in'); 
+															$('#addT').addClass('active in');
+															$('#innertab > li:nth-child(1)').removeClass('active');
+															$('#innertab > li:nth-child(2)').addClass('active');
+														});
+													</script>";
+													if($_POST['inputName']=="" || $_POST['inputAddress']== "" || $_POST['inputContact']=="" || $_POST['inputEmail'] =="" || $_POST['inputSalary']=="" || $_POST['fetchcourseid']=="" || $_POST['fetchbatchid'] =="")
+													{
+														echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter all Details.</strong></div>';
+													 	$flag = 1;
+													}
+													else
+													{
+														if(!ctype_alpha($_POST['inputName']))
+														{
+															echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter alphabets only in " Name Field ".</strong></div>';
+													 		$flag = 1;
+														}
+														else
+														{
+															if(!is_numeric($_POST['inputContact']))
+															{
+																$flag = 1;
+																  echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter Numbers only in Contact Number.</strong></div>';
+															}
+															else
+															{
+																if(strlen($_POST['inputContact']) != 10)
+																{
+																	$flag = 1;
+															  	echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter 10 digit number only.</strong></div>';
+																}
+																else
+																{
+																	if (!filter_var($_POST['inputEmail'], FILTER_VALIDATE_EMAIL)) {
+																		$flag = 1;
+																	  echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Invalid Email.</strong></div>';
+																	}
+																	else
+																	{
+																		if(!is_numeric($_POST['inputSalary']))
+																		{
+																			$flag = 1;
+																		  echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter Numeric Salary only.</strong></div>';
+																		}
+																	}
+																}
+															}
+														}
+													}
+													if($flag == 0)
+													{
+
+														echo '<br><div class="alert alert-dismissible alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Trainer Added Successfully.</strong></div>';
+													}
+				  								//print_r($_POST);
+				  							}
+			  							}
+			  						?>
+			  						
+			  					</div>
+			  				</div>
+			  				<div class="row">
+			  					<div class="col-lg-6 col-md-6">
+					    			<form class="form-horizontal" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+										  <fieldset>
+										  		<legend>Trainer Details</legend>
+										  		<div class="form-group">
+										  			<label for="inputName" class="col-lg-3 control-label">Name</label>
+											      <div class="col-lg-9">
+											      	<input type="text" class="form-control" id="inputName" name="inputName" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputName']))echo $_POST['inputName'];}?>" placeholder="Name">
+											      </div>
+										  		</div>
+										  		<div class="form-group">
+										  			<label for="inputAddress" class="col-lg-3 control-label">Address</label>
+											      <div class="col-lg-9">
+											      	<input type="text" class="form-control" id="inputAddress" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputAddress']))echo $_POST['inputAddress'];}?>" name="inputAddress" placeholder="Address">
+											      </div>
+										  		</div>
+										  		<div class="form-group">
+										  			<label for="inputContact" class="col-lg-3 control-label">Contact Number</label>
+											      <div class="col-lg-9">
+											      	<input type="text" class="form-control" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputContact']))echo $_POST['inputContact'];}?>" id="inputContact" name="inputContact" placeholder="Contact Number">
+											      </div>
+										  		</div>
+										  		<div class="form-group">
+										  			<label for="inputEmail" class="col-lg-3 control-label">Email</label>
+											      <div class="col-lg-9">
+											      	<input type="text" class="form-control" id="inputEmail" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputEmail']))echo $_POST['inputEmail'];}?>" name="inputEmail" placeholder="Email">
+											      </div>
+										  		</div>
+										  		<div class="form-group">
+										  			<label for="inputSalary" class="col-lg-3 control-label">Salary</label>
+										  			<div class="col-lg-9">
+											  			<div class="input-group">
+														    <span class="input-group-addon">₹</span>
+														    <input type="text" class="form-control" id="inputSalary" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputSalary']))echo $_POST['inputSalary'];}?>" name="inputSalary" placeholder="Salary">
+														  </div>
+														</div>
+										  		</div>
+										  		<div class="form-group">
+										  			<label class="col-lg-3 control-label">Course</label>
+											      <div class="col-lg-9">
+											      	<div class="input-group">
+											      		<select class="form-control" id="inputCourse" name="inputCourse" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputCourse']))echo $_POST['inputCourse'];}?>">
+											      			<option value="">-----Select Course-----</option>
+												      		<?php
+												      			$dtb = new DTB();
+												      			$course = $dtb->processQuery("select course_id,course_name from course;");
+
+												      			while($courserow = $course->fetch_assoc())
+												      			{
+												      					$batch = $dtb->processQuery("select batch_id,batch_name,batch_time from batch where course_id=".$courserow['course_id']);
+												      					$rowcount = $dtb->processQuery("select count(batch_id) from batch where course_id=".$courserow['course_id']);
+												      					$varRowCount = $dtb->getParam($rowcount,"count(batch_id)");
+												      					
+												      					$data = "";
+												      					while ($batchrow = $batch->fetch_assoc()) 
+												      					{
+												      						$trainer_batch = $dtb->processQuery("select trainer_id,trainer_name from trainer where trainer_id in (select trainer_id from seat where batch_id=".$batchrow['batch_id'].")");
+
+												      						if($trainer_batch->num_rows == 0)
+												      						{
+												      							$data = $data . $batchrow['batch_id']."$&$".$batchrow['batch_name']." ( ".$batchrow['batch_time']." )"."$&$-$&$";
+													      						mysqli_data_seek($trainer_batch,0);
+													      						$data = $data . "-%&%";	
+												      						}
+												      						else
+												      						{
+													      						$data = $data . $batchrow['batch_id']."$&$".$batchrow['batch_name']." ( ".$batchrow['batch_time']." )"."$&$".$dtb->getParam($trainer_batch,"trainer_id")."$&$";
+													      						mysqli_data_seek($trainer_batch,0);
+													      						$data = $data . $dtb->getParam($trainer_batch,"trainer_name")."%&%";
+													      					}
+												      					}
+												      					echo "<br>".$courserow['course_id']."^&^".$data;
+												      					echo "<option value='".$courserow['course_id']."^&^".$data."^&^".$varRowCount."'>".$courserow['course_name']."</option>";
+												      			}
+												      		?>
+												        </select>
+												        <input type="text" hidden id="fetchcourseid" name="fetchcourseid">
+												        <input type="text" hidden id="fetchbatchid" name="fetchbatchid">
+												        <input type="text" hidden id="fetchtrainerid" name="fetchtrainerid">
+												        <span class="input-group-btn">
+														      <button class="btn btn-default" type="button" id="checkBatch">Check Batch-Trainer Status</button>
+														    </span>
+											     		</div>
+										      	</div>
+										  		</div>
+										  		<div class="form-group">
+										  			<label class="col-lg-3 control-label">Select Batch</label>
+										  			<div class="col-lg-9">
+														    <select class="form-control" id="inputBatch">
+														    	<option value="">-----Select Batch-----</option>
+														    </select>
+														</div>
+										  		</div>
+										  		<div class="form-group">
+											      <div class="col-lg-10 col-lg-offset-3">
+											        <button type="submit" class="btn btn-success" id="submitaddtrainer" name="submitaddtrainer">Add Trainer</button>
+											      </div>
+											    </div>
+										  </fieldset>
+										</form>
+									</div>
+									<div class="col-lg-6 col-md-6">
+										<div class="panel panel-primary">
+											<div class="panel-body">
+											
+												<div id="table">
+													
+												</div>
+											
+											</div>
+											<div class="text-center"><p class="lead">Batch-Trainer Details</p></div>
+										</div>
+									</div>
+								</div>
+							</div>
+			    	</div>
+			    </div>
 			<div class="tab-pane fade" id="trainerdelete">
 				<div class="panel panel-warning">
 					  <div class="panel-heading">
@@ -555,18 +908,108 @@
 													<th>Email</th>
 													<th>Course Name</th>
 												</tr>
-										  </thead>
-										  <tbody>
-										  	<tr>
-										  		<td></td>
-										  		<td></td>
-										  		<td></td>
-										  		<td></td>
-										  		<td></td>
-										  		<td></td>
-										  		<td></td>
-										  	</tr>
-										  </tbody>
+											  </thead>
+											  <tbody>
+											  	<tr>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  	</tr>
+											  </tbody>
+										</table>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+		  </div>
+
+		  <div class="tab-pane fade" id="courseupdate">
+				<div class="panel panel-primary">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Update Course Details</h3>
+					  </div>
+					<div class="panel-body">
+						<form class="form-horizontal" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+							<fieldset>
+								<div class="form-group">
+
+							    	<label class="col-lg-2 control-label">Select Name</label>
+						      		<div class="col-lg-3">
+								        <select class="form-control" id="selectUpdateC" name="selectUpdateC">
+								        	<?php
+														$dtb = new DTB();
+														$result = $dtb->processQuery("select course_id,course_name,monthly,monthly_d,quarterly_d,sixmonth_d,yearly_d from course;");
+														echo "<option class='disabled' value=''></option>";
+														while ($row = $result->fetch_assoc())
+														{
+															echo '<option value="'.$row["course_id"]."^&^".$row["course_name"]."^&^".$row['monthly']."^&^".$row['monthly_d']."^&^".$row['quarterly_d']."^&^".$row['sixmonth_d']."^&^".$row['yearly_d'].'">'.$row["course_name"].'</option>';
+														}
+														$dtb->close();
+													?>
+								        </select>
+					       			</div>
+						      		<label class="col-lg-2 control-label">Course ID</label>
+							       <div class="col-lg-3">
+							       		<input type="text" class="form-control" name="updateCourse" id="updateCourse" disabled></input>
+							       		<input type="text" name="fetchcustidC" id="fetchcustidC" hidden="">
+							       </div>
+							    </div>
+							    
+							    <hr style="border-top: 1px grey solid;width: 95%; margin-left: 30px;">
+							</fieldset>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">Select attribute to modify</label>
+								<div class="col-lg-3">
+						       		<select class="form-control" name="attributeC" id="attributeC">
+							       		<option value=""></option>
+							       		<option value="monthly">Monthly Fee</option>
+						       		</select>
+						        </div>
+							</div>
+							<div class="form-group">
+								<label class="col-lg-3 control-label">New Value</label>
+						        
+						        <div class="col-lg-3">
+						        	<input type="text" class="form-control" name="newdetailsC" id="newdetailsC"></input>
+						        </div>
+							</div>
+							<div class="form-group">
+						      <div class="col-lg-5 col-lg-offset-3">
+						        <button type="submit" class="btn btn-warning" id="updateCourseSubmit" name="updateCourseSubmit">Update Course Details</button>
+						      </div>
+						    </div>
+							<hr style="border-top: 1px grey solid;width: 95%; margin-left: 30px;">
+							<div class="form-group">
+								<div class="container-fluid">
+										<table class="table table-striped" id="updateCtable">
+											<thead>
+											    <tr>
+													<th>Course ID</th>
+													<th>Course name</th>
+													<th>Monthly Fee</th>
+													<th>Monthly Discount</th>
+													<th>Quarterly Discount</th>
+													<th>Six-Monthly Discount</th>
+													<th>Yearly Discount</th>
+												</tr>
+											  </thead>
+											  <tbody>
+											  	<tr>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  		<td></td>
+											  	</tr>
+											  </tbody>
 										</table>
 									</div>
 								</div>
@@ -925,6 +1368,9 @@
 		<br><br>
 
 	<?php require('../footer.php');?>
+
+	
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
 
