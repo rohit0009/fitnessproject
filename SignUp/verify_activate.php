@@ -125,7 +125,7 @@
 						<div class="col-lg-4 col-md-4 col-sm-12">
 							<h6 class="text-primary" style="text-indent: 10px;">Please Check your mail and enter OTP.</h6>	
 						</div>
-						<div class="col-lg-7 col-md-6 col-sm-12">
+						<div class="col-lg-6 col-md-6 col-sm-12">
 							<input type="number" min="0" max="9" class="form-control" id="a"> <span class="bold">-</span>
 							<input type="number" min="0" max="9" class="form-control" id="b"> <span class="bold">-</span>
 							<input type="number" min="0" max="9" class="form-control" id="c"> <span class="bold">-</span>
