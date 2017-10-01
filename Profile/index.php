@@ -59,21 +59,21 @@
 											  <div class="panel-body">
 												  <form class="form-horizontal" method="POST">
 													  <div class="form-group">
-														  <label class="col-lg-3 control-label">Enrollment Date</label>
+														  <label class="col-lg-4 control-label">Enrollment Date</label>
 														  <div class="col-lg-5">
 														  	<div class="form-control" style="background-color: inherit; color: #AAA;">'.
 											    				$row['enrollment_date'].'</div>
 												  		</div>
 										  			</div>
 										  			<div class="form-group">
-														  <label class="col-lg-3 control-label">Expiry Date</label>
+														  <label class="col-lg-4 control-label">Expiry Date</label>
 														  <div class="col-lg-5">
 														  	<div class="form-control" style="background-color: inherit; color: #AAA;">'.
 											    				$row['expiry_date'].'</div>
 												  		</div>
 										  			</div>
 										  			<div class="form-group">
-														  <label class="col-lg-3 control-label">Batch Name</label>
+														  <label class="col-lg-4 control-label">Batch Name</label>
 														  <div class="col-lg-5">
 														  	<div class="form-control" style="background-color: inherit; color: #AAA;">';
 											    				$batch = $dtb->processQuery("select batch_name from batch where batch_id=".$row['batch_id']);
@@ -83,7 +83,7 @@
 												  		</div>
 										  			</div>
 										  			<div class="form-group">
-														  <label class="col-lg-3 control-label">Batch Time</label>
+														  <label class="col-lg-4 control-label">Batch Time</label>
 														  <div class="col-lg-5">
 														  	<div class="form-control" style="background-color: inherit; color: #AAA;">';
 														  		$batch = $dtb->processQuery("select batch_time from batch where batch_id=".$row['batch_id']);
@@ -118,21 +118,21 @@
 											  <div class="panel-body">
 												  <form class="form-horizontal" method="POST">
 													  <div class="form-group">
-														  <label class="col-lg-3 control-label">Enrollment Date</label>
+														  <label class="col-lg-4 control-label">Enrollment Date</label>
 														  <div class="col-lg-5">
 														  	<div class="form-control" style="background-color: inherit; color: #AAA;">'.
 											    				$row['enrollment_date'].'</div>
 												  		</div>
 										  			</div>
 										  			<div class="form-group">
-														  <label class="col-lg-3 control-label">Expiry Date</label>
+														  <label class="col-lg-4 control-label">Expiry Date</label>
 														  <div class="col-lg-5">
 														  	<div class="form-control" style="background-color: inherit; color: #AAA;">'.
 											    				$row['expiry_date'].'</div>
 												  		</div>
 										  			</div>
 										  			<div class="form-group">
-														  <label class="col-lg-3 control-label">Batch Name</label>
+														  <label class="col-lg-4 control-label">Batch Name</label>
 														  <div class="col-lg-5">
 														  	<div class="form-control" style="background-color: inherit; color: #AAA;">';
 											    				$batch = $dtb->processQuery("select batch_name from batch where batch_id=".$row['batch_id']);
@@ -142,7 +142,7 @@
 												  		</div>
 										  			</div>
 										  			<div class="form-group">
-														  <label class="col-lg-3 control-label">Batch Time</label>
+														  <label class="col-lg-4 control-label">Batch Time</label>
 														  <div class="col-lg-5">
 														  	<div class="form-control" style="background-color: inherit; color: #AAA;">';
 														  		$batch = $dtb->processQuery("select batch_time from batch where batch_id=".$row['batch_id']);

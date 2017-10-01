@@ -145,7 +145,15 @@
 		        	</p>
 		       	<?php
 		        	if(isset($_SESSION['cust_id']))
-		        		echo '<p class="lead">For Enrollment click <a href="./squash" class="btn btn-link">here</a></p>';
+		        	{
+		        		$result = $dtb->processQuery("select * from membership where course_id = 3003 and cust_id = ".$_SESSION['cust_id']);
+		        		if($result->num_rows > 0)
+		        		{
+		        			echo '<p class="lead"><span class="label label-success">Enrolled</span></p>';
+		        		}
+		        		else
+		        			echo '<p class="lead">For Enrollment click <a href="./squash" class="btn btn-link">here</a></p>';
+		        	}
 		        ?>
 		      </div>
 		      <div class="col-lg-7 mr-auto order-lg-2">
@@ -166,7 +174,15 @@
 	              <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
 	              <?php
 		        	if(isset($_SESSION['cust_id']))
-		        		echo '<p class="lead">For Enrollment click <a href="./zumba" class="btn btn-link">here</a></p>';
+		        	{
+		        		$result = $dtb->processQuery("select * from membership where course_id = 3004 and cust_id = ".$_SESSION['cust_id']);
+		        		if($result->num_rows > 0)
+		        		{
+		        			echo '<p class="lead"><span class="label label-success">Enrolled</span></p>';
+		        		}
+		        		else
+		        			echo '<p class="lead">For Enrollment click <a href="./zumba" class="btn btn-link">here</a></p>';
+		        	}
 		        ?>
 	          </div>
 	          <div class="col-lg-6 order-lg-1">
