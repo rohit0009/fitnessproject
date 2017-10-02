@@ -134,7 +134,7 @@
 		      <div class="col-lg-5 ml-auto order-lg-1">
 		        <hr style="width: 200px;float: left;">
 		        <div class="clearfix"></div>
-		        <h2>Squash
+		        <h2>Squash</h2>
 		        
 		        <p class="lead">Where power meets speed: a game of squash will have you running, leaping and diving for the ball. Increase your strength and fitness with squash.
 		        	</p>
