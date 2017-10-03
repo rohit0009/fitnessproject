@@ -273,7 +273,7 @@
 					$dtb->processQuery(" DELETE FROM `trainer` WHERE `trainer`.`trainer_id` =".$_REQUEST['fetchtra']);
 					echo '<br><div class="alert alert-dismissible alert-success">
 						  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Trainer Deleted!</div>';
+						  <strong>Trainer Deleted!</strong></div>';
 					echo "<script>
 							$(document).ready(function(){ 
 								$('#Courses').removeClass('active in'); 
@@ -287,7 +287,7 @@
 				{
 					echo '<br><div class="alert alert-dismissible alert-danger">
 						  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Select a Trainer</div>';
+						  <strong>Select a Trainer</strong></div>';
 					echo "<script>
 							$(document).ready(function(){ 
 								$('#Courses').removeClass('active in'); 
@@ -304,7 +304,7 @@
 				{
 					echo '<br><div class="alert alert-dismissible alert-danger">
 						  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Enter all details.</div>';
+						  <strong>Enter all details.</strong></div>';
 					echo "<script>
 							$(document).ready(function(){ 
 								$('#Courses').removeClass('active in'); 
@@ -326,7 +326,7 @@
 							{
 								echo '<br><div class="alert alert-dismissible alert-warning">
 						 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						 	  	<strong>Enter Numbers only.</strong></div>';
+						 	  	<strong>Enter Numbers only.</strong></strong></div>';
 						 	  	$flag = 0;
 						 	}
 						 	  else
@@ -368,11 +368,11 @@
 						if($result === TRUE)
 							echo '<br><div class="alert alert-dismissible alert-success">
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
-							  	<strong>Updated Trainer Details.</div>';
+							  	<strong>Updated Trainer Details.</strong></div>';
 						else
 							echo '<br><div class="alert alert-dismissible alert-danger">
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
-							  	<strong>Failed.</div>';
+							  	<strong>Failed.</strong></div>';
 				    }
 					
 					//print_r($arr);
@@ -393,7 +393,7 @@
 				{
 					echo '<br><div class="alert alert-dismissible alert-danger">
 						  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Enter all details.</div>';
+						  <strong>Enter all details.</strong></div>';
 					echo "<script>
 							$(document).ready(function(){ 
 								$('#Courses').removeClass('active in'); 
@@ -457,11 +457,11 @@
 						if($result === TRUE)
 							echo '<br><div class="alert alert-dismissible alert-success">
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
-							  	<strong>Updated Member Details.</div>';
+							  	<strong>Updated Member Details.</strong></div>';
 						else
 							echo '<br><div class="alert alert-dismissible alert-warnng">
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
-							  	<strong>Failed.</div>';
+							  	<strong>Failed.</strong></div>';
 				    }
 					
 					//print_r($arr);
@@ -482,7 +482,7 @@
 				{
 					echo '<br><div class="alert alert-dismissible alert-danger">
 						  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Enter all details.</div>';
+						  <strong>Enter all details.</strong></div>';
 					echo "<script>
 							$(document).ready(function(){ 
 								$('#Courses').removeClass('active in'); 
@@ -523,11 +523,11 @@
 						if($result === TRUE)
 							echo '<br><div class="alert alert-dismissible alert-success">
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
-							  	<strong>Updated Course Details.</div>';
+							  	<strong>Updated Course Details.</strong></div>';
 						else
 							echo '<br><div class="alert alert-dismissible alert-danger">
 								  <button type="button" class="close" data-dismiss="alert">&times;</button>
-							  	<strong>Failed.</div>';
+							  	<strong>Failed.</strong></div>';
 				    }
 					
 					//print_r($arr);
@@ -547,7 +547,7 @@
 					$dtb->processQuery(" DELETE FROM `member` WHERE `member`.`cust_id` =".$_REQUEST['fetchcust']);
 					echo '<br><div class="alert alert-dismissible alert-success">
 						  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Member Deleted!</div>';
+						  <strong>Member Deleted!</strong></div>';
 					echo "<script>
 							$(document).ready(function(){ 
 								$('#Courses').removeClass('active in'); 
@@ -561,7 +561,7 @@
 				{
 					echo '<br><div class="alert alert-dismissible alert-danger">
 						  <button type="button" class="close" data-dismiss="alert">&times;</button>
-						  <strong>Select a Member</div>';
+						  <strong>Select a Member</strong></div>';
 					echo "<script>
 							$(document).ready(function(){ 
 								$('#Courses').removeClass('active in'); 
