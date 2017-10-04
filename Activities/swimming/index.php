@@ -227,6 +227,7 @@
 															<div class="col-lg-2 col-lg-offset-1 col-md-2 col-sm-2 col-xs-3">
 																<button name="enroll" id="enroll" class="form-control btn btn-success"><span class="glyphicon glyphicon-ok"></span> </button>
 															</div>
+															
 															<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
 																<button class="form-control btn btn-danger" name="cancel"><span class="glyphicon glyphicon-remove"></span> </button>
 															</div>

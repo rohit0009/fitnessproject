@@ -579,6 +579,18 @@
 		
 		<div id="myTabContent" class="tab-content">
 			<div class="tab-pane fade" id="addT">
+				<br>
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-8">
+							<div class="btn-group btn-group-justified">
+									    <a href="" class="btn btn-default" data-toggle="tab">Add Trainer</a>
+									    <a href="#batchT" class="btn btn-default" data-toggle="tab">Add Batch to trainer</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
 			 	<div class="panel panel-primary">
 			  		<div class="panel-heading">
 			  			Add Trainer
@@ -664,25 +676,25 @@
 										  		<div class="form-group">
 										  			<label for="inputName" class="col-lg-3 control-label">Name</label>
 											      <div class="col-lg-9">
-											      	<input type="text" class="form-control" id="inputName" name="inputName" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputName']))echo $_POST['inputName'];}?>" placeholder="Name">
+											      	<input type="text" class="form-control" id="inputName" name="inputName" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['submitaddtrainer']) && $flag == 1){if(isset($_POST['inputName']))echo $_POST['inputName'];}?>" placeholder="Name">
 											      </div>
 										  		</div>
 										  		<div class="form-group">
 										  			<label for="inputAddress" class="col-lg-3 control-label">Address</label>
 											      <div class="col-lg-9">
-											      	<input type="text" class="form-control" id="inputAddress" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputAddress']))echo $_POST['inputAddress'];}?>" name="inputAddress" placeholder="Address">
+											      	<input type="text" class="form-control" id="inputAddress" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['submitaddtrainer']) && $flag == 1){if(isset($_POST['inputAddress']))echo $_POST['inputAddress'];}?>" name="inputAddress" placeholder="Address">
 											      </div>
 										  		</div>
 										  		<div class="form-group">
 										  			<label for="inputContact" class="col-lg-3 control-label">Contact Number</label>
 											      <div class="col-lg-9">
-											      	<input type="text" class="form-control" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputContact']))echo $_POST['inputContact'];}?>" id="inputContact" name="inputContact" placeholder="Contact Number">
+											      	<input type="text" class="form-control" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['submitaddtrainer']) && $flag == 1){if(isset($_POST['inputContact']))echo $_POST['inputContact'];}?>" id="inputContact" name="inputContact" placeholder="Contact Number">
 											      </div>
 										  		</div>
 										  		<div class="form-group">
 										  			<label for="inputEmail" class="col-lg-3 control-label">Email</label>
 											      <div class="col-lg-9">
-											      	<input type="text" class="form-control" id="inputEmail" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputEmail']))echo $_POST['inputEmail'];}?>" name="inputEmail" placeholder="Email">
+											      	<input type="text" class="form-control" id="inputEmail" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['submitaddtrainer']) && $flag == 1){if(isset($_POST['inputEmail']))echo $_POST['inputEmail'];}?>" name="inputEmail" placeholder="Email">
 											      </div>
 										  		</div>
 										  		<div class="form-group">
@@ -690,7 +702,7 @@
 										  			<div class="col-lg-9">
 											  			<div class="input-group">
 														    <span class="input-group-addon">₹</span>
-														    <input type="text" class="form-control" id="inputSalary" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && $flag == 1){if(isset($_POST['inputSalary']))echo $_POST['inputSalary'];}?>" name="inputSalary" placeholder="Salary">
+														    <input type="text" class="form-control" id="inputSalary" value="<?php if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['submitaddtrainer']) && $flag == 1){if(isset($_POST['inputSalary']))echo $_POST['inputSalary'];}?>" name="inputSalary" placeholder="Salary">
 														  </div>
 														</div>
 										  		</div>
@@ -765,7 +777,7 @@
 												<div id="table">
 													
 												</div>
-											
+												
 											</div>
 											<div class="text-center"><p class="lead">Batch-Trainer Details</p></div>
 										</div>
@@ -774,6 +786,21 @@
 							</div>
 			    	</div>
 			    </div>
+	    <div class="tab-pane fade" id="batchT">
+	    	<br>
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-8">
+							<div class="btn-group btn-group-justified">
+									    <a href="#addT" class="btn btn-default" data-toggle="tab">Add Trainer</a>
+									    <a href="#batchT" class="btn btn-default" data-toggle="tab">Add Batch to trainer</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+		    <p class="lead">Work in progress.</p>
+		  </div>
 			<div class="tab-pane fade" id="trainerdelete">
 				<div class="panel panel-warning">
 					  <div class="panel-heading">
