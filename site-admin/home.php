@@ -619,7 +619,7 @@
 													}
 													else
 													{
-														if(!ctype_alpha($_POST['inputName']))
+														if(!preg_match("/^([a-zA-Z]+|[a-zA-Z]+[\s]{1}[a-zA-Z]+|[a-zA-Z]+[\s]{1}[a-zA-Z]+[\s]{1}[a-zA-Z]+)$/", $_POST['inputName']))
 														{
 															echo '<br><div class="alert alert-dismissible alert-warning"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Enter alphabets only in " Name Field ".</strong></div>';
 													 		$flag = 1;
