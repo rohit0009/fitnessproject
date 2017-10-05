@@ -118,7 +118,23 @@
 							<h6 class="text-primary" style="text-indent: 10px;">Email Id</h6>	
 						</div>
 						<div class="col-lg-5 col-md-6 col-sm-12">
-							<input type="text" disabled value="<?php require '../DBHandler/DB.php'; $cookie_name = "cust_id"; $dtb = new DTB(); if(isset($_COOKIE[$cookie_name])){$result = $dtb->processQuery('select email from member where cust_id='.$_COOKIE[$cookie_name].';');echo $dtb->getParam($result,"email"); } else{ header("Location: ../Login");} $dtb->close();?>" class="form-control" style="display: block;width: 100%;">
+							<input type="text" disabled 
+							value="<?php require '../DBHandler/DB.php';
+							$cookie_name = "cust_id";
+							$dtb = new DTB();
+							if(isset($_COOKIE[$cookie_name]))
+								{
+									$result = $dtb->processQuery('select email from member where cust_id='.$_COOKIE[$cookie_name].';');
+									echo $dtb->getParam($result,"email");
+								}
+								else
+								{
+									header("Location: ../Login");
+								}
+								$dtb->close();
+							?>"
+							class="form-control"
+							style="display: block;width: 100%;">
 						</div>
 					</div>
 					<div class="form-group">

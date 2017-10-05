@@ -5,10 +5,12 @@
 	$flag = 0;
 	$dtb = new DTB();
 	$result = $dtb->processQuery("select cust_id from member where email = '".$_REQUEST['email']."';");
-	if(mysqli_num_rows($result) == 1)
+	//Email exists
+	if($result->num_rows == 1)
 		$flag = 1;
 	$result = $dtb->processQuery("select cust_id from member where username = '".$_REQUEST['inputUsername']."';");
-	if(mysqli_num_rows($result) == 1)
+	//Username exists
+	if($result->num_rows == 1)
 		$flag = 2;
 	$dtb->close();
 
