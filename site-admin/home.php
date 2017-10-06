@@ -54,7 +54,7 @@
 				var cols = new Number(2);
 				for (var i = 0; i < rows; i++) {
 					var colArray = rowArray[i].split("$&$");
-					var row = $('<tr></tr>').attr({ class: ["class1", "class2", "class3"].join(' ') }).appendTo(mytable);
+					var row = $('<tr></tr>').appendTo(mytable);
 					var tempBatchStore="";
 					for (var j = 0; j < cols; j++) {
 						if(tempBatchStore != "" && j==1)
@@ -658,8 +658,21 @@
 													}
 													if($flag == 0)
 													{
+														$insertTrainer = $dtb->processQuery("insert into trainer (trainer_name,contact_no,salary,address,email,course_id) values ('".$_POST['inputName']."','".$_POST['inputContact']."','".$_POST['inputSalary']."','".$_POST['inputAddress']."','".$_POST['inputEmail']."','".$_POST['fetchcourseid']."')");
+														if($insertTrainer === TRUE)
+														{
+															echo '<br><div class="alert alert-dismissible alert-success"><button type="button" class="close"	 data-dismiss="alert">&times;</button><strong>Trainer Added Successfully.</strong></div>';
+															$selectTraineridresult = $dtb->processQuery("select trainer_id from trainer where trainer_name = '".$_POST['inputName']."' and email = '".$_POST['inputEmail']."'");
+															$trainerid = $dtb->getParam($selectTraineridresult,'trainer_id');
+															//echo $trainerid." ".$_POST['fetchbatchid']." ".$_POST['fetchcourseid'];
+															$seatresult = $dtb->processQuery("update seat set trainer_id = ".$trainerid." where batch_id=".$_POST['fetchbatchid']." and course_id=".$_POST['fetchcourseid']);
+														}
+														else
+														{
+															echo '<br><div class="alert alert-dismissible alert-danger"><button type="button" class="close"	 data-dismiss="alert">&times;</button><strong>Query Failed.</strong></div>';	
+														}
 
-														echo '<br><div class="alert alert-dismissible alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Trainer Added Successfully.</strong></div>';
+														
 													}
 				  								//print_r($_POST);
 				  							}

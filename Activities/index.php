@@ -77,7 +77,11 @@
 		        <hr style="width: 200px;float: left;">
 		        <div class="clearfix"></div>
 		        <h2>Swimming</h2>
-		        <p class="lead">The swimming complex, is one of our finest treasures for those who love swimming. Three separate pools offer an excellent opportunity for a dip.</p>
+		        <p class="lead">This facility has been added to NRP FitnessClub list about 5 years back. 
+
+The facility is an ultra modern one where in a half Olympic size swimming pool is located on top of the house, a sheer luxury for our esteemed members. 
+ 
+		   </p>
 		        <?php
 		        	if(isset($_SESSION['cust_id']))
 		        	{
@@ -106,7 +110,8 @@
 	            <div class="clearfix"></div>
 	            
 	            <h2>Table Tennis</h2>
-	            <p class="lead">Our Table Tennis Club is open to both competitive and recreational players of all skill levels for our members.</p>
+	            <p class="lead">The NRP Table Tennis Club is open to both competitive and recreational players of all skill levels.
+				We are part of the National Table Tennis Association, and we compete in their tournaments. We also periodically hold tournaments open to the general public. Additionally some of our members compete in other local tournaments. </p>
 	              <?php
 		        	if(isset($_SESSION['cust_id']))
 		        	{
@@ -136,7 +141,10 @@
 		        <div class="clearfix"></div>
 		        <h2>Squash</h2>
 		        
-		        <p class="lead">Where power meets speed: a game of squash will have you running, leaping and diving for the ball. Increase your strength and fitness with squash.
+		        <p class="lead">NRP Squash Club was created as a place where members can meet to play squash in the comfort of one of the finest squash facilities in Pune, boasting a beautiful three-wall-glass exhibition court as well as six additional international standard courts with glass back walls.
+
+Members of the club will also have access to professional coaching, and a squash program that will provide instruction  with varying group sizes and functionality.
+ 
 		        	</p>
 		       	<?php
 		        	if(isset($_SESSION['cust_id']))
@@ -165,8 +173,8 @@
 	            <hr style="width: 200px;float: left;">
 	            <div class="clearfix"></div>
 	            <h2>Zumba</h2>
-	            <p class="lead">Lose yourself in Salsa and Latin beats while you dance away calories to achieve a more toned and sleek you.</p>
-	              <?php
+	            <p class="lead">We take the "work" out of workout, by mixing low-intensity and high-intensity moves for an interval-style, calorie-burning dance fitness party.A total workout, combining all elements of fitness – cardio, muscle conditioning, balance and flexibility, boosted energy and a serious dose of awesome each time you leave class.</p>
+	             <?php
 		        	if(isset($_SESSION['cust_id']))
 		        	{
 		        		$result = $dtb->processQuery("select * from membership where course_id = 3004 and cust_id = ".$_SESSION['cust_id']);
