@@ -20,27 +20,104 @@
 		  padding: 50px 0;
 		  
 		}
-		.carousel {
-		  height: 500px;
-		  margin-bottom: 60px;
-		}
-		/* Since positioning the image, we need to help out the caption */
-		.carousel-caption {
-		  z-index: 10;
-		}
 
-		/* Declare heights because of positioning of img element */
-		.carousel .item {
-		  height: 500px;
-		  background-color: #777;
+		@media(max-width: 1400px)
+		{
+			.carousel {
+			  height: 550px;
+			  margin-bottom: 60px;
+			}
+			/* Since positioning the image, we need to help out the caption */
+			.carousel-caption {
+			  z-index: 10;
+			}
+
+			/* Declare heights because of positioning of img element */
+			.carousel .item {
+			  height: 550px;
+			  background-color: #777;
+			}
+			.carousel-inner > .item > img {
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  min-width: 100%;
+			  height: 550px;
+			}
 		}
-		.carousel-inner > .item > img {
-		  position: absolute;
-		  top: 0;
-		  left: 0;
-		  min-width: 100%;
-		  height: 500px;
+		@media(max-width: 1200px)
+		{
+			.carousel {
+			  height: 450px;
+			  margin-bottom: 60px;
+			}
+			/* Since positioning the image, we need to help out the caption */
+			.carousel-caption {
+			  z-index: 10;
+			}
+
+			/* Declare heights because of positioning of img element */
+			.carousel .item {
+			  height: 450px;
+			  background-color: #777;
+			}
+			.carousel-inner > .item > img {
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  min-width: 100%;
+			  height: 450px;
+			}
 		}
+		@media(max-width: 767px)
+		{
+			.carousel {
+			  height: 400px;
+			  margin-bottom: 60px;
+			}
+			/* Since positioning the image, we need to help out the caption */
+			.carousel-caption {
+			  z-index: 10;
+			}
+
+			/* Declare heights because of positioning of img element */
+			.carousel .item {
+			  height: 400px;
+			  background-color: #777;
+			}
+			.carousel-inner > .item > img {
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  min-width: 100%;
+			  height: 400px;
+			}
+		}
+		@media(max-width: 500px)
+		{
+			.carousel {
+			  height: 200px;
+			  margin-bottom: 60px;
+			}
+			/* Since positioning the image, we need to help out the caption */
+			.carousel-caption {
+			  z-index: 10;
+			}
+
+			/* Declare heights because of positioning of img element */
+			.carousel .item {
+			  height: 200px;
+			  background-color: #777;
+			}
+			.carousel-inner > .item > img {
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  min-width: 100%;
+			  height: 200px;
+			}
+		}
+		
 	</style>
 	
 </head>
@@ -106,7 +183,7 @@
 	        <span class="sr-only">Next</span>
 	      </a>
 	    </div><!-- /.carousel -->
-	</div>
+		</div>
 
 	<div class="container">
 		<div class="row"> 
