@@ -151,7 +151,7 @@
 			      </ol>
 			      <div class="carousel-inner" role="listbox">
 			        <div class="item active center">
-			          <img class="first-slide" src="img/fitness club.jpg" alt="First slide">
+			          <img class="first-slide" src="img/zumba_fitness.jpg" alt="First slide">
 			          <div class="container">
 			            <div class="carousel-caption">
 			              
@@ -182,7 +182,7 @@
 			          <div class="container">
 			            <div class="carousel-caption">
 			              
-			              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+			              
 			            </div>
 			          </div>
 			        </div>
