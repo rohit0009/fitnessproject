@@ -85,17 +85,17 @@
 	<br>
 	<?php require 'header-activities.php'; ?>
 	<?php
-		$result = $dtb->processQuery("select course_id from course where course_name ='Squash'");
+		$result = $dtb->processQuery("select course_id from course where course_name ='Gym'");
 		$course_id = $dtb->getParam($result,'course_id');
 		$batch = $dtb->processQuery("select batch_id,batch_name,batch_time from batch where course_id = ".$course_id.";");
 		
 		echo'<div class="container">
 				<div class="row">
 					<div class="col-lg-3 page-header" style="border-bottom: 1px grey solid;">
-						<div><h4>Squash Enrollment</h4></div>
+						<div><h4>Gym Enrollment</h4></div>
 					</div>
 					<div class="col-lg-6 col-lg-offset-3 mr-auto">
-				       <img class="img-thumbnail" src="../../img/squash.jpg" alt="">
+				       <img class="img-thumbnail" src="../../img/zumba.jpg" alt="">
 				    </div>
 				</div>
 			</div>
@@ -114,7 +114,7 @@
 											$discount = $_POST['hiddendiscount'];
 											$duration = $_POST['duration'];
 											$date = $_POST['hiddendate'];
-											//echo $subtotal." ".$discount." ".$duration." ".$_POST['hiddendate'];
+											//echo $discount." ".$duration." ".$_POST['hiddendate'];
 											$data = explode("^&^", $duration);
 											$duration = $data[0];
 											$expDate = date('Y-m-d', strtotime("+".$duration." months", strtotime($date)));
@@ -168,7 +168,7 @@
 						      				<div class="col-lg-4">
 						      					<select class="form-control" id="select">';
 									          
-												$result1 = $dtb->processQuery("select batch.batch_id,batch_name,batch_time,no_of_seats,course.course_id,trainer.trainer_id,trainer_name from batch,seat,trainer,course where batch.batch_id = seat.batch_id and trainer.trainer_id = seat.trainer_id and course.course_id = seat.course_id and course_name = 'Squash' ORDER BY batch_name asc");
+												$result1 = $dtb->processQuery("select batch.batch_id,batch_name,batch_time,no_of_seats,course.course_id,trainer.trainer_id,trainer_name from batch,seat,trainer,course where batch.batch_id = seat.batch_id and trainer.trainer_id = seat.trainer_id and course.course_id = seat.course_id and course_name = 'Gym' ORDER BY batch_name asc");
 													echo "<option class='disabled'></option>";	
 													while ($row = $result1->fetch_assoc())
 													{
@@ -186,8 +186,16 @@
 														<div class="col-lg-2">
 															<input type="text" disabled id="no_of_seats" class="form-control">
 														</div>
+														<label class="col-lg-offset-1 col-lg-3 control-label text-left">Personal Trainer ?</label>
+														<div class="col-lg-2">
+															<div class="checkbox">
+															  <label>
+																<input type="checkbox">
+															  </label>
+															</div>
+														</div>
 													</div>';
-													$course = $dtb->processQuery("select * from course where course_name = 'Squash'");
+													$course = $dtb->processQuery("select * from course where course_name = 'Gym'");
 													$row = $course->fetch_assoc();
 													echo '<div class="form-group">
 														<label class="col-lg-2 control-label text-left">Select Duration</label>
@@ -250,7 +258,7 @@
 								<div class="col-lg-4 col-md-10 ">
 									<div class="panel panel-primary">
 									<table class="table table-striped">
-										<caption class="text-center">Seat Details for Squash</caption>
+										<caption class="text-center">Seat Details for Gym</caption>
 										<thead>
 											<tr>
 												<th class="text-center">Batch</th>

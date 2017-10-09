@@ -1,5 +1,7 @@
 <?php
 	session_start();
+	require("DBHandler/DB.php");
+	$dtb = new DTB();
 	if(!isset($_SESSION["cust_id"]))
 	{
 		echo '<div class="container">
@@ -20,7 +22,7 @@
 				        <li class="active"><a href="#">About Us <span class="sr-only">(current)</span></a></li>
 				        <li><a href="Activities">Activities</a></li>
 
-				        <li><a href="./login/index.php">Login</a> </li>
+				        <li><a href="./login">Login</a> </li>
 				      </ul>
 				      
 				    </div>
@@ -30,8 +32,6 @@
 	}
 	else
 	{
-		require("DBHandler/DB.php");
-		$dtb = new DTB();
 		$result = $dtb->processQuery("select f_name,l_name from member where cust_id = ".$_SESSION["cust_id"].";");
 		$fname = $dtb->getParam($result,"f_name");
 		mysqli_data_seek($result,0);

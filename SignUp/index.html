@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
 
@@ -24,100 +24,107 @@
 <body>
 	<br>	
 	<div class="container">
-		<div class="well well-lg" style="background-color: inherit;border:1px solid #282828;color: white;font-size: 30px;line-height: 20px;height: 75px;letter-spacing: 4px;text-shadow: 2px 2px #999DAD;font-family: Luckiest Guy, cursive;">
-			<a href="../index.php" style="text-decoration: none;color: white;">NRP FITNESS CLUB</a>
-		</div>
-		<div class="jumbotron" style="margin-left: 50px;margin-right: 50px;">
+		<nav class="navbar navbar-default" >
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href=".." style="padding-left: 30px;">NRP FITNESS CLUB</a>
+		    </div>
+		  </div>
+		</nav>
+	</div>
+		<div style="margin-right: 10px;margin-left: 10px;" class="container-fluid">
+			<div class="jumbotron" style="margin-left: 50px;margin-right: 50px;">
 
-			<div class="container">
-				<div id="alert"></div>
-				<div class="row">
-					<div class="col-lg-1"></div>
-					<div class="col-lg-8">
-						<form class="form-horizontal" action="signup.php" onsubmit="return validate()" method='POST'>
-						  <fieldset>
-						  <legend>SIGN UP</legend>
-						  	<div class="form-group">
-						      <label for="inputEmail" class="col-lg-3 control-label">First Name</label>
-						      <div class="col-lg-9">
-						        <input type="text" class="form-control" id="inputFirstName" name="inputFirstName" placeholder="First Name">
-						      </div>
-						    </div>
-						    <div class="form-group ">
-						      <label for="inputEmail" class="col-lg-3 control-label">Last Name</label>
-						      <div class="col-lg-9">
-						        <input type="text" class="form-control" id="inputLastName" name="inputLastName" placeholder="Last Name">
-						      </div>
-						    </div>
-						     <div class="form-group">
-						      	<label class="col-lg-3 control-label">Gender</label>
+				<div class="container">
+					<div id="alert"></div>
+					<div class="row">
+						<div class="col-lg-1"></div>
+						<div class="col-lg-8">
+							<form class="form-horizontal" action="signup.php" onsubmit="return validate()" method='POST'>
+							  <fieldset>
+							  <legend>SIGN UP</legend>
+							  	<div class="form-group">
+							      <label for="inputEmail" class="col-lg-3 control-label">First Name</label>
 							      <div class="col-lg-9">
-								        <div class="radio">
-								          <label>
-								            <input type="radio" name="optionsRadios" id="m" value="m" >
-								            Male
-								          </label>
-								        </div>
-								        <div class="radio">
-								          <label>
-								            <input type="radio" name="optionsRadios" id="f" value="f">
-								            Female
-								          </label>
-								        </div>
+							        <input type="text" class="form-control" id="inputFirstName" name="inputFirstName" placeholder="First Name">
 							      </div>
-						      </div>
-						      <div class="form-group">
-							      <label for="textArea" class="col-lg-3 control-label">Address</label>
+							    </div>
+							    <div class="form-group ">
+							      <label for="inputEmail" class="col-lg-3 control-label">Last Name</label>
 							      <div class="col-lg-9">
-							        <textarea class="form-control" name="adr" rows="3" id="address"></textarea>
+							        <input type="text" class="form-control" id="inputLastName" name="inputLastName" placeholder="Last Name">
 							      </div>
-							   </div>
-							<div class="form-group">
-						    	<label for="pincode" class="col-lg-3 control-label">Pin Code</label>
-						      	<div class="col-lg-9">
-						        	<input type="text" class="form-control" id="pincode" placeholder="Pin Code" name="pin">
-					      		</div>
-						    </div>
-						     <div class="form-group">
-						      <label for="contactno" class="col-lg-3 control-label">Contact Number</label>
-						      <div class="col-lg-9">
-						        <input type="text" class="form-control" id="contactno" placeholder="Contact Number" name="phno">
-						      </div>
-						    </div>
-						    <div class="form-group">
-						      <label for="email" class="col-lg-3 control-label">E-mail</label>
-						      <div class="col-lg-9">
-						        <input type="text" class="form-control" id="email" name="email" placeholder="E-mail">
-						      </div>
-						    </div>
-						    <div class="form-group">
-						      <label for="username" class="col-lg-3 control-label">Username</label>
-						      <div class="col-lg-9">
-						        <input type="text" class="form-control" id="inputUsername" name="inputUsername" placeholder="User Name" >
-						      </div>
-						    </div>
-						    <div class="form-group">
-						      <label for="inputPassword" class="col-lg-3 control-label">Password</label>
-						      <div class="col-lg-9">
-						        <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="inputPassword">
-						      </div>
-						    </div>
+							    </div>
+							     <div class="form-group">
+							      	<label class="col-lg-3 control-label">Gender</label>
+								      <div class="col-lg-9">
+									        <div class="radio">
+									          <label>
+									            <input type="radio" name="optionsRadios" id="m" value="m" >
+									            Male
+									          </label>
+									        </div>
+									        <div class="radio">
+									          <label>
+									            <input type="radio" name="optionsRadios" id="f" value="f">
+									            Female
+									          </label>
+									        </div>
+								      </div>
+							      </div>
+							      <div class="form-group">
+								      <label for="textArea" class="col-lg-3 control-label">Address</label>
+								      <div class="col-lg-9">
+								        <textarea class="form-control" name="adr" rows="3" id="address"></textarea>
+								      </div>
+								   </div>
+								<div class="form-group">
+							    	<label for="pincode" class="col-lg-3 control-label">Pin Code</label>
+							      	<div class="col-lg-9">
+							        	<input type="text" class="form-control" id="pincode" placeholder="Pin Code" name="pin">
+						      		</div>
+							    </div>
+							     <div class="form-group">
+							      <label for="contactno" class="col-lg-3 control-label">Contact Number</label>
+							      <div class="col-lg-9">
+							        <input type="text" class="form-control" id="contactno" placeholder="Contact Number" name="phno">
+							      </div>
+							    </div>
+							    <div class="form-group">
+							      <label for="email" class="col-lg-3 control-label">E-mail</label>
+							      <div class="col-lg-9">
+							        <input type="text" class="form-control" id="email" name="email" placeholder="E-mail">
+							      </div>
+							    </div>
+							    <div class="form-group">
+							      <label for="username" class="col-lg-3 control-label">Username</label>
+							      <div class="col-lg-9">
+							        <input type="text" class="form-control" id="inputUsername" name="inputUsername" placeholder="User Name" >
+							      </div>
+							    </div>
+							    <div class="form-group">
+							      <label for="inputPassword" class="col-lg-3 control-label">Password</label>
+							      <div class="col-lg-9">
+							        <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="inputPassword">
+							      </div>
+							    </div>
+								    
 							    
-						    
-						    <div class="form-group">
-						      <div class="col-lg-10 col-lg-offset-3">
-						        <button type="submit" class="btn btn-success" >Sign Up</button>
-						        <button type="reset" class="btn btn-default">Reset</button>
-						      </div>
-						    </div>
-						  </fieldset>
-						</form>
+							    <div class="form-group">
+							      <div class="col-lg-10 col-lg-offset-3">
+							        <button type="submit" class="btn btn-success" >Sign Up</button>
+							        <button type="reset" class="btn btn-default">Reset</button>
+							      </div>
+							    </div>
+							  </fieldset>
+							</form>
+						</div>
 					</div>
 				</div>
+
 			</div>
 
 		</div>
-
 	</div>
 
 

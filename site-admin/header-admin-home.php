@@ -5,8 +5,8 @@
 		echo '<div class="container">
 				<nav class="navbar navbar-default" style="">
 				  <div class="container-fluid">
-				    <div class="navbar-header" style="font-family: archivo black;">
-				      <a class="navbar-brand" href="home.php" style="padding-left: 30px;color: #4e79bf;">NRP FITNESS CLUB <span class="label label-primary" style="font-size: 16px;text-shadow:none;color:black;font-family: archivo black;">(Admin)</span></a>
+				    <div class="navbar-header">
+				      <a class="navbar-brand" href="home.php" style="padding-left: 30px;">NRP FITNESS CLUB <span class="label label-primary" style="font-size: 16px;text-shadow:none;color:black;font-family: archivo black;">(Admin)</span></a>
 
 				    </div>
 

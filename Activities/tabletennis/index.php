@@ -70,9 +70,13 @@
 			});
 		});
 		</script>
-		<style type="text/css">
-			
-			
+		<style>
+			@media(min-width: 1200px)
+			{
+				.container{
+					width: 1200px;
+				}
+			}
 		</style>
 </head>
 <body>
@@ -94,7 +98,7 @@
 				    </div>
 				</div>
 			</div>
-			<div class="container-fluid">
+			<div class="container">
 				<div class="row"></br></br>
 					<div class="panel panel-default">
 						<div class="panel-body">

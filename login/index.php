@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
 
@@ -69,7 +69,7 @@
 
 
 		<br>
-		<div class="jumbotron" style="margin-left: 50px;margin-right: 50px;">
+		<div class="jumbotron col-lg-10 col-lg-offset-1">
 		<?php
 
 			if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -130,26 +130,26 @@
 		<div id="alert"></div>
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-offset-3 col-md-6">
+				<div class="col-lg-offset-1 col-lg-8 col-md-6">
 					<form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" onsubmit="return validate()" method='POST'>
 					  <fieldset>
 					  <legend>LOGIN</legend>
 					    <div class="form-group">
-					      <label for="inputEmail" class="col-lg-2 control-label">Username</label>
-					      <div class="col-lg-10">
+					      <label for="inputEmail" class="col-lg-3 control-label">Username</label>
+					      <div class="col-lg-9">
 					        <input type="text" class="form-control" id="inputEmail" name="inputEmail" placeholder="Username">
 					      </div>
 					    </div>
 					    <div class="form-group">
-					      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-					      <div class="col-lg-10">
+					      <label for="inputPassword" class="col-lg-3 control-label">Password</label>
+					      <div class="col-lg-9">
 					        <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password">
 					      </div>
 					    </div>
 						    
 					    
 					    <div class="form-group">
-					      <div class="col-lg-10 col-lg-offset-2">
+					      <div class="col-lg-10 col-lg-offset-3">
 					        <button type="submit" class="btn btn-success" >Login</button>
 					        <button type="reset" class="btn btn-default">Reset</button>
 					      </div>
@@ -161,7 +161,7 @@
 		</div>
 		</div>
 
-		<div class="well well-lg text-center" style="margin-left: 50px;margin-right: 50px;">
+		<div class="well well-lg text-center col-lg-10 col-lg-offset-1">
 			Don't have an Account?  
 			<a href="../SignUp" style="text-decoration: none;color: white;"><button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title="" data-original-title="Click If you are a New User">Sign Up</button></a>
 		</div>

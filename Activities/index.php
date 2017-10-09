@@ -24,12 +24,12 @@
 		.content-section-a {
 		  padding: 50px 0;
 		  margin: auto;
-		  background-color: #111;
+		  background-color: #1e221e;
 		}
 		.content-section-b {
 		  padding: 50px 0;
 		  margin: auto;
-		  background-color: #222;
+		  background-color: #252925;
 		}
 		hr
 		{
@@ -59,7 +59,9 @@
 		}
 	}
 
-	
+	.lead{
+		
+	}
 
 	</style>
 	
@@ -70,13 +72,13 @@
 	<?php require 'header-activities.php'; ?>
 	<br>
 
-	<section class="content-section-a">
+	<section class="content-section-a" id="Swimming">
 		<div class="container">
 			<div class="row"> 
 		      <div class="col-lg-5 ml-auto order-lg-1">
 		        <hr style="width: 200px;float: left;">
 		        <div class="clearfix"></div>
-		        <h2>Swimming</h2>
+		        <h2 class="text-success">Swimming</h2>
 		        <p class="lead">This facility has been added to NRP FitnessClub list about 5 years back. 
 
 The facility is an ultra modern one where in a half Olympic size swimming pool is located on top of the house, a sheer luxury for our esteemed members. 
@@ -102,14 +104,14 @@ The facility is an ultra modern one where in a half Olympic size swimming pool i
 		</div>
 	</section>
 
-	<section class="content-section-b">
+	<section class="content-section-b" id="Table Tennis">
 		<div class="container">
 			<div class="row">
 		      <div class="col-lg-6 mr-auto order-lg-2">
 	            <hr style="width: 200px;float: left;">
 	            <div class="clearfix"></div>
 	            
-	            <h2>Table Tennis</h2>
+	            <h2 class="text-success">Table Tennis</h2>
 	            <p class="lead">The NRP Table Tennis Club is open to both competitive and recreational players of all skill levels.
 				We are part of the National Table Tennis Association, and we compete in their tournaments. We also periodically hold tournaments open to the general public. Additionally some of our members compete in other local tournaments. </p>
 	              <?php
@@ -133,13 +135,13 @@ The facility is an ultra modern one where in a half Olympic size swimming pool i
 		</div>
 	</section>
 
-	<section class="content-section-a">
+	<section class="content-section-a" id="Squash">
 		<div class="container">
 			<div class="row"> 
 		      <div class="col-lg-5 ml-auto order-lg-1">
 		        <hr style="width: 200px;float: left;">
 		        <div class="clearfix"></div>
-		        <h2>Squash</h2>
+		        <h2 class="text-success">Squash</h2>
 		        
 		        <p class="lead">NRP Squash Club was created as a place where members can meet to play squash in the comfort of one of the finest squash facilities in Pune, boasting a beautiful three-wall-glass exhibition court as well as six additional international standard courts with glass back walls.
 
@@ -166,13 +168,13 @@ Members of the club will also have access to professional coaching, and a squash
 		</div>
 	</section>
 
-	<section class="content-section-b">
+	<section class="content-section-b" id="Zumba">
 		<div class="container">
 			<div class="row">
 		      <div class="col-lg-6 mr-auto order-lg-2">
 	            <hr style="width: 200px;float: left;">
 	            <div class="clearfix"></div>
-	            <h2>Zumba</h2>
+	            <h2 class="text-success">Zumba</h2>
 	            <p class="lead">We take the "work" out of workout, by mixing low-intensity and high-intensity moves for an interval-style, calorie-burning dance fitness party.A total workout, combining all elements of fitness – cardio, muscle conditioning, balance and flexibility, boosted energy and a serious dose of awesome each time you leave class.</p>
 	             <?php
 		        	if(isset($_SESSION['cust_id']))
@@ -188,6 +190,35 @@ Members of the club will also have access to professional coaching, and a squash
 		        ?>
 	          </div>
 	          <div class="col-lg-6 order-lg-1">
+	            <img class="img-thumbnail" src="../img/zumba.jpg" alt="">
+	          </div>
+	          
+			</div>
+		</div>
+	</section>
+
+	<section class="content-section-a" id="Gym">
+		<div class="container">
+			<div class="row">
+		      <div class="col-lg-6 mr-auto order-lg-1">
+	            <hr style="width: 200px;float: left;">
+	            <div class="clearfix"></div>
+	            <h2 class="text-success">Gym</h2>
+	            <p class="lead">We take the "work" out of workout, by mixing low-intensity and high-intensity moves for an interval-style, calorie-burning dance fitness party.A total workout, combining all elements of fitness – cardio, muscle conditioning, balance and flexibility, boosted energy and a serious dose of awesome each time you leave class.</p>
+	             <?php
+		        	if(isset($_SESSION['cust_id']))
+		        	{
+		        		$result = $dtb->processQuery("select * from membership where course_id = 3005 and cust_id = ".$_SESSION['cust_id']);
+		        		if($result->num_rows > 0)
+		        		{
+		        			echo '<p class="lead"><span class="label label-success">Enrolled</span></p>';
+		        		}
+		        		else
+		        			echo '<p class="lead">For Enrollment click <a href="./gym" class="btn btn-link">here</a></p>';
+		        	}
+		        ?>
+	          </div>
+	          <div class="col-lg-6 order-lg-2">
 	            <img class="img-thumbnail" src="../img/zumba.jpg" alt="">
 	          </div>
 	          

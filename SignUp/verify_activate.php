@@ -5,8 +5,8 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
-	<link rel="stylesheet" type="text/css" href="..\bootstrap\bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<style type="text/css">
@@ -96,9 +96,13 @@
 <body>
 	<br>
 	<div class="container">
-		<div class="well well-lg" style="background-color: inherit;border:1px solid #282828;color: white;font-size: 30px;line-height: 20px;height: 75px;letter-spacing: 4px;text-shadow: 2px 2px #999DAD;font-family: Luckiest Guy, cursive;">
-			<a href="../" style="text-decoration: none;color: white;">NRP FITNESS CLUB</a>
-		</div>
+		<nav class="navbar navbar-default" >
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href=".." style="padding-left: 30px;">NRP FITNESS CLUB</a>
+		    </div>
+		  </div>
+		</nav>
 	</div>
 	<br><br>
 	<div class="container-fluid" style="margin-left: 30px;margin-right: 30px;">
@@ -115,7 +119,7 @@
 				<form class="form-horizontal"  name="F1" method="POST">
 					<div class="form-group">
 						<div class="col-lg-4 col-md-4 col-sm-12">
-							<h6 class="text-primary" style="text-indent: 10px;">Email Id</h6>	
+							<p class="" style="text-indent: 10px;">Email Id</p>
 						</div>
 						<div class="col-lg-5 col-md-6 col-sm-12">
 							<input type="text" disabled 
@@ -139,7 +143,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-lg-4 col-md-4 col-sm-12">
-							<h6 class="text-primary" style="text-indent: 10px;">Please Check your mail and enter OTP.</h6>	
+							<p class="" style="text-indent: 10px;">Please Check your mail and enter OTP.</p>
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-12">
 							<input type="number" min="0" max="9" class="form-control" id="a"> <span class="bold">-</span>
