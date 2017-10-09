@@ -151,7 +151,7 @@
 			      </ol>
 			      <div class="carousel-inner" role="listbox">
 			        <div class="item active center">
-			          <img class="first-slide" src="img/zumba_fitness.jpg" alt="First slide">
+			          <img class="first-slide" src="img/WHP-Table-tennis.jpg" alt="First slide">
 			          <div class="container">
 			            <div class="carousel-caption">
 			              
@@ -178,7 +178,7 @@
 			          </div>
 			        </div>
 			        <div class="item">
-			          <img class="third-slide" src="img/fitnessclub.jpg" alt="Third slide">
+			          <img class="third-slide" src="img/zumba_fitness.jpg" alt="Third slide">
 			          <div class="container">
 			            <div class="carousel-caption">
 			              
@@ -215,14 +215,19 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-sm-3 col-md-3 sidebar">
-				<div class="well well-sm">
-					<h4>Site Administration</h4>
-					<ul style="list-style-type: none;-webkit-padding-start: 5px;">
-						<li><a href="site-admin"  class='text-success'>Admin Login</a></li>
-					</ul>
-				</div>
-			</div>
+			<?php
+			if(!isset($_SESSION['cust_id']))
+			{
+				echo '<div class="col-sm-3 col-md-3 sidebar">
+					<div class="well well-sm">
+						<h4>Site Administration</h4>
+						<ul style="list-style-type: none;-webkit-padding-start: 5px;">
+							<li><a href="site-admin"  class="text-success">Admin Login</a></li>
+						</ul>
+					</div>
+				</div>';
+			}
+			?>
 		</div>
 		<div class="row">
 			<div class="col-sm-9 col-md-9">
@@ -230,6 +235,13 @@
 					<p style="font-size: 18px;text-indent: 50px;">If you are wondering about the "Best fitness center near me", then look further. "NRP fitness club" is not just a fitness studio which has grown into an empire that offers a wide range of health solutions including Gym, swimming,sports,zumba and other training courses. Whether your goal is a weightloss or bodybuilding or preparing for perticular sport or marathon, our certified and experienced trainers and nutritionists will methodically help you to reach those goals. So hurry up and <span class="text-success">Register soon..</span> :)</p>
 				</div>
 			</div>
+		</div>
+		<div class="row">
+			<blockquote>
+				<p>Physical fitness is not only one of the most important keys to a healthy body, it is the basis of dynamic and creative intellectual activity.</p>
+				<small><cite title="Source Title">John F. Kennedy</cite></small>
+			</blockquote>
+
 		</div>
 
 	</div>

@@ -98,7 +98,7 @@ The facility is an ultra modern one where in a half Olympic size swimming pool i
 		        ?>
 		      </div>
 		      <div class="col-lg-7 mr-auto order-lg-2">
-		        <img class="img-thumbnail" src="../img/swimming.jpg" alt="">
+		        <img class="img-thumbnail" src="../img/download.jpg" alt="">
 		      </div>
 			</div>
 		</div>
@@ -219,10 +219,15 @@ Members of the club will also have access to professional coaching, and a squash
 		        ?>
 	          </div>
 	          <div class="col-lg-6 order-lg-2">
-	            <img class="img-thumbnail" src="../img/zumba.jpg" alt="">
+	            <img class="img-thumbnail" src="../img/Gym_wiki.jpg" alt="">
 	          </div>
-	          
-			</div>
+			</div><br>
+			<div class="row">
+	          	<blockquote class="blockquote-reverse">
+					<p>Bodybuilding is much like any other sport. To be successful, you must dedicate yourself 100% to your training, diet and mental approach.</p>
+					<small><cite title="Source Title">Arnold Schwarzenegger</cite></small>
+				</blockquote>
+	          </div>
 		</div>
 	</section>
 
