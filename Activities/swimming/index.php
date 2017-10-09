@@ -33,8 +33,8 @@
 					var discountPerc = data[1];
 					var monthly = data[2];
 
-					var discount = ((monthly*duration)*discountPerc);
-					var totalfee = monthly*duration;
+					var discount = ((monthly*(duration/30))*discountPerc);
+					var totalfee = monthly*(duration/30);
 					$("#subt").attr({value: totalfee+"/-"});
 					$("#hiddensubt").attr({value: totalfee+"/-"});
 
@@ -117,7 +117,7 @@
 											//echo $subtotal." ".$discount." ".$duration." ".$_POST['hiddendate'];
 											$data = explode("^&^", $duration);
 											$duration = $data[0];
-											$expDate = date('Y-m-d', strtotime("+".$duration." months", strtotime($date)));
+											$expDate = date('Y-m-d', strtotime("+".$duration." days", strtotime($date)));
 											$fetch_course_id = $_POST['fetch_course_id'];
 
 											if($fetch_course_id != '' && $_POST['hiddentotalfee'] != '')
@@ -132,7 +132,7 @@
 												}
 												else
 												{
-													$result = $dtb->processQuery("INSERT INTO `membership` (`course_id`, `cust_id`, `batch_id`, `enrollment_date`, `discount`, `expiry_date`, `duration`) VALUES ('".$fetch_course_id."', '".$_SESSION['cust_id']."', '".$_POST['fetch_batch_id']."', '".$date."', '".$discount."', '".$expDate."', '".($duration*30)."')");
+													$result = $dtb->processQuery("INSERT INTO `membership` (`course_id`, `cust_id`, `batch_id`, `enrollment_date`, `discount`, `expiry_date`, `duration`) VALUES ('".$fetch_course_id."', '".$_SESSION['cust_id']."', '".$_POST['fetch_batch_id']."', '".$date."', '".$discount."', '".$expDate."', '".$duration."')");
 													if($result === TRUE)
 													{
 														$no_of_seats = $no_of_seats - 1;
@@ -194,10 +194,10 @@
 														<div class="col-lg-4">
 															<select class="form-control" id="duration" name="duration">
 																<option value=""></option>
-																<option value="1^&^'.$row['monthly_d'].'^&^'.$row['monthly'].'">1 Month</option>
-																<option value="3^&^'.$row['quarterly_d'].'^&^'.$row['monthly'].'">3 Months</option>
-																<option value="6^&^'.$row['sixmonth_d'].'^&^'.$row['monthly'].'">6 Months</option>
-																<option value="12^&^'.$row['yearly_d'].'^&^'.$row['monthly'].'">1 Year</option>
+																<option value="30^&^'.$row['monthly_d'].'^&^'.$row['monthly'].'">1 Month</option>
+																<option value="90^&^'.$row['quarterly_d'].'^&^'.$row['monthly'].'">3 Months</option>
+																<option value="180^&^'.$row['sixmonth_d'].'^&^'.$row['monthly'].'">6 Months</option>
+																<option value="360^&^'.$row['yearly_d'].'^&^'.$row['monthly'].'">1 Year</option>
 															</select>
 														</div>
 													</div>
