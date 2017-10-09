@@ -24,12 +24,12 @@
 		.content-section-a {
 		  padding: 50px 0;
 		  margin: auto;
-		  background-color: #1e221e;
+		  background-color: inherit;
 		}
 		.content-section-b {
 		  padding: 50px 0;
 		  margin: auto;
-		  background-color: #252925;
+		  background-color: inherit;
 		}
 		hr
 		{

@@ -69,7 +69,7 @@
 				<nav class="navbar navbar-default" style="">
 				  <div class="container-fluid">
 				    <div class="navbar-header">
-				      <a class="navbar-brand" href="#" style="padding-left: 30px;">NRP FITNESS CLUB<br></a>
+				      <a class="navbar-brand" href=".." style="padding-left: 30px;">NRP FITNESS CLUB<br></a>
 				    </div>
 
 				  </div>

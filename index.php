@@ -206,12 +206,12 @@
 						<?php
 							$result = $dtb->processQuery("select course_name from course where course_name not in ('Gym');");
 							while ($row = $result->fetch_assoc()) {
-								echo "<li><a href='Activities#".$row['course_name']."'>".$row['course_name']."</a></li>";
+								echo "<li><a href='Activities#".$row['course_name']."' class='text-success'>".$row['course_name']."</a></li>";
 							}
 						?>
 						<br>
 						<h5>Gym Enrollment</h5>
-						<li><a href='Activities#Gym'>Gym</a></li> 
+						<li><a href='Activities#Gym' class='text-success'>Gym</a></li> 
 					</ul>
 				</div>
 			</div>
@@ -219,7 +219,7 @@
 				<div class="well well-sm">
 					<h4>Site Administration</h4>
 					<ul style="list-style-type: none;-webkit-padding-start: 5px;">
-						<li><a href="site-admin">Admin Login</a></li>
+						<li><a href="site-admin"  class='text-success'>Admin Login</a></li>
 					</ul>
 				</div>
 			</div>
@@ -227,7 +227,7 @@
 		<div class="row">
 			<div class="col-sm-9 col-md-9">
 				<div class="jumbotron">
-					<p style="font-size: 18px;text-indent: 50px;">If you are wondering about the "Best fitness center near me", then look further. "NRP fitness club" is not just a fitness studio which has grown into an empire that offers a wide range of health solutions including Gym,swimming,sports,zumba and other training courses. Whether your goal is a weightloss or bodybuilding or preparing for perticular sport or marathon, our certified and experienced trainers and nutritionists will methodically help you to reach those goals. So hurry up and Register soon.. :)</p>
+					<p style="font-size: 18px;text-indent: 50px;">If you are wondering about the "Best fitness center near me", then look further. "NRP fitness club" is not just a fitness studio which has grown into an empire that offers a wide range of health solutions including Gym, swimming,sports,zumba and other training courses. Whether your goal is a weightloss or bodybuilding or preparing for perticular sport or marathon, our certified and experienced trainers and nutritionists will methodically help you to reach those goals. So hurry up and <span class="text-success">Register soon..</span> :)</p>
 				</div>
 			</div>
 		</div>
