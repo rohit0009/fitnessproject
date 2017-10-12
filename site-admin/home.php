@@ -583,10 +583,10 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-8">
-							<div class="btn-group btn-group-justified">
+							<!-- <div class="btn-group btn-group-justified">
 									    <a href="" class="btn btn-default" data-toggle="tab">Add Trainer</a>
 									    <a href="#batchT" class="btn btn-default" data-toggle="tab">Add Batch to trainer</a>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
