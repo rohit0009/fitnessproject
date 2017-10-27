@@ -161,7 +161,7 @@
 		</div>
 		</div>
 
-		<div class="well well-lg text-center col-lg-10 col-lg-offset-1">
+		<div class="well well-lg text-center col-lg-6 col-lg-offset-3">
 			Don't have an Account?  
 			<a href="../SignUp" style="text-decoration: none;color: white;"><button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="right" title="" data-original-title="Click If you are a New User">Sign Up</button></a>
 		</div>

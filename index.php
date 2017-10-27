@@ -237,7 +237,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<blockquote>
+			<blockquote class="col-sm-9 col-md-9">
 				<p>Physical fitness is not only one of the most important keys to a healthy body, it is the basis of dynamic and creative intellectual activity.</p>
 				<small><cite title="Source Title">John F. Kennedy</cite></small>
 			</blockquote>
