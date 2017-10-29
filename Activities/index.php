@@ -72,7 +72,7 @@
 	<?php require 'header-activities.php'; ?>
 	<br>
 	
-	<marquee class="lead text-info" style="letter-spacing: 2px;">**Special Discount offer!!! Get your membership and avail 5% off on quarterly, 10% off on 6 monthly and 15% off on yearly membership.</marquee>
+	<marquee class="lead text-info" style="letter-spacing: 2px;">**Special Discount offer!!! Get your membership and avail 10% off on quarterly, 15% off on 6 monthly and 20% off on yearly membership.</marquee>
 	<section class="content-section-a" id="Swimming">
 		<div class="container">
 			<div class="row"> 
