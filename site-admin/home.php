@@ -270,7 +270,13 @@
 			{
 				if($_REQUEST['fetchtra']!="")
 				{
-					$dtb->processQuery(" DELETE FROM `trainer` WHERE `trainer`.`trainer_id` =".$_REQUEST['fetchtra']);
+					$result = $dtb->processQuery("select course_id from trainer where trainer_id =".$_REQUEST['fetchtra']);
+					$course_id = $dtb->getParam($result,'course_id');
+					$dtb->processQuery("UPDATE `trainer` SET `course_id` = NULL WHERE `trainer`.`trainer_id` =".$_REQUEST['fetchtra']);
+					$result = $dtb->processQuery("select * from seat where course_id =".$course_id.' and trainer_id ='.$_REQUEST['fetchtra']);
+					while ($row = $result->fetch_assoc()) {
+						$dtb->processQuery("UPDATE `seat` SET `trainer_id` = NULL WHERE `seat`.`course_id` =".$course_id." and `seat`.`trainer_id` = ".$_REQUEST['fetchtra']);
+					}
 					echo '<br><div class="alert alert-dismissible alert-success">
 						  <button type="button" class="close" data-dismiss="alert">&times;</button>
 						  <strong>Trainer Deleted!</strong></div>';
@@ -829,7 +835,7 @@
 									        <select class="form-control" id="selectdeleteT" name="selectdeleteT">
 									        	<?php
 													$dtb = new DTB();
-													$result = $dtb->processQuery("select trainer_id,trainer_name,email from trainer;");
+													$result = $dtb->processQuery("select trainer_id,trainer_name,email from trainer where course_id is not null;");
 													echo "<option class='disabled'></option>";	
 													while ($row = $result->fetch_assoc())
 													{
@@ -878,7 +884,7 @@
 								        <select class="form-control" id="selectUpdateT" name="selectUpdateT">
 								        	<?php
 														$dtb = new DTB();
-														$result = $dtb->processQuery("select trainer_id,trainer_name,salary,contact_no,address,email,course_id from trainer;");
+														$result = $dtb->processQuery("select trainer_id,trainer_name,salary,contact_no,address,email,course_id from trainer where course_id is not null;");
 														echo "<option class='disabled' value=''></option>";
 														while ($row = $result->fetch_assoc())
 														{
@@ -1146,17 +1152,20 @@
 										  <tbody>';
 								while ($row = $result->fetch_assoc())
 								{
-									$result1 = $dtb->processQuery("select course_name from course where course_id=".$row['course_id']);
-									$course = $result1->fetch_assoc();
-										echo '<tr>
-									      <td class="text-center">'.$row['trainer_id'].'</td>
-									      <td class="text-center">'.$row['trainer_name'].'</td>
-									      <td class="text-center">'.$row['contact_no'].'</td>
-									      <td class="text-center">'.$row['salary'].'</td>
-									      <td class="text-center">'.$row['address'].'</td>
-									      <td class="text-center">'.$row['email'].'</td>
-									      <td class="text-center">'.$course['course_name'].'</td>
-									      </tr>';	
+									if($row['course_id'] != NULL)
+									{
+										$result1 = $dtb->processQuery("select course_name from course where course_id=".$row['course_id']);
+										$course = $result1->fetch_assoc();
+											echo '<tr>
+										      <td class="text-center">'.$row['trainer_id'].'</td>
+										      <td class="text-center">'.$row['trainer_name'].'</td>
+										      <td class="text-center">'.$row['contact_no'].'</td>
+										      <td class="text-center">'.$row['salary'].'</td>
+										      <td class="text-center">'.$row['address'].'</td>
+										      <td class="text-center">'.$row['email'].'</td>
+										      <td class="text-center">'.$course['course_name'].'</td>
+										      </tr>';
+									}
 								}
 								echo '</tbody>
 									</table>';

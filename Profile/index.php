@@ -11,6 +11,11 @@
 	<link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<style type="text/css">
+		footer {
+		  padding: 50px 0; 
+		}
+	</style>
 	
 </head>
 <body>
@@ -30,7 +35,6 @@
 						$num_of_enrollments = $result->num_rows;
 						//$rows_req = ceil($num_of_enrollments/2);
 						$panel_count = 0;
-						$i_idCounter = 0;
 						while($row = $result->fetch_assoc())
 						{
 							if($panel_count == 0)
@@ -48,7 +52,7 @@
 								$course = $dtb->processQuery("select course_name from course where course_id = ".$row['course_id']);
 								$course_name = $dtb->getParam($course,"course_name");
 								
-								echo "<h5>".$course_name."<span class='pull-right'>".$interval->format('%a days')." left</span></h5>";
+								echo "<h4>".$course_name."<span class='pull-right'>".$interval->format('%a days')." left</span></h4>";
 								$update = $dtb->processQuery("update membership set duration = ".$interval->format('%a')." where membership_id=".$row['membership_id']);
 								echo  '</div>
 											  <div class="panel-body">
@@ -107,7 +111,7 @@
 								$course = $dtb->processQuery("select course_name from course where course_id = ".$row['course_id']);
 								$course_name = $dtb->getParam($course,"course_name");
 								
-								echo "<h5>".$course_name."<span class='pull-right'>".$interval->format('%a days')." left</span></h5>";
+								echo "<h4>".$course_name."<span class='pull-right'>".$interval->format('%a days')." left</span></h4>";
 								$update = $dtb->processQuery("update membership set duration = ".$interval->format('%a')." where membership_id=".$row['membership_id']);
 								echo  '</div>
 											  <div class="panel-body">

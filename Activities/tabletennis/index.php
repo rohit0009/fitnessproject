@@ -77,6 +77,10 @@
 					width: 1200px;
 				}
 			}
+			footer {
+			  padding: 50px 0;
+			  
+			}
 		</style>
 </head>
 <body>
