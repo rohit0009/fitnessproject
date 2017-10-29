@@ -14,7 +14,7 @@
 	
 	<style type="text/css">
 		body{
-			background-image: url('img/images.jpg');
+			
 		}
 		footer {
 		  padding: 50px 0;
