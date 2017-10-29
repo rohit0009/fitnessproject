@@ -239,8 +239,7 @@
 		  			Trainer <span class="caret"></span>
 		  		</a>
 		  		<ul class="dropdown-menu">
-			      <li><a href="#Trainers" data-toggle="tab">Trainer List</a></li>
-			      <li class="divider"></li>
+			      
 			      <li><a href="#addT" data-toggle="tab">Add Trainer</a></li>
 			      <li class="divider"></li>
 			      <li><a href="#trainerupdate" data-toggle="tab">Update Trainer Details</a></li>
@@ -253,8 +252,6 @@
 		      Member <span class="caret"></span>
 		    </a>
 		    <ul class="dropdown-menu">
-		      <li><a href="#Members" data-toggle="tab">Member List <span class="badge"><?php $dtb =new DTB(); $result = $dtb->processQuery("select count(cust_id) from member;"); echo $dtb->getParam($result,"count(cust_id)"); $dtb->close();?></span></a></li>
-		      <li class="divider"></li>
 		      <li><a href="#updateM" data-toggle="tab">Update Member Details</a></li>
 		      <li class="divider"></li>
 		      <li><a href="#deleteM" data-toggle="tab">Delete Member</a></li>
@@ -1252,57 +1249,7 @@
 		    <div class="container-fluid">
 			    <div class="row">
 			    	<div class="col-lg-12"><br>
-			    	<div class="panel panel-primary">
-					  <div class="panel-heading">
-					    <h3 class="panel-title">Trainer List</h3>
-					  </div>
-				    	<?php
-				    		
-							$dtb = new DTB();
-
-							$result = $dtb->processQuery("select * from trainer;");
-
-							if ($result->num_rows>0)
-							{
-								echo '<table class="table table-striped ">
-										  <thead>
-										    <tr>
-												<th class="text-center">Trainer ID</th>
-												<th class="text-center">Trainer name</th>
-												<th class="text-center">Contact No</th>
-												<th class="text-center">Salary</th>
-												<th class="text-center">Address</th>
-												<th class="text-center">Email</th>
-												<th class="text-center">Course Speciality</th>
-											</tr>
-										  </thead>
-										  <tbody>';
-								while ($row = $result->fetch_assoc())
-								{
-									if($row['course_id'] != NULL)
-									{
-										$result1 = $dtb->processQuery("select course_name from course where course_id=".$row['course_id']);
-										$course = $result1->fetch_assoc();
-											echo '<tr>
-										      <td class="text-center">'.$row['trainer_id'].'</td>
-										      <td class="text-center">'.$row['trainer_name'].'</td>
-										      <td class="text-center">'.$row['contact_no'].'</td>
-										      <td class="text-center">'.$row['salary'].'</td>
-										      <td class="text-center">'.$row['address'].'</td>
-										      <td class="text-center">'.$row['email'].'</td>
-										      <td class="text-center">'.$course['course_name'].'</td>
-										      </tr>';
-									}
-								}
-								echo '</tbody>
-									</table>';
-							}
-							else
-								echo "<p class='lead text-center'>List is empty</p>";
-
-							$dtb->close();
-				    	?>
-				    	</div>
+			    	
 			    	</div>
 			    </div>
 			  </div>
@@ -1453,90 +1400,7 @@
 					  </div>
 				</div>
 		  </div>
-		  <div class="tab-pane fade" id="Members">
-			  <div class="container-fluid">
-			    <div class="row">
-			    	<div class="col-lg-12"><br>
-			    	<div class="panel panel-primary">
-					  <div class="panel-heading">
-					    <h3 class="panel-title">Member List</h3>
-					  </div>
-				    	<?php
-				    		
-							$dtb = new DTB();
-
-							$result = $dtb->processQuery("select * from member;");
-
-							if ($result->num_rows>0)
-							{
-								echo '<table class="table table-striped ">
-										  <thead>
-										    <tr>
-												<th>Customer ID</th>
-												<th>First name</th>
-												<th>Last name</th>
-												<th>Address</th>
-												<th>Pincode</th>
-												<th>Contact Number</th>
-												<th>Email</th>
-												<th>OTP</th>
-												<th>Username</th>
-												<th>Account Activated?</th>
-											</tr>
-										  </thead>
-										  <tbody>';
-								while ($row = $result->fetch_assoc())
-								{
-									if($row["activate"] == 1)
-									{
-									  echo '<tr>
-									      <td>'.$row['cust_id'].'</td>
-									      <td>'.$row['f_name'].'</td>
-									      <td>'.$row['l_name'].'</td>
-									      <td>'.$row['address'].'</td>
-									      <td>'.$row['pincode'].'</td>
-									      <td>'.$row['contact_no'].'</td>
-									      <td>'.$row['email'].'</td>
-									      <td>'.$row['otp'].'</td>
-									      <td>'.$row['username'].'</td>';
-									      if($row["activate"] == 1)
-									      	echo '<td>Activated</td>';
-									      else
-									      	echo '<td>Not Activated</td>
-									    </tr>';
-									}
-									else
-									{
-										echo '<tr class="danger">
-									      <td>'.$row['cust_id'].'</td>
-									      <td>'.$row['f_name'].'</td>
-									      <td>'.$row['l_name'].'</td>
-									      <td>'.$row['address'].'</td>
-									      <td>'.$row['pincode'].'</td>
-									      <td>'.$row['contact_no'].'</td>
-									      <td>'.$row['email'].'</td>
-									      <td>'.$row['otp'].'</td>
-									      <td>'.$row['username'].'</td>';
-									      if($row["activate"] == 1)
-									      	echo '<td>Activated</td>';
-									      else
-									      	echo '<td>Not Activated</td>
-									    </tr>';	
-									}
-								}
-								echo '</tbody>
-									</table>';
-							}
-							else
-								echo "<p class='lead text-center'>List is empty</p>";
-
-							$dtb->close();
-				    	?>
-				    	</div>
-			    	</div>
-			    </div>
-			  </div>
-		  </div>
+		  
 
 		</div>
 		</div>
