@@ -500,23 +500,23 @@
 					$flag = 1;
 					if($flag)
 					{
-						if($_REQUEST['attributeC'] == "monthlyFee")
+						if($_REQUEST['attributeC'] == "monthly")
 						{
-							if(!is_numeric($_REQUEST['newdetailsC']))
+							if(!(preg_match("/^[0-9]+|[0-9]+.[0-9]+$/",$_REQUEST['newdetailsC'])))
 							{
+								$flag = 0;
 								echo '<br><div class="alert alert-dismissible alert-warning">
 						 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
 						 	  	<strong>Enter Numbers only.</strong></div>';
-						 	  	$flag = 0;
 						 	}
 						 	else
 						 	{
 						 	  	if($_REQUEST['newdetailsC'] < 0)
 						 	  	{
+						 	  		$flag = 0;
 						 	  		echo '<br><div class="alert alert-dismissible alert-warning">
 									 	  <button type="button" class="close" data-dismiss="alert">&times;</button>
 									 	  <strong>Enter positive amount only.</strong></div>';
-									$flag = 0;
 						 	  	}
 						 	}
 						}
@@ -589,8 +589,8 @@
 							<div class="tab-content">
 								<div class="tab-pane fade active in" id="a">
 									<?php
+										echo "<p><h3 class='text-center'>Member List</h3></p>";
 										$dtb = new DTB();
-
 										$result = $dtb->processQuery("select * from member;");
 
 										if ($result->num_rows>0)
@@ -656,14 +656,14 @@
 										else
 											echo "<p class='lead text-center'>List is empty</p>";
 
-										$dtb->close();
+										
 							    	?>
 								</div>
 								<div class="tab-pane fade" id="b">
 									<?php
-				    		
-										$dtb = new DTB();
-
+				    					echo "<p><h3 class='text-center'>Trainer List</h3></p>";
+										
+				    				$dtb = new DTB();
 										$result = $dtb->processQuery("select * from trainer;");
 
 										if ($result->num_rows>0)
@@ -704,7 +704,7 @@
 										else
 											echo "<p class='lead text-center'>List is empty</p>";
 
-										$dtb->close();
+										
 							    	?>
 								</div>
 							</div>
@@ -788,6 +788,7 @@
 													}
 													if($flag == 0)
 													{
+
 														$insertTrainer = $dtb->processQuery("insert into trainer (trainer_name,contact_no,salary,address,email,course_id) values ('".$_POST['inputName']."','".$_POST['inputContact']."','".$_POST['inputSalary']."','".$_POST['inputAddress']."','".$_POST['inputEmail']."','".$_POST['fetchcourseid']."')");
 														if($insertTrainer === TRUE)
 														{
@@ -1118,7 +1119,7 @@
 														echo "<option class='disabled' value=''></option>";
 														while ($row = $result->fetch_assoc())
 														{
-															echo '<option value="'.$row["course_id"]."^&^".$row["course_name"]."^&^".$row['monthly']."^&^".$row['monthly_d']."^&^".$row['quarterly_d']."^&^".$row['sixmonth_d']."^&^".$row['yearly_d'].'">'.$row["course_name"].'</option>';
+															echo '<option value="'.$row["course_id"]."^&^".$row["course_name"]."^&^".$row['monthly']."^&^".($row['monthly_d']*100)."^&^".($row['quarterly_d']*100)."^&^".($row['sixmonth_d']*100)."^&^".($row['yearly_d']*100).'">'.$row["course_name"].'</option>';
 														}
 														$dtb->close();
 													?>
@@ -1163,10 +1164,10 @@
 													<th>Course ID</th>
 													<th>Course name</th>
 													<th>Monthly Fee</th>
-													<th>Monthly Discount</th>
-													<th>Quarterly Discount</th>
-													<th>Six-Monthly Discount</th>
-													<th>Yearly Discount</th>
+													<th>Monthly Discount(%)</th>
+													<th>Quarterly Discount(%)</th>
+													<th>Six-Monthly Discount(%)</th>
+													<th>Yearly Discount(%)</th>
 												</tr>
 											  </thead>
 											  <tbody>
