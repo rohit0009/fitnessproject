@@ -22,18 +22,21 @@
 	
 </head>
 <body>
-	<br>	
+	<br>
 	<div class="container">
-		<div class="well well-lg" style="background-color: inherit;border:1px solid #282828;color: white;font-size: 30px;line-height: 20px;height: 75px;letter-spacing: 4px;text-shadow: 2px 2px #999DAD;font-family: Luckiest Guy, cursive;">
-			<a href="../index.php" style="text-decoration: none;color: white;">NRP FITNESS CLUB</a>
-		</div><br><br>
+		<nav class="navbar navbar-default" style="">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href=".." style="padding-left: 30px;">NRP FITNESS CLUB<br></a>
+		    </div>
+		</nav>
 		<div class="well well-lg text-center">
 			<h5><?php if($_REQUEST['err'] == 'm') echo 'Email Id is already linked. Please <a href="../Login" class="btn brn-link">Log In</a>';
 				else if($_REQUEST['err'] == 'u')  echo 'Username is already linked. Please <a href="../Login" class="btn brn-link">Log In</a>'; ?>
 			</h5>
 		</div>
 	</div>
-	<br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<?php require("../footer.php");?>
 	<!-- Bootstrap core JavaScript
     ================================================== -->
