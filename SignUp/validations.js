@@ -38,7 +38,14 @@ function validate()
 										{  
 											if(contactno.value.length == 10)
 											{
-												return true;
+												if(contactno.value.match(/^[0-9]+$/))
+												{
+													return true;
+												}
+												else
+												{
+													document.getElementById("alert").innerHTML = '<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Contact Number should have numeric characters only.</div>';
+												}
 											}
 											else
 											{
