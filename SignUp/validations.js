@@ -15,43 +15,45 @@ function validate()
 			if(document.getElementById('f').checked)
 				x++;
 
-			if(inputFirstName.value == '' && inputLastName.value == '' && contactno.value == '' && email.value == '' && inputUsername.value == '' && inputPassword.value == '' && address.value == '' && pincode.value == '' && x.value == '')
+			if(inputFirstName.value == '' && inputLastName.value == '' && contactno.value == '' && email.value == '' && inputUsername.value == '' && inputPassword.value == '' && address.value == '' && pincode.value == '' && x == 0)
 			{
 				document.getElementById("alert").innerHTML = '<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Please enter all fields.</div>';
-				return false;
 			}
 
-			if(allLetter(inputFirstName,"First Name"))
+			else
 			{
-				if(allLetter(inputLastName,"Last Name"))
-				{	
-					if(x != 0)
-					{
-						if(allnumeric(pincode))  
-						{  
-							if(ValidateEmail(email))  
-							{   
-								if(userid_validation(inputUsername,5,12))  
-								{  
-									if(passid_validation(inputPassword,8,12))  
+				if(allLetter(inputFirstName,"First Name"))
+				{
+					if(allLetter(inputLastName,"Last Name"))
+					{	
+						if(x != 0)
+						{
+							if(allnumeric(pincode))  
+							{  
+								if(ValidateEmail(email))  
+								{   
+									if(userid_validation(inputUsername,5,12))  
 									{  
-										if(contactno.value.length == 10)
-										{
-											return true;
-										}
-										else
-										{
-											document.getElementById("alert").innerHTML = '<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Contact Number should be 10 digit only.</div>';
-										}
-									}   
+										if(passid_validation(inputPassword,8,12))  
+										{  
+											if(contactno.value.length == 10)
+											{
+												return true;
+											}
+											else
+											{
+												document.getElementById("alert").innerHTML = '<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Contact Number should be 10 digit only.</div>';
+											}
+										}   
+									}  
 								}  
 							}  
-						}  
-					}
-					else
-					{
-						document.getElementById("alert").innerHTML = '<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Select your Gender.</div>';
-						inputLastName.focus();
+						}
+						else
+						{
+							document.getElementById("alert").innerHTML = '<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Select your Gender.</div>';
+							inputLastName.focus();
+						}
 					}
 				}
 			}
