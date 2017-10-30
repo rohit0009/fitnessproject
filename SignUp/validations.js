@@ -30,11 +30,11 @@ function validate()
 						{
 							if(allnumeric(pincode))  
 							{  
-								if(ValidateEmail(email))  
+								if(ValidateEmail(email)) 
 								{   
-									if(userid_validation(inputUsername,5,12))  
+									if(userid_validation(inputUsername,5,12))
 									{  
-										if(passid_validation(inputPassword,8,12))  
+										if(passid_validation(inputPassword,8,12))
 										{  
 											if(contactno.value.length == 10)
 											{
@@ -44,7 +44,7 @@ function validate()
 											{
 												document.getElementById("alert").innerHTML = '<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Contact Number should be 10 digit only.</div>';
 											}
-										}   
+										}
 									}  
 								}  
 							}  
