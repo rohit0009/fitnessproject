@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
+    <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="../bootstrap/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
 
@@ -31,8 +31,8 @@
 		    </div>
 		</nav>
 		<div class="well well-lg text-center">
-			<h5><?php if($_REQUEST['err'] == 'm') echo 'Email Id is already linked. Please <a href="../Login" class="btn brn-link">Log In</a>';
-				else if($_REQUEST['err'] == 'u')  echo 'Username is already linked. Please <a href="../Login" class="btn brn-link">Log In</a>'; ?>
+			<h5><?php if($_REQUEST['err'] == 'm') echo 'Email Id is already linked. Please <a href="../Login" class="btn btn-link">Log In</a>';
+				else if($_REQUEST['err'] == 'u')  echo 'Username is already linked. Please <a href="../Login" class="btn btn-link">Log In</a>'; ?>
 			</h5>
 		</div>
 	</div>
