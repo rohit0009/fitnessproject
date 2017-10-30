@@ -15,6 +15,12 @@ function validate()
 			if(document.getElementById('f').checked)
 				x++;
 
+			if(inputFirstName.value == '' && inputLastName.value == '' && contactno.value == '' && email.value == '' && inputUsername.value == '' && inputPassword.value == '' && address.value == '' && pincode.value == '' && x.value == '')
+			{
+				document.getElementById("alert").innerHTML = '<div class="alert alert-dismissible alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Please enter all fields.</div>';
+				return false;
+			}
+
 			if(allLetter(inputFirstName,"First Name"))
 			{
 				if(allLetter(inputLastName,"Last Name"))
