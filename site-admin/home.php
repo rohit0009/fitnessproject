@@ -502,7 +502,7 @@
 					{
 						if($_REQUEST['attributeC'] == "monthly")
 						{
-							if(!(preg_match("/^[0-9]+|[0-9]+.[0-9]+$/",$_REQUEST['newdetailsC'])))
+							if(!(is_numeric($_REQUEST['newdetailsC'])))
 							{
 								$flag = 0;
 								echo '<br><div class="alert alert-dismissible alert-warning">
@@ -788,7 +788,6 @@
 													}
 													if($flag == 0)
 													{
-
 														$insertTrainer = $dtb->processQuery("insert into trainer (trainer_name,contact_no,salary,address,email,course_id) values ('".$_POST['inputName']."','".$_POST['inputContact']."','".$_POST['inputSalary']."','".$_POST['inputAddress']."','".$_POST['inputEmail']."','".$_POST['fetchcourseid']."')");
 														if($insertTrainer === TRUE)
 														{
