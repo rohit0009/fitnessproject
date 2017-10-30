@@ -44,7 +44,7 @@
 		$random = rand(100000,999999);
 
 		$mail->Subject = "OTP Details";
-		$mail->Body = "<div style='border: 1px solid grey;color: #888888;padding:10px;'><center><h2>NRP Fitness Club</h2></center><br><h3>Hello ".$_REQUEST['inputFirstName']." ".$_REQUEST['inputLastName'].",</h3><h4><p style='text-indent: 50px;'>Thanks For registration on our Website. Active your account by entering the OTP <span style='color: #3b79dd;'>".$random."</span></p></h4></div>";
+		$mail->Body = "<div style='border: 1px solid grey;font-size: 14px;line-height: 1.4285;font-weight:200;color: #c8c8c8;padding:10px;background-color: #272b30'><center><h2 style='letter-spacing: 4px;'>NRP FITNESS CLUB</h2></center><br><h3>Hello ".$_REQUEST['inputFirstName']." ".$_REQUEST['inputLastName'].",</h3><h4><p style='text-indent: 50px;'>Thanks For registration on our Website. Active your account by entering the OTP <span style='color: #3b79dd;'>".$random."</span></p></h4></div>";
 		$mail->AltBody = "This is the plain text version of the email content";
 
 		if(!$mail->send()) 
